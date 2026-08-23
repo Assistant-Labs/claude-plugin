@@ -1,0 +1,20 @@
+{
+	"mcpServers": {
+		"assistantlabs": {
+			"type": "http",
+			"url": "${user_config.mcp_base_url}/mcp"
+		},
+		"assistantlabs-tasks": {
+			"type": "http",
+			"url": "${user_config.mcp_base_url}/tasks/mcp"
+		},
+		"assistantlabs-sales": {
+			"type": "http",
+			"url": "${user_config.mcp_base_url}/sales/mcp"
+		},
+		"assistantlabs-crm": {
+			"type": "http",
+			"url": "${user_config.mcp_base_url}/crm/mcp"
+		}
+	}
+}
