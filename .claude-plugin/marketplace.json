@@ -6,14 +6,14 @@
 	},
 	"metadata": {
 		"description": "Plugins from Assistant Labs — run and operate a small business with Claude.",
-		"version": "0.6.0"
+		"version": "0.6.1"
 	},
 	"plugins": [
 		{
 			"name": "assistantlabs",
 			"source": "./plugins/assistantlabs",
 			"description": "An operator that runs your small business day to day — answers customers, chases leads, keeps the books straight, and files everything that needs your decision as a one-tap approval. Connects to your Assistant Labs channels and apps.",
-			"version": "0.6.0",
+			"version": "0.6.1",
 			"author": {
 				"name": "Assistant Labs",
 				"url": "https://assistantlabs.io"

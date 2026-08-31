@@ -32,6 +32,10 @@ to the nearest real one. Building one is a decision to maintain it.
 
 ## The screens
 
+**The host is `https://assistantlabs.io`.** There is no `app.` subdomain — it
+does not resolve, so a link built on one is dead and the owner sees a browser
+error with our name on it. The app lives at `assistantlabs.io/app/...`.
+
 Every path below is `https://assistantlabs.io` + the route, with `:assistantId`
 filled in from the workspace. Keep this in step with `RoutePath` in the app —
 if a link 404s, the enum is the source of truth, not this table.

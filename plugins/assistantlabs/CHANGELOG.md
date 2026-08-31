@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.1 — 2026-09-01
+
+**Every link went to a host that doesn't exist.**
+
+- Links during setup pointed at `app.assistantlabs.io`, which does not resolve.
+  Anyone who tapped one got a browser error with our name on it. They now go to
+  `assistantlabs.io`, and the rule is written down where the routes are.
+- Creating an agent no longer reads as finished when it isn't. An agent with a
+  name and nothing else answers nobody, and stopping halfway now says so.
+- On a brand-new account, the first call used to fail with "this key reaches
+  several agents" and an empty list — the wrong reason, on the first thing that
+  happens. It now says there are no agents yet and what to do about it.
+
 ## 0.6.0 — 2026-09-01
 
 **Your agent learns your website in front of you.**
