@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.2.1 — 2026-08-31
+
+A first run that welcomes somebody instead of instructing them.
+
+- **The first minute is an onboarding, not a setup screen.** `/al` now opens
+  with a welcome, what the operator actually does in the owner's terms, the
+  three things the next five minutes hold, and a question they can answer in one
+  word — then stops. It offers the next step rather than leaving a blank pause,
+  and one of the options always costs nothing.
+- **The welcome is used once.** Somebody coming back gets their business, not a
+  greeting they have already had.
+- **No tool names out loud.** "None of them answer — list_assistants,
+  list_tasks, list_segments aren't reachable" is a stack trace in a sentence.
+  Nothing connected now reads as "nothing's connected yet".
+- **Nothing connected is a first run, not a failure** — it hands to the welcome
+  instead of reporting a failed probe.
+- **`/al-login` never ends on a blank wait.** Once a connector answers it names
+  the agent, says what it can see, and offers the next step instead of waiting
+  to be asked for `/al-setup`.
+
 ## 0.2.0 — 2026-08-31
 
 Named the commands, and stopped the operator inventing its own connection state.

@@ -20,6 +20,16 @@ easiest way to look broken on the first run.
 **Connection is per connector, never all-or-nothing.** One answering and three
 not is the ordinary state. Report exactly what you found.
 
+**Probe silently, and never say a tool name out loud.** `list_assistants`,
+`list_crm_companies` and the rest are plumbing. "None of them answer —
+list_assistants, list_tasks, list_segments aren't reachable" is a stack trace
+wearing a sentence. Say *"nothing's connected yet"* and move on.
+
+**Nothing connected and no setup state = a first run, not a failure.** Do not
+open with a probe result. Give them the welcome in `/al` §A — what this is, what
+the next few minutes look like, and a question they can answer in one word —
+then continue here once they say yes.
+
 ## They all answer
 
 One line, then stop:
@@ -55,7 +65,15 @@ No Assistant Labs account yet? The sign-in says so. Point at
 ## Then verify — do not assume
 
 When they say they are done, **run the probes again** and report what came back.
-"Should be connected now" is not a result. If it still fails, say which connector
-and what the error said, rather than sending them round the loop a second time.
+"Should be connected now" is not a result. If it still fails, say plainly what is
+still missing — in their words, not tool names — rather than sending them round
+the loop a second time.
 
-Once something answers, go straight on to `/al-setup` — do not make them ask.
+Once something answers, **go straight on** — name their agent, say what you can
+see, and offer the next step. Never end on a blank wait: give them two or three
+options, best first, one line each, and always one that costs nothing.
+
+> "You're in — סוכן AssistantLabs, WhatsApp live. Want me to read your website
+> so I actually know the business, or would you rather tell me yourself?"
+
+Do not make them ask for `/al-setup`. Take them there.
