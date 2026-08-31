@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.1 — 2026-08-31
+
+0.3.0's sign-in only worked in a terminal. This makes it work everywhere.
+
+- **No bundled executable in the path.** Hosted surfaces (claude.ai, Cowork)
+  receive a plugin's content files and not its `scripts/` directory, so the
+  connect script simply was not there and `/al-login` fell straight back to the
+  settings menu it exists to replace. The whole flow is now plain HTTP run
+  inline, which needs nothing shipped.
+- **A link, not a browser window.** On a hosted surface the shell is a remote
+  sandbox, so opening a browser was never going to reach the person's own
+  machine. One clickable link is the same single action and works everywhere.
+- **The header helper no longer needs the script either.** It uses the bundled
+  one where it exists — a terminal, which also gets silent token refresh — and
+  reads the credential file inline everywhere else.
+
 ## 0.3.0 — 2026-08-31
 
 **`/al-login` now connects you itself.** It opens your browser, you sign in and

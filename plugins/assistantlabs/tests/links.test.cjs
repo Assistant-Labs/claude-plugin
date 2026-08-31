@@ -126,7 +126,35 @@ describe('the plugin only points at things that exist', { skip: !haveRepo }, () 
 		// Anything snake_case in the docs is either a tool name or a config key.
 		// The known non-tools are listed rather than pattern-matched, so a NEW
 		// unknown name fails loudly instead of being explained away.
-		const NOT_TOOLS = new Set(['mcp_base_url']);
+		const NOT_TOOLS = new Set([
+			'mcp_base_url',
+			// OAuth 2.0 / RFC 8628 wire names. `/al-login` runs the device grant
+			// inline, so it necessarily writes out the parameters and the error
+			// codes the spec defines. They are listed one by one, not matched by a
+			// pattern, so a genuinely invented tool name still fails here.
+			'access_denied',
+			'access_token',
+			'authorization_code',
+			'authorization_pending',
+			'client_id',
+			'client_name',
+			'device_authorization',
+			'device_code',
+			'expired_token',
+			'expires_in',
+			'grant_type',
+			'grant_types',
+			'offline_access',
+			'redirect_uris',
+			'request_id',
+			'refresh_token',
+			'response_types',
+			'slow_down',
+			'token_endpoint',
+			'token_endpoint_auth_method',
+			'verification_uri',
+			'verification_uri_complete',
+		]);
 		const named = new Set(
 			(readAll(pluginDocs()).match(/\b[a-z][a-z0-9]*(?:_[a-z0-9]+)+\b/g) ?? [])
 				.filter(n => !NOT_TOOLS.has(n)),
