@@ -16,17 +16,32 @@ business's own Assistant Labs workspace over three remote connectors, and the
 owner authorises each one by signing in — **no key is ever pasted, copied, or
 stored in a file.**
 
-## The four connectors
+## One connector, five products
 
-| Connector | Endpoint | What it reaches |
-|---|---|---|
-| `assistantlabs` | `/mcp` | The AI agent, its knowledge, conversations, contacts, channels, WhatsApp templates, custom integrations |
-| `assistantlabs-tasks` | `/tasks/mcp` | The task board — the owner’s window into the operator, and where approvals live |
-| `assistantlabs-sales` | `/sales/mcp` | Audiences, outreach journeys, funnel state |
-| `assistantlabs-crm` | `/crm/mcp` | The system of record — companies, the people at them, and the fields this business tracks |
+There is **one address**, and it carries everything the credential is allowed to
+reach:
 
-They are separate on purpose: wanting a task board should never mean
-pre-approving access to every conversation the business has ever had.
+```
+https://mcp-server-150134556021.us-central1.run.app/mcp
+```
+
+| What it reaches | Needs |
+|---|---|
+| The agent, its knowledge, conversations, contacts, channels, WhatsApp templates, custom integrations | customer replies |
+| The task board — the owner's window into the operator, and where approvals live | the task board |
+| The system of record — companies, the people at them, the fields this business tracks | the CRM |
+| Audiences, outreach journeys, funnel state | Sales |
+| Posts, channels, strategy | Marketing |
+
+**What appears is decided on the consent screen, not by adding connectors.**
+Somebody who ticks only customer replies gets those tools and nothing else — not
+a hidden CRM tool that would fail on use, and not the context cost of carrying
+it.
+
+The per-product addresses (`/tasks/mcp`, `/sales/mcp`, `/crm/mcp`,
+`/marketing/mcp`) still work for anyone already connected to one. **Never hand
+one to somebody new** — five connectors, five sign-ins and five consent screens
+before anything works is the tax this replaced.
 
 ## Connecting
 

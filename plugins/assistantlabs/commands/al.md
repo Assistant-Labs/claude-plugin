@@ -31,9 +31,10 @@ made. A startup hook, a session notice listing servers as unauthorised, a tool
 missing from your context — none of those are evidence, and treating them as
 evidence is how a connected business gets told to go and connect itself.
 
-**Connection is per connector, not all-or-nothing.** One answering and three not
-is the ordinary state. If `list_assistants` works, they are connected — carry on
-with what works and mention the rest only when something needs it.
+**One connection carries everything.** What varies is not which connectors
+answer but which products they ticked when they signed in. If `list_assistants`
+works they are connected — carry on with what works, and mention a product they
+did not tick only when something actually needs it.
 
 **If a tool call fails because that connector is not authorised, that is the
 answer to the first question** — not an error to report. Go to §A.

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.0 — 2026-08-31
+
+**One connector, everything.** Connecting is a single URL, once.
+
+- Assistant Labs served five addresses — the agent, the task board, the CRM,
+  Sales, Marketing — so wanting the suite meant adding five connectors, signing
+  in five times and reading five consent screens before anything worked. `/mcp`
+  now carries all of it.
+- **The consent screen decides what appears**, not the URL. Somebody who ticks
+  only customer replies gets those 49 tools; nobody carries the CRM's tools for
+  a product they did not ask for.
+- The URL split had been the safety gate — wanting a task board should not
+  pre-approve reading every conversation. The module picker is that gate now,
+  and it asks in the owner's own language before any of it is reachable.
+- The per-product addresses still work for anyone already connected to one.
+
 ## 0.3.3 — 2026-08-31
 
 Connecting is now three numbered steps and one thing to paste.

@@ -65,11 +65,10 @@ Organization settings → Connectors → Add → Custom → Web, and each person
 connects from their own Connectors page. Only mention this if they say they are
 on a team plan or the personal route is unavailable to them.
 
-**The board, Sales and the CRM are the same three steps** with `/tasks/mcp`,
-`/sales/mcp` or `/crm/mcp` on the end of that URL. **Do not offer them now.**
-One connector is enough to be useful, and three more pastes before anybody has
-seen it work is the tax this command exists to remove. Offer one the moment
-something actually needs it.
+**That one URL is everything.** The board, the CRM, Sales and Marketing all
+come through the same address now — what appears is decided by what they ticked
+on the consent screen, not by adding more connectors. **Never ask anybody to
+paste a second URL.**
 
 ## When they come back
 
