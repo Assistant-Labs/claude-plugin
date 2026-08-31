@@ -160,14 +160,22 @@ it every session.**
 Connected, but the agent knows nothing about the business — no FAQ, no
 catalogue, no opening hours. Do **not** start interviewing them for it.
 
-**Scan their website first** (`scan_website`). It reads their own site and
-merges what it finds into the agent's knowledge — hours, services, prices,
-the answers they already wrote for their customers. One call replaces twenty
-questions, and it is better than the interview because it is their own wording.
+**Read their website yourself.** Fetch the pages, work out the hours, the
+services, the prices and the questions the site is plainly written to answer,
+then write it in with `patch_agent_module` (`business`, `faq`, and `links` /
+`catalog` where there is something real). Their own wording beats anything an
+interview produces.
 
-Then read back what it produced and check it WITH them, one screenful at a
-time — "it thinks you close at 17:00 on Fridays, right?". Correcting is
-faster than composing, and it catches the thing a scan always gets wrong.
+**Show it to them BEFORE you write it**, one screenful at a time — "it thinks
+you close at 17:00 on Fridays, right?". Correcting is faster than composing, and
+it catches the thing a reading always gets wrong.
+
+**Not `scan_website` unless you have to.** That tool is a server-side crawl
+built for the in-app builder: it returns "started" and reports nothing back
+here, so you would promise to show them what it learned and never see it. It
+also merges into a live agent and can move hours the owner typed by hand. Use it
+only when the site is too large to read — then say plainly that the result lands
+in the app and that you will not see it.
 
 No website? Then interview, and keep it short: what you sell, who buys, the
 five questions customers ask most.

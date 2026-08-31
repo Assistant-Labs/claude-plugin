@@ -225,10 +225,10 @@ permissions".
 app** — `create_agent` mints the same record the app's onboarding does, and a
 plugin cannot open a browser on their machine anyway.
 
-**Lead with the website, not with a form.** One scan writes their hours,
-services, prices and the answers they already wrote for their customers, in
-their own wording — and correcting a wrong opening hour is faster and more
-accurate than composing twenty answers from nothing.
+**Lead with the website, not with a form.** Their own site already holds the
+hours, the services, the prices and the answers they wrote for customers — and
+correcting a wrong opening hour is faster and more accurate than composing
+twenty answers from nothing.
 
 > "You don't have an agent yet, so let's make one. What's your website? I'll
 > read it and build the first version from what's actually on it."
@@ -236,10 +236,26 @@ accurate than composing twenty answers from nothing.
 Then, in one breath and without narrating the steps:
 
 1. `create_agent` — their business name unless they say otherwise.
-2. `scan_website` on the id it returns.
-3. **Read the result back and check it WITH them, one screenful at a time.**
-   Lead with what it got right, then the two things it probably got wrong. Never
-   dump the whole config at them.
+2. **Read the site YOURSELF.** Fetch the pages. Work out what they do, when they
+   are open, what things cost, and the five questions the site is plainly
+   written to answer.
+3. **Show them what you found, and ask them to correct it** — before writing
+   anything.
+4. `patch_agent_module` for `business` and `faq`, plus `links` and `catalog`
+   where there is something real to put in them. Follow the tool's own rule:
+   `get_agent_module` first, send the whole object back.
+
+**Do not use `scan_website` for this.** It is a server-side crawl that returns
+"started" and reports nothing back to this conversation — it was built for the
+in-app builder, which has somewhere to post the result. Here you would be
+promising to show them what it learned and then never seeing it, which is
+exactly the promise the operator must never make. Reach for it only when reading
+the site yourself is not possible — a large catalog, dozens of pages — and then
+say plainly that the result lands in the app and that you will not see it.
+
+**Reading it yourself is not the slower path, it is the whole point.** The owner
+watches their agent learn and fixes it in the same breath. A background job
+gives them a progress bar and a stranger's summary.
 
 > "Read it. Your agent knows you're a lighting shop in Rishon LeZion, open
 > Sun–Thu 9:00–19:00 and Friday till 14:00, and that people mostly ask about

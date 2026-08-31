@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.5.1 — 2026-08-31
+
+**The agent learns the website in front of you.**
+
+- Reading the site is now the operator's own job: it fetches the pages, shows
+  you what it worked out, takes your corrections, and only then writes it in.
+  You watch your agent learn and fix it in the same breath.
+- It no longer hands the site to the background crawler for this. That crawler
+  reports nothing back to the conversation, so "I'll show you what it got" was a
+  promise it could not keep — and it merges into a live agent, which can move
+  hours you typed by hand. Still there for a catalog too large to read, and it
+  now says plainly that the result lands in the app instead.
+
 ## 0.5.0 — 2026-08-31
 
 **The first minute.** Nothing that used to hand somebody an instruction still
