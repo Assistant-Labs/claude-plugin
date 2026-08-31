@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.7.0 — 2026-09-01
+
+**Setting up your agent, as four moments instead of one long message.**
+
+- **It tells you the moment your agent exists.** Before this it created one and
+  carried on talking about your website, so you had to ask whether something had
+  been made on your account. Anything that spends a seat or changes your agent
+  now gets said out loud, on its own line, as it happens.
+- **It writes in everything that's clear, and holds back only what isn't.**
+  Saying "later" to one detail used to leave you with an agent that knew
+  nothing. Now the certain things go in and the two open questions wait.
+- **One question at a time.** Naming it and asking for your website in the same
+  breath got one answer and lost the other.
+- **It ends on what's next, never on "done"** — which after this step is always
+  the same thing: nobody can reach her yet.
+
 ## 0.6.1 — 2026-09-01
 
 **Every link went to a host that doesn't exist.**
