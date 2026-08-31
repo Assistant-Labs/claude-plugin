@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.3.2 — 2026-08-31
+
+Tells people the route that actually works on the surface they are on.
+
+- **The plugin cannot sign anybody in on claude.ai or Cowork.** That sandbox
+  ships no executables from a plugin, cannot open a browser on the person's
+  machine, and blocks outbound calls to the auth host. `/al-login` no longer
+  tries and fails first — a blocked network call is a poor opening experience.
+- **Assistant Labs is not in the connector directory**, so there is no entry to
+  search for and the old copy sent people hunting for one that does not exist.
+  It now gives the exact three clicks and the URL to paste, plus the Team and
+  Enterprise variant.
+- **The terminal keeps the one-link sign-in** — the device grant works there,
+  and that is where it stays until the directory listing lands.
+
 ## 0.3.1 — 2026-08-31
 
 0.3.0's sign-in only worked in a terminal. This makes it work everywhere.
