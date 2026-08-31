@@ -24,28 +24,62 @@ that works.
 
 ## claude.ai and Cowork — the connector
 
-**Assistant Labs is not in the connector directory yet.** There is no entry to
-search for, so never tell anybody to look for one. It is added by URL:
+**Give them exactly this, and nothing else on the screen with it.** Three
+numbered steps, one link, one thing to paste. No explanation of what a connector
+is, no permission list, no mention of OAuth, MCP or a directory — those are our
+words, not theirs.
 
-> **Open [claude.ai/customize/connectors](https://claude.ai/customize/connectors),
-> click **+** → **Add custom connector**, and paste this:**
+> **Three steps, about two minutes.**
 >
-> `https://mcp-server-150134556021.us-central1.run.app/mcp`
+> **1.** Open **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)**
 >
-> Then **Add**, and sign in when it asks. Leave the advanced OAuth fields empty
-> — it registers itself.
+> **2.** Click **+**, then **Add custom connector**
+>
+> **3.** Paste this in and click **Add**:
+>
+> ```
+> https://mcp-server-150134556021.us-central1.run.app/mcp
+> ```
+>
+> It'll ask you to sign in — that's your normal Assistant Labs login. Tick what
+> you want me running, then come back here and say **done**.
 
-That lands on our own consent screen with the module picker: they tick what they
-want running and nothing that reaches a real customer is on by default.
+Rules that keep it that small:
 
-On **Team or Enterprise** an owner adds it once under Organization settings →
-Connectors → Add → Custom → Web, and everybody else connects from their own
-Connectors page.
+- **All three at once.** Drip-feeding one step per message doubles the length
+  and makes a two-minute job feel like a process.
+- **The URL alone on its own line**, in a code block, so it is one clean copy.
+- **Say how long it takes** — "about two minutes" is the difference between
+  doing it now and doing it later.
+- **Never say "find Assistant Labs in the list."** It is not in the connector
+  directory; there is nothing to find, and sending somebody looking for it is
+  the worst thing this command can do.
+- **Do not pre-explain the permissions.** If they ask, answer properly — one
+  plain line each, and say which ones reach real customers. Otherwise the
+  consent screen speaks for itself.
+- **Leave nothing hanging.** Tell them what happens when they come back, in the
+  same breath: you check it yourself and go straight to their business.
 
-Adding the board, Sales or the CRM is the same three clicks with
-`/tasks/mcp`, `/sales/mcp` or `/crm/mcp` on the end. **Only offer those when
-something actually needs them** — one connector is enough to be useful, and
-three consent screens up front is the tax this whole command exists to avoid.
+**On Team or Enterprise** an owner does it once for everybody, under
+Organization settings → Connectors → Add → Custom → Web, and each person then
+connects from their own Connectors page. Only mention this if they say they are
+on a team plan or the personal route is unavailable to them.
+
+**The board, Sales and the CRM are the same three steps** with `/tasks/mcp`,
+`/sales/mcp` or `/crm/mcp` on the end of that URL. **Do not offer them now.**
+One connector is enough to be useful, and three more pastes before anybody has
+seen it work is the tax this command exists to remove. Offer one the moment
+something actually needs it.
+
+## When they come back
+
+**Probe, do not ask.** Call `list_assistants`. If it answers, say who they are
+and move — never make them prove it worked.
+
+If it still does not answer, the likeliest cause is the plainest one: the
+**Add** did not go through, or the sign-in was left half-finished. Say that in
+one line and offer to walk step 3 again. Do not theorise, and do not send them
+somewhere new.
 
 ## Terminal — the plugin signs them in
 

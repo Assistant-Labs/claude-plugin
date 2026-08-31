@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.3.3 — 2026-08-31
+
+Connecting is now three numbered steps and one thing to paste.
+
+- **The whole instruction fits on one screen**: open the page, click Add custom
+  connector, paste the URL. No explanation of connectors, no permission list, no
+  mention of OAuth or MCP — those are our words, not the owner's.
+- **All three steps at once**, with the URL alone in a code block so it is one
+  clean copy, and "about two minutes" said out loud.
+- **Never "find Assistant Labs in the list"** — it is not in the connector
+  directory, so there is nothing to find and looking for it wastes the first
+  five minutes.
+- **The welcome promises only what exists.** It named a helpdesk module the
+  consent screen does not offer; it now names the four that do.
+- **Coming back is a probe, not a question.** The operator checks for itself
+  rather than making anybody prove the connection worked.
+
 ## 0.3.2 — 2026-08-31
 
 Tells people the route that actually works on the surface they are on.
