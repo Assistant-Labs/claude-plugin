@@ -53,20 +53,21 @@ and wait. It will never create an account for you or ask for a password.
 
 | | |
 |---|---|
-| `/assistantlabs` | **Start here.** Set up, or pick up where you left off |
-| `/setup` | The setup steps on their own — resumes, never restarts |
-| `/status` | Is it set up, and what's missing |
-| `/brief` | What's happening right now — who's waiting, what's at risk, today's three things |
-| `/needs-me` | Everything waiting on your decision, one at a time, ready to approve |
-| `/waiting` | Every customer who hasn't been answered — with the replies already drafted |
-| `/leads` | Who to chase, warmest first, with what to say |
-| `/customer <name>` | Everything about one customer and what to do next |
-| `/money` | What's owed, what's at risk, what's coming in |
-| `/agent-review` | Where your AI answered badly this week — and the fix |
-| `/report` | A written report, for you or for a customer |
-| `/build <what>` | Something the suite doesn't do yet |
-| `/remember <fact>` | Teach it something about your business |
-| `/autopilot` | A full unattended pass — does everything, sends nothing |
+| `/al` | **Start here.** Set up, or pick up where you left off |
+| `/al-login` | Connect Assistant Labs — and check the connection really works |
+| `/al-setup` | The setup steps on their own — resumes, never restarts |
+| `/al-status` | Is it set up, and what's missing |
+| `/al-brief` | What's happening right now — who's waiting, what's at risk, today's three things |
+| `/al-needs-me` | Everything waiting on your decision, one at a time, ready to approve |
+| `/al-waiting` | Every customer who hasn't been answered — with the replies already drafted |
+| `/al-leads` | Who to chase, warmest first, with what to say |
+| `/al-customer <name>` | Everything about one customer and what to do next |
+| `/al-money` | What's owed, what's at risk, what's coming in |
+| `/al-agent-review` | Where your AI answered badly this week — and the fix |
+| `/al-report` | A written report, for you or for a customer |
+| `/al-build <what>` | Something the suite doesn't do yet |
+| `/al-remember <fact>` | Teach it something about your business |
+| `/al-autopilot` | A full unattended pass — does everything, sends nothing |
 
 ---
 
@@ -117,7 +118,7 @@ The important one is `voice`. Assistant Labs learns how *your people* actually w
 to customers — real sentences from your real replies — so drafts sound like the
 business and not like a chatbot.
 
-Tell it something once (`/remember we don't deliver on Saturdays`) and it lands
+Tell it something once (`/al-remember we don't deliver on Saturdays`) and it lands
 in the right file with the date, in your words, and it fixes your AI agent's
 knowledge if that was wrong too.
 
@@ -158,14 +159,14 @@ overnight with nobody there.
 ## What you need
 
 - An [Assistant Labs](https://assistantlabs.io) account. Free to start. **Don't
-  have one? Run `/assistantlabs` anyway** — it walks you through it and picks up
+  have one? Run `/al` anyway** — it walks you through it and picks up
   on its own once you're in.
 - An agent, and at least one channel your customers actually use — WhatsApp,
   email, or your website chat. It handles it if you have neither.
 - Claude Code, Claude Desktop, or claude.ai.
 
 Setup takes a few minutes and **can be interrupted**. Stop halfway, come back
-tomorrow, and it resumes rather than starting over. `/status` tells you where you
+tomorrow, and it resumes rather than starting over. `/al-status` tells you where you
 stand at any point.
 
 **Several of the steps are optional** — the number it reaches you on, the

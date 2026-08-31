@@ -1,6 +1,27 @@
 # Changelog
 
-## 0.1.0 — unreleased
+## 0.2.0 — 2026-08-31
+
+Named the commands, and stopped the operator inventing its own connection state.
+
+- **Every command is namespaced `/al-*`.** `/al` is the front door; `/al-setup`,
+  `/al-status`, `/al-brief`, `/al-waiting` and the rest follow it. Nothing
+  collides with a built-in command any more. **Breaking** — the bare names are
+  gone.
+- **`/al-login`** — new. Probes each connector, names only the ones actually
+  missing, gives the connect path for the surface the owner is really on, and
+  proves the result by calling a tool instead of announcing success.
+- **Probe, never infer.** A startup hook, a session notice listing servers as
+  unauthorised, or a tool missing from context are no longer treated as evidence
+  about the connection — only a call just made is. Inferring is what made a
+  connected business get told to go and connect itself.
+- **Connection is per connector, not all-or-nothing.** One answering and three
+  not is the ordinary state, and is now reported that way.
+- **`/mcp` is terminal-only.** It was being offered on claude.ai, the desktop app
+  and Cowork, where it does not exist and the owner hits a dead end. Those
+  surfaces are sent to Settings → Connectors instead.
+
+## 0.1.0 — 2026-08-24
 
 First version. Not yet run against a real business.
 

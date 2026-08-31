@@ -38,9 +38,11 @@ If there is no Assistant Labs account yet, follow `getting-started` §1: explain
 in one short paragraph what this is, send them to sign up themselves, wait.
 Never create an account or take a password.
 
-**2 · connected** (required) — Walk them through `/mcp` → the connector → Connect → sign in
-→ approve. One plain line per permission, and say which two reach real people.
-Do not ask for an API key.
+**2 · connected** (required) — Run `/al-login`. It probes each connector, names
+only the ones actually missing, and gives the connect path for the surface they
+are on — Settings → Connectors on claude.ai/desktop/Cowork, `/mcp` in a
+terminal. Never assert a connector is missing without calling it first, and
+never ask for an API key.
 
 **3 · agent** (required) — Bind the agent. One → bind it silently. Several → ask once which
 business this project is about. None → `getting-started` §2. Record the id and
@@ -131,7 +133,7 @@ Finish with the four-line report and **one true thing about their business**
 are waiting for a reply, the oldest since Sunday."
 
 If a REQUIRED step is still outstanding, say what, what it costs them until it is
-done, and that `/setup` picks up from there. Never report setup as complete while
+done, and that `/al-setup` picks up from there. Never report setup as complete while
 one is open.
 
 An outstanding OPTIONAL step is not a caveat and does not belong in the report.

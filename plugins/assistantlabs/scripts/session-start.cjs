@@ -9,7 +9,7 @@
  *
  * **What this hook can and cannot know.** A hook is a local process with no
  * network and no MCP, so it can report the SETUP state — which is written to
- * disk by `/setup` — but it cannot read the business memory, which lives in the
+ * disk by `/al-setup` — but it cannot read the business memory, which lives in the
  * workspace. That split is deliberate: memory moved off the machine so it would
  * survive a new laptop and be readable by a scheduled run. The cost is that
  * "what do we know about this business?" is a question for the session to ask
@@ -35,7 +35,7 @@ const path = require('path');
  * - Marking a required step optional lets setup report itself finished while the
  *   operator cannot actually do anything.
  *
- * `/setup` and `/status` write what they establish into
+ * `/al-setup` and `/al-status` write what they establish into
  * `.assistantlabs/setup.json`, and this reads it back — which is what turns a
  * long setup into one that can be stopped and picked up, instead of one that
  * silently starts from the top every time.
@@ -92,7 +92,7 @@ const isSettled = (state, step) => {
 	return !step.required && value === 'skipped';
 };
 
-/** What `/setup` has established so far. Absent = never started. */
+/** What `/al-setup` has established so far. Absent = never started. */
 const readSetupState = dir => {
 	try {
 		const raw = fs.readFileSync(
@@ -140,7 +140,7 @@ function main() {
 			'**Not set up in this project.** The operator does not know which business it',
 			"runs, so it cannot act on anyone's behalf yet.",
 			'',
-			'If the user asks for business work, run `/assistantlabs` — the front door. It',
+			'If the user asks for business work, run `/al` — the front door. It',
 			'works out where they are and takes them one step forward, including the case',
 			'where they have no account, no agent and no connected channel. Read',
 			'`getting-started` rather than assuming they are an existing customer.',
@@ -162,9 +162,9 @@ function main() {
 			'Still outstanding:',
 			...missingRequired.map(step => `- ${step.key} — ${step.what}`),
 			'',
-			'`/setup` picks up from here — it re-checks what is recorded rather than',
+			'`/al-setup` picks up from here — it re-checks what is recorded rather than',
 			'starting again, so do not walk them back through what is already done.',
-			'`/status` shows this without changing anything.',
+			'`/al-status` shows this without changing anything.',
 			'',
 			'Work that does not depend on an outstanding step can proceed normally.',
 		]

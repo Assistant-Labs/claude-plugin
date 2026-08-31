@@ -108,7 +108,7 @@ Rare, and worth naming so it does not become a habit:
 - A **cross-product summary** with no home — a week that spans conversations,
   money and leads. Even then: the brief on their phone usually beats a page.
 - A **document they will keep or forward** — a report for a customer, a
-  proposal. That is a document, and `/report` already covers it.
+  proposal. That is a document, and `/al-report` already covers it.
 
 If you do build one: it must be readable on a phone, work in both light and dark,
 handle right-to-left text if the business writes Hebrew, and **carry only data

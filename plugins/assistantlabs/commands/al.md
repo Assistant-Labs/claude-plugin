@@ -26,7 +26,16 @@ saying anything:
 | `list_business_memory` | whether this operator knows the business |
 | `list_tasks` `blocked-on-a-human` | whether anything is already waiting on them |
 
-**If a tool call fails because the connectors are not authorised, that is the
+**Probe — never infer.** The ONLY evidence of a connection is a call you just
+made. A startup hook, a session notice listing servers as unauthorised, a tool
+missing from your context — none of those are evidence, and treating them as
+evidence is how a connected business gets told to go and connect itself.
+
+**Connection is per connector, not all-or-nothing.** One answering and three not
+is the ordinary state. If `list_assistants` works, they are connected — carry on
+with what works and mention the rest only when something needs it.
+
+**If a tool call fails because that connector is not authorised, that is the
 answer to the first question** — not an error to report. Go to §A.
 
 This whole pass is one breath. They should see a greeting, not a progress log.
@@ -45,9 +54,13 @@ Say what this is in **two sentences**, then give them the one action:
 > "This runs your business on Assistant Labs — it's what connects your WhatsApp
 > and answers your customers. Connect it and I'll take it from there."
 >
-> **→ Run `/mcp`, pick **assistantlabs**, and click Connect.** You sign in as
+> **→ Settings → Connectors → Assistant Labs → Connect.** You sign in as
 > yourself and tick what I'm allowed to do. Nothing to paste, no key, no
 > password.
+
+That path is for claude.ai, the desktop app and Cowork. **In a Claude Code
+terminal it is `/mcp` instead** — and `/mcp` does not exist anywhere else, so
+never offer it blind. `/al-login` handles both and verifies the result.
 
 Then **stop and wait.** Do not narrate the remaining nine steps at somebody who
 has not clicked anything yet.

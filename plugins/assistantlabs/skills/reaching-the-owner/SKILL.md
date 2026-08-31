@@ -19,7 +19,7 @@ Both go over WhatsApp, on the business's **own** number — the one their
 customers already message and they already have saved. Not a second sender they
 have to learn to trust.
 
-## Setting it up (once, during `/setup`)
+## Setting it up (once, during `/al-setup`)
 
 Three steps, in this order. Doing them out of order produces a configured
 operator that cannot actually send anything.
@@ -223,7 +223,7 @@ degrades the same way, and **degrading is not failing**:
 
 - Everything still gets done up to the point of needing them.
 - The decision is filed on the board as `blocked-on-a-human` with the complete
-  artefact, so `/needs-me` clears it the moment they open Claude.
+  artefact, so `/al-needs-me` clears it the moment they open Claude.
 - Say once, plainly, that they are not reachable on their phone yet and what
   would fix it. Do not repeat it every pass.
 

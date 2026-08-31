@@ -13,7 +13,7 @@ a permission that was revoked weeks after setup.
 **Every check here is read-only.** Nothing in a status report may submit a
 template, send a message, or write a setting. If a check has no read-only
 version, leave it out and say it is unknown rather than repairing it silently —
-`/setup` is where repairs belong.
+`/al-setup` is where repairs belong.
 
 | Check | How |
 |---|---|
@@ -48,6 +48,6 @@ recorded as done turns out not to be**, correct it and say so — a state file
 that disagrees with reality is worse than none, because the next session trusts
 it.
 
-End with the single next thing worth doing, and `/setup` to do it. If every
+End with the single next thing worth doing, and `/al-setup` to do it. If every
 required step passes, **say setup is complete** — an outstanding optional step
 does not make it incomplete — then name the one thing that would most improve it.

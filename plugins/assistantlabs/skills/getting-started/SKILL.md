@@ -11,10 +11,10 @@ description: >
 
 # Getting started
 
-**`/assistantlabs` is the front door** — the one command a business owner has to
+**`/al` is the front door** — the one command a business owner has to
 remember. It reads the state, works out which of the situations below they are
-in, and takes them one step forward. `/setup` runs the steps themselves and
-`/status` reports without changing anything; both are for people who want them,
+in, and takes them one step forward. `/al-setup` runs the steps themselves and
+`/al-status` reports without changing anything; both are for people who want them,
 not things anyone must learn.
 
 Most onboarding is written for the customer you already have. This one has to
@@ -28,7 +28,7 @@ they are filling in a form.
 
 ## The state file
 
-`.assistantlabs/setup.json`, in their project. `/setup` and `/status` write it;
+`.assistantlabs/setup.json`, in their project. `/al-setup` and `/al-status` write it;
 the session-start hook reads it back. It exists because setup is long, gets
 interrupted, and **must never restart from the top.**
 

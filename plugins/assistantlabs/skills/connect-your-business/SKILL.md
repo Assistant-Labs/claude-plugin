@@ -30,7 +30,11 @@ pre-approving access to every conversation the business has ever had.
 
 ## Connecting
 
-1. `/setup` walks the whole thing. Or: `/mcp` → pick the connector → **Connect**.
+1. `/al-login` connects and verifies. `/al-setup` walks the whole thing.
+   Manually: **Settings → Connectors → Assistant Labs → Connect** on claude.ai,
+   the desktop app and Cowork; `/mcp` → pick the connector → **Connect** in a
+   Claude Code terminal. `/mcp` exists ONLY in the terminal — offering it on
+   another surface is a dead end.
 2. Claude opens the Assistant Labs sign-in. The owner signs in as themselves.
 3. A consent screen lists **which agent** and **which permissions**. They tick
    and approve.
