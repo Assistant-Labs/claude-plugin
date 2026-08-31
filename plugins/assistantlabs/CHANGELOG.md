@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.3.0 — 2026-08-31
+
+**`/al-login` now connects you itself.** It opens your browser, you sign in and
+tick what you want it running, and the session carries on by itself. No settings
+menu, no permission list to hunt through, and nothing to come back and confirm.
+
+- **The device grant (RFC 8628) on the Assistant Labs OAuth server.** The grant
+  that exists for exactly this: a client and a browser that are not the same
+  machine. Every chat surface that is not a local terminal is that case, which
+  is why the old flow could only ever hand somebody an instruction and wait.
+- **One sign-in covers every module.** One token, scoped by what was ticked,
+  works across the agent, the board, Sales and the CRM — instead of four consent
+  screens for somebody who wanted one thing.
+- **The consent screen asks about products, not permissions.** Customer replies,
+  the task board, the CRM, Sales — with the exact permission list one click away
+  for anyone who wants to read it. Nothing that reaches a real customer is ever
+  ticked by picking a product.
+- **What they ticked decides what setup does next.** Setup no longer walks
+  anybody through a module they did not ask for.
+- **The token refreshes itself.** A `headersHelper` renews it in the background,
+  so nobody signs in again because an hour passed.
+- **Declining is a real answer.** Saying no in the browser ends the wait
+  immediately instead of leaving the session polling until the code expired.
+
 ## 0.2.1 — 2026-08-31
 
 A first run that welcomes somebody instead of instructing them.

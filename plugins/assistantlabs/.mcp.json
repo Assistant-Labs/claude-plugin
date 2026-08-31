@@ -2,18 +2,22 @@
 	"mcpServers": {
 		"assistantlabs": {
 			"type": "http",
+			"headersHelper": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/auth-headers.cjs\"",
 			"url": "${user_config.mcp_base_url}/mcp"
 		},
 		"assistantlabs-tasks": {
 			"type": "http",
+			"headersHelper": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/auth-headers.cjs\"",
 			"url": "${user_config.mcp_base_url}/tasks/mcp"
 		},
 		"assistantlabs-sales": {
 			"type": "http",
+			"headersHelper": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/auth-headers.cjs\"",
 			"url": "${user_config.mcp_base_url}/sales/mcp"
 		},
 		"assistantlabs-crm": {
 			"type": "http",
+			"headersHelper": "node \"${CLAUDE_PLUGIN_ROOT}/scripts/auth-headers.cjs\"",
 			"url": "${user_config.mcp_base_url}/crm/mcp"
 		}
 	}
