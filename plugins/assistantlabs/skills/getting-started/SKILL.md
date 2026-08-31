@@ -160,7 +160,8 @@ it every session.**
 Connected, but the agent knows nothing about the business — no FAQ, no
 catalogue, no opening hours. Do **not** start interviewing them for it.
 
-**Read their website yourself.** Fetch the pages, work out the hours, the
+**Read their website yourself** with `read_website`. The server finds the pages,
+renders a JavaScript site and strips the furniture; you work out the hours, the
 services, the prices and the questions the site is plainly written to answer,
 then write it in with `patch_agent_module` (`business`, `faq`, and `links` /
 `catalog` where there is something real). Their own wording beats anything an

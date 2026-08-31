@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.6.0 — 2026-09-01
+
+**Your agent learns your website in front of you.**
+
+- Reading the site now splits at the seam it always had: the server finds the
+  pages, renders them properly and strips the navigation — and the reading, the
+  working-out, is done here, in the conversation, where you can see it.
+- **So you get shown what it learned before any of it goes live.** Hours,
+  prices, what you sell, the questions your site already answers — with the two
+  things it probably got wrong flagged, because there are always two.
+- The old background crawl is still there for a site too big to read, and now
+  says plainly that its result lands in the app rather than here.
+- Everything the operator tells you now reads like the welcome: headed, ticked,
+  and scannable on a phone in ten seconds. ✅ what's true, ⚠️ what needs you.
+
 ## 0.5.1 — 2026-08-31
 
 **The agent learns the website in front of you.**
