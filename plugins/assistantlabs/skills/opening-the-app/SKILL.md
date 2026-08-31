@@ -38,7 +38,7 @@ if a link 404s, the enum is the source of truth, not this table.
 
 | Screen | Path | Open it when |
 |---|---|---|
-| **Create an agent** | `/onboarding` | They have an account but no agent. The app's own onboarding asks better questions than a chat can — send them, don't rebuild it |
+| **Create an agent** | `/onboarding` | FALLBACK ONLY. `create_agent` makes the same record from here — send them to the app only when that tool is absent (older connection, or `agent:create` not granted) |
 | **Home** | `/app` | "Show me everything" — the dashboard the owner already knows |
 | **Conversations** | `/app/assistants/:id/conversations` | They ask who wrote in, or you have just told them someone is waiting |
 | **One conversation** | `/app/assistants/:id/conversations/:threadId` | Any time you quote or summarise a thread — always link the thread itself |
@@ -68,8 +68,27 @@ come up:
 | They need to | Send them to |
 |---|---|
 | Create their first agent | `/onboarding` |
-| Connect WhatsApp | `/app/assistants/:id/settings/channels/whatsapp` |
-| Connect anything else | `/app/assistants/:id/settings/channels` |
+| Connect WhatsApp | `/app/assistants/:id/settings/channels?connect=whatsapp` |
+| Connect Instagram | `/app/assistants/:id/settings/channels?connect=instagram` |
+| Connect Messenger | `/app/assistants/:id/settings/channels?connect=messenger` |
+| Connect website chat | `/app/assistants/:id/settings/channels?connect=website` |
+| Connect email, or anything else | `/app/assistants/:id/settings/channels` |
+
+**Always render these as titled markdown links** — `**[Connect WhatsApp →](…)**`
+— never as a bare URL. These URLs carry an `assistant_` uuid and a query string;
+pasted raw they read as machinery and make the conversation feel technical.
+
+**`?connect=` opens that channel's connect flow on arrival** — the modal is
+already up when the page paints, so they are one click from connected rather
+than hunting a tile. Use it every time you name a channel. Values:
+`whatsapp`, `instagram`, `messenger`, `website`.
+
+- **The param is consumed once** and stripped from the URL, so a refresh does
+  not reopen a modal they just closed. Send the link again if they need it again.
+- **Email and the shareable link have no `?connect=` value** — they have their
+  own screens rather than a modal on this page. Link the plain channels page.
+- **An unknown value lands them on the channels page with everything visible**,
+  which is a safe failure, but do not rely on it: send a value from the list.
 | Check what the website scan found | `/app/assistants/:id/settings/faq` (and the other knowledge tabs) |
 | See the board you just filled | `https://assistantlabs-tasks.web.app` |
 | Change what this connection may do | `/app/assistants/:id/settings/claude-mcp` |

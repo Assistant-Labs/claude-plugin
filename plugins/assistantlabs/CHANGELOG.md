@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.5.0 — 2026-08-31
+
+**The first minute.** Nothing that used to hand somebody an instruction still
+does.
+
+- **A welcome that says what it does for the business**, not what the product
+  is. Four things, each with the command that does it, in English and Hebrew —
+  both written out rather than translated at runtime, because a live
+  translation reads translated.
+- **Real selectable options** instead of bold text pretending to be buttons.
+  Two on the welcome; multi-select when picking channels, because most
+  businesses want more than one.
+- **It asks what to call it** before anything else. Never names itself.
+- **The agent gets created here.** `create_agent` mints the same record the
+  app's onboarding does, then `scan_website` fills it from their own site —
+  correcting one wrong opening hour beats answering twenty questions. Walking
+  somebody into the app is now the fallback, not the default.
+- **Channels are doors, not directions.** Each channel gets a titled link that
+  opens the app with that channel's connect screen already up.
+- **`/al-integration`** — connect the agent to a system they already run, so it
+  can answer from it mid-conversation.
+- Fixed: the README pointed at `/brief` and `/remember`, which are not the
+  commands' names.
+
+**Requires** the `agent:create` permission. An existing connection does not have
+it — reconnect once to pick it up.
+
 ## 0.4.0 — 2026-08-31
 
 **One connector, everything.** Connecting is a single URL, once.

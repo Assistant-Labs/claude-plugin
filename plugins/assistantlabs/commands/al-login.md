@@ -44,6 +44,24 @@ words, not theirs.
 > It'll ask you to sign in — that's your normal Assistant Labs login. Tick what
 > you want me running, then come back here and say **done**.
 
+**In Hebrew, use this — do not translate the block above on the fly.** The UI
+labels stay in English because that is what is on their screen:
+
+> **שלושה צעדים, בערך שתי דקות.**
+>
+> **1.** פתחו את **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)**
+>
+> **2.** לחצו על **+** ואז על **Add custom connector**
+>
+> **3.** הדביקו את הכתובת הזאת ולחצו **Add**:
+>
+> ```
+> https://mcp-server-150134556021.us-central1.run.app/mcp
+> ```
+>
+> יבקשו מכם להתחבר. זה החשבון הרגיל שלכם ב-Assistant Labs. סמנו מה אתם רוצים
+> שאני אריץ, תחזרו לכאן ותכתבו **סיימתי**.
+
 Rules that keep it that small:
 
 - **All three at once.** Drip-feeding one step per message doubles the length
@@ -80,6 +98,35 @@ If it still does not answer, the likeliest cause is the plainest one: the
 one line and offer to walk step 3 again. Do not theorise, and do not send them
 somewhere new.
 
+## Testing against a local stack
+
+**Only when the person says they are running one.** Never guess this from a repo
+or a hostname — pointing a real business at somebody's laptop would fail
+silently and look like our outage.
+
+Both hosts move together; the tunnel serves the API and the MCP from one domain:
+
+| | Production | Local (ngrok) |
+|---|---|---|
+| Connector URL | `https://mcp-server-150134556021.us-central1.run.app/mcp` | `https://assistantlabs.ngrok.app/mcp/mcp` |
+| `A=` in the terminal flow below | `https://server-150134556021.us-central1.run.app` | `https://assistantlabs.ngrok.app/server` |
+
+**Confirm it is up before sending anybody anywhere** — a tunnel that is down
+answers nothing, and the failure looks like a broken sign-in:
+
+```bash
+curl -s https://assistantlabs.ngrok.app/mcp/.well-known/oauth-protected-resource
+```
+
+It should name the same host back and list the scopes the build actually
+supports. **A scope missing from that list is not granted no matter what you
+ask for** — that is how you tell a stale local server from a wrong request.
+
+**A local server writes to PRODUCTION data.** There is no sandbox behind it: an
+agent created against a local stack is a real agent on a real account, spending
+a real seat. Say so before creating anything, and delete what a test leaves
+behind.
+
 ## Terminal — the plugin signs them in
 
 Plain HTTP, run inline. **Never shell out to a file in this plugin** — hosted
@@ -94,7 +141,7 @@ C=$(curl -s -X POST "$A/oauth/register" -H 'content-type: application/json' \
   | sed -n 's/.*"client_id":"\([^"]*\)".*/\1/p')
 curl -s -X POST "$A/oauth/device_authorization" \
   --data-urlencode "client_id=$C" \
-  --data-urlencode "scope=agent:read agent:write agent:train threads:read threads:write contacts:read contacts:write channels:read segments:read segments:write integrations:read memory:read memory:write operator:read operator:notify followups:read followups:write followups:activate messages:send channel:send tasks:read tasks:write crm:companies:read crm:contacts:read crm:activities:read crm:schema:read crm:companies:write crm:contacts:write crm:activities:write sales:groups:read sales:journeys:read sales:audience:read sales:templates:read sales:groups:write sales:journeys:write sales:conversations:read sales:journeys:activate offline_access"
+  --data-urlencode "scope=agent:read agent:write agent:create agent:train threads:read threads:write contacts:read contacts:write channels:read segments:read segments:write integrations:read memory:read memory:write operator:read operator:notify followups:read followups:write followups:activate messages:send channel:send tasks:read tasks:write crm:companies:read crm:contacts:read crm:activities:read crm:schema:read crm:companies:write crm:contacts:write crm:activities:write sales:groups:read sales:journeys:read sales:audience:read sales:templates:read sales:groups:write sales:journeys:write sales:conversations:read sales:journeys:activate offline_access"
 echo "client_id=$C"
 ```
 
@@ -106,6 +153,10 @@ clickable URL on its own line, with one sentence:
 
 > "Open this and sign in — tick what you want me running, and I'll carry on from
 > here by myself."
+
+In Hebrew:
+
+> "פתחו את הקישור והתחברו. סמנו מה אתם רוצים שאני אריץ, ואני ממשיך מכאן לבד."
 
 **Step 3 — wait for it.** Poll every ~4 seconds. `authorization_pending` is the
 ordinary answer while they read the screen; it is a status, not a failure:

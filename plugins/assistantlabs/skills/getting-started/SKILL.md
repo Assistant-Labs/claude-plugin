@@ -116,13 +116,23 @@ put it down, and leave the state file so it resumes cleanly. Do not sell.
 `list_assistants` comes back empty.
 
 An agent is the thing that answers their customers, so this is the real first
-step, not an administrative one. Creating one is done in the app — walk them to
-it, then let them come back. Once one exists, bind to it and record
+step, not an administrative one. **Make it here** — `create_agent` mints the
+same record the app's onboarding does, and a hosted plugin cannot open a browser
+on their machine to reach that onboarding anyway. Bind to it and record
 `agent: true` with its id and name.
 
-**Do not build an agent for them from a blank slate here.** The app's own
-onboarding asks better questions than a conversation can, and duplicating it
-produces a worse agent and a second place the setup lives.
+**Ask for the website, not for answers.** Create the agent, then `scan_website`
+on it, then check what it found WITH them a screenful at a time. Correcting a
+wrong opening hour beats composing twenty answers from nothing, and the wording
+that comes back is theirs. No website is a fine path too: create it with a name
+and let their real conversations teach it — see §3b and §4.
+
+**It costs them a seat on their plan.** At the limit the call fails with a quota
+error; say so plainly rather than retrying.
+
+**Walking them into the app is the fallback, not the default.** Take it only
+when `create_agent` is genuinely absent — an older connection, or `agent:create`
+not granted on the consent screen. Offer `/al-login` first.
 
 ### 3. Agent, but no channel connected
 
@@ -132,9 +142,14 @@ This is the most important gap to name plainly, because **everything downstream
 is theatre without it**: no customers can reach the agent, there is nothing to
 answer, nobody to notify, and no WhatsApp for approvals.
 
-Say it in one line — *"nobody can message it yet"* — and walk them to connecting
-one. WhatsApp first if they use it, because it is what their customers already
-have and it is what approvals ride on.
+Say it in one line — *"nobody can message it yet"* — then ask which ones they
+want and **hand over a link per channel that opens its connect screen already
+open** (`…/settings/channels?connect=whatsapp` — the shapes are in
+`opening-the-app`). WhatsApp first if they use it, because it is what their
+customers already have and it is what approvals ride on.
+
+**A link, never navigation instructions.** "Go to Settings → Channels → click
+WhatsApp" is a chore; a link that lands with the modal up is a door.
 
 If they are not ready, carry on: the memory and the board still work, and the
 operator can prepare everything. **Say once what is limited, and do not repeat

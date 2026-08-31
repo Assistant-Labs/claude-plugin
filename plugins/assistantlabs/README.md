@@ -61,6 +61,7 @@ and wait. It will never create an account for you or ask for a password.
 | `/al-agent-review` | Where your AI answered badly this week — and the fix |
 | `/al-report` | A written report, for you or for a customer |
 | `/al-build <what>` | Something the suite doesn't do yet |
+| `/al-integration <system>` | Connect your agent to a system you already run |
 | `/al-remember <fact>` | Teach it something about your business |
 | `/al-autopilot` | A full unattended pass — does everything, sends nothing |
 
@@ -113,7 +114,7 @@ The important one is `voice`. Assistant Labs learns how *your people* actually w
 to customers — real sentences from your real replies — so drafts sound like the
 business and not like a chatbot.
 
-Tell it something once (`/remember we don't deliver on Saturdays`) and it lands
+Tell it something once (`/al-remember we don't deliver on Saturdays`) and it lands
 in the right file with the date, in your words, and it fixes your AI agent's
 knowledge if that was wrong too.
 
@@ -127,7 +128,7 @@ with the four lines that matter — and anything that needs you comes with
 buttons.
 
 ```
-/schedule weekdays at 08:30 → /brief morning
+/schedule weekdays at 08:30 → /al-brief morning
 ```
 
 Set up when you're ready — it's optional, like the brief itself: it creates two
