@@ -1,0 +1,26 @@
+{
+	"name": "assistantlabs",
+	"owner": {
+		"name": "Assistant Labs",
+		"url": "https://assistantlabs.io"
+	},
+	"metadata": {
+		"description": "Plugins from Assistant Labs — run and operate a small business with Claude.",
+		"version": "0.10.2"
+	},
+	"plugins": [
+		{
+			"name": "assistantlabs",
+			"source": "./plugins/assistantlabs",
+			"description": "An operator that runs your small business day to day — answers customers, chases leads, keeps the books straight, and files everything that needs your decision as a one-tap approval. Connects to your Assistant Labs channels and apps.",
+			"version": "0.10.2",
+			"author": {
+				"name": "Assistant Labs",
+				"url": "https://assistantlabs.io"
+			},
+			"homepage": "https://assistantlabs.io",
+			"keywords": ["business", "smb", "automation", "whatsapp", "sales", "support"],
+			"category": "business"
+		}
+	]
+}
