@@ -220,32 +220,32 @@ permissions".
 
 ### B · Connected, but no agent
 
-`list_assistants` comes back empty. **Make one here. Do not send them to the
-app** — `create_agent` mints the same record the app's onboarding does, and a
-plugin cannot open a browser on their machine anyway.
+`list_assistants` comes back empty. **Make one here, not in the app** —
+`create_agent` mints the same record the app's onboarding does, and a plugin
+cannot open a browser on their machine anyway. **But not yet**: read their
+source first, so the agent is created with the name the business actually uses
+rather than a guess off the domain (`teaching-the-business`, which you read
+before any of this).
 
-**Open on what they get, not on what is missing.** "There's no agent yet —
-nothing that answers your customers" is technically true and lands as a
-deflation: they just arrived and the first thing they hear is an absence. And do
-not ask what to call you here — that serves you, not them, and it spends their
-first reply on a novelty.
+**One screen. Three doors, and no ranking between them.**
 
-**One screen. Three doors, and no ranking between them.** Read
-`teaching-the-business` before any of this.
+It opens on what just worked, then the one thing outstanding. They came back
+from the consent screen; the first line tells them it took, by naming the
+workspace they typed and what they ticked — their own decision read back, and
+the proof the sign-in did something.
 
-**It opens on what just worked, then the one thing outstanding.** They came
-back from the consent screen; the first line tells them it took. Name the
-workspace they typed and what they ticked — that is their own decision read back
-to them, and it is the proof the sign-in did something.
+**Then three things it must never do:**
 
-**Never the §A welcome.** That screen is for somebody with nothing connected. A
-session that reaches §B has already had it, or never needed it, and reprinting
-"I run your business from here" over the top of this makes two openings where
-there should be one.
-
-**Never what is missing.** Not "there's no agent yet", not "there's an agent to
-build first" — an opening that names the hole makes a product they just paid
-attention to sound unfinished.
+- **Never reprint the §A welcome.** That screen is for somebody with nothing
+  connected. Anyone reaching §B has had it or never needed it, and "I run your
+  business from here" over the top of this makes two openings where there should
+  be one.
+- **Never open on the absence.** Not "there's no agent yet", not "there's an
+  agent to build first" — naming the hole makes a product they just gave
+  attention to sound unfinished, and it lands as a deflation in their first
+  minute.
+- **Never ask what to call you here.** That serves you, not them, and it spends
+  their first reply on a novelty. It is a closer, much later, or never.
 
 > You're in — **<workspace>**, with <what they ticked> switched on.
 >
@@ -366,6 +366,7 @@ built:**
 
 | | Not done until |
 |---|---|
+| **`i18n`** | **`defaultLanguage` is the language the business's customers write in** |
 | `business` | `options.about` and `contactInformation` are filled |
 | `faq` | has items |
 | `catalog` | has items, or the business genuinely sells nothing nameable |
@@ -373,7 +374,17 @@ built:**
 | `guidelines` | has items, or the site states no rules |
 | **`persona`** | **`toneAndStyle` is non-empty and `assistantGender` is right** |
 
-**The persona is the one that gets skipped, every time.** It is the only item
+**A new agent is English until you say otherwise, and the prompt it generates
+says "never show characters from other languages".** So an agent built from a
+Hebrew website answers its Hebrew customers in English, correctly, about the
+right business — and every one of them notices. `patch_agent_language` with
+`{ supportedLangauges: ['HE','EN'], defaultLanguage: 'HE', userGenderAssumption }`
+— the stored key really is misspelled — and it belongs in the same breath as the
+knowledge, not as a fix afterwards.
+
+**The language and the persona are the two that get skipped**, because they are
+the only ones a website cannot answer on its own — and both fail silently.
+The persona in particular: It is the only item
 that cannot be answered from the website, so if they did not reply to the voice
 question it stays at the default — no tone, no greeting, and `plural`, which is
 wrong for almost every business we serve and wrong in Hebrew on every verb.

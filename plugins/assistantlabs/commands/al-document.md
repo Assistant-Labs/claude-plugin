@@ -31,6 +31,8 @@ nothing to convert first.
    carrying `sourceId`.
 7. **The receipt** — every module, emoji, counts, the empty ones named. Then the
    integrations offer.
+   **Set the agent's language here too** (`patch_agent_language`) — it defaults
+   to English, whatever the source was written in.
 
 ## Careful with
 

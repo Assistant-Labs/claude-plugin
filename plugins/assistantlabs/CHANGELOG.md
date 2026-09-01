@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.10.4 — 2026-09-01
+
+**It speaks your language, and it reads the page your rules are on.**
+
+- An agent built from a Hebrew website used to answer Hebrew customers in
+  English — correctly, about the right business, in the wrong language. Setting
+  the language is now part of building it.
+- Your terms page — cancellation, deposits, refunds — was being skipped by the
+  website reader and could not even be reported as skipped, so it looked like
+  your site had no rules. It is now read ahead of your product pages.
+- Teaching it from your website no longer hides your own business details behind
+  a "mirrored from another agent" card, or leaves a second copy of them in your
+  agent when you fix the empty form it used to show you.
+- Opening hours and your Facebook and Instagram links were being written into
+  fields nothing reads. They now go where the app shows them.
+
+## 0.10.3 — 2026-09-01
+
+**Small corrections, from watching a real first run.**
+
+- The screen after you sign in now opens by naming your workspace and what you
+  turned on, and shows which kind of source each route creates.
+- Writing knowledge into the wrong field is refused with the right field named,
+  for every part of your agent — not just the one that broke last time. A
+  question without an answer, or a link without an address, no longer counts as
+  saved.
+- Teaching it from the same website twice stopped renaming that source after
+  whichever page it happened to read.
+
 ## 0.10.2 — 2026-09-01
 
 **Rules it wrote for you are no longer blank.**

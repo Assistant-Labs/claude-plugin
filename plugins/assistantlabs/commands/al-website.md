@@ -42,6 +42,8 @@ nothing else — no form, no second question.
 6. **The receipt** — every module, with its emoji and a count, their correction
    quoted on the line it changed, and the empty ones named. Then the
    integrations offer.
+   **Set the agent's language here too** (`patch_agent_language`) — it defaults
+   to English, whatever the source was written in.
 
 ## What you do not do
 

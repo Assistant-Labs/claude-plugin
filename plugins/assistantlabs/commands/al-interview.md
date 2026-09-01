@@ -35,6 +35,8 @@ worth three follow-ups a form would never ask.
    one that gets quoted to a real customer.
 6. **The receipt** — every module, emoji, counts, the empty ones named. Then the
    integrations offer.
+   **Set the agent's language here too** (`patch_agent_language`) — it defaults
+   to English, whatever the source was written in.
 
 ## How to ask
 

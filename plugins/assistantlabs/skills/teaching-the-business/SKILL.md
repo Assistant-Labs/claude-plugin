@@ -62,18 +62,30 @@ site's name, the document's name, "What Michal told me, 14 Aug".
 `patch_agent_module`, one call per module, content under the key that module
 uses — `get_agent_module` first, and send the FULL object back.
 
-| Module | Write it when | Content key |
-|---|---|---|
-| 🏢 `business` | always — what they do, where, hours, how to reach them | `options.about` + `options.contactInformation` |
+| Module | Write it when | Content key | Each item |
+|---|---|---|---|
+| 🏢 `business` | always — what they do, where, hours, how to reach them | `options.about` + `options.contactInformation` | — |
+| ❓ `faq` | always — the questions they are plainly tired of answering | `options.faq` | `{ question, answer }` |
+| 🛍️ `catalog` | they sell nameable things: classes, treatments, products, courses | `options.items` | `{ name, description, price }` |
+| 🔗 `links` | booking, price list, timetable, terms | `options.items` | `{ description, url }` — `description` is the label |
+| 📏 `guidelines` | a stated rule: cancellation, deposits, health form, refunds | `options.rules` | `{ text }` — **not** `rule` |
+| 🏷️ `labels` | rarely at setup — labels come from real conversations | `options.labels` | plain strings |
 
-| ❓ `faq` | always — the questions they are plainly tired of answering | `options.faq` |
-| 🛍️ `catalog` | they sell nameable things: classes, treatments, products, courses | `options.items` |
-| 🔗 `links` | booking, price list, timetable, terms | `options.items` |
-| 📏 `guidelines` | a stated rule: cancellation, deposits, health form, refunds | `options.rules` |
-| 🏷️ `labels` | rarely at setup — labels come from real conversations | `options.labels` |
+**The item field names are the part that gets guessed wrong**, and getting one
+wrong is worse than an error: `{ rule: '...' }` where the module reads `text` is
+stored, counted, and drawn as an empty row, so the owner is told their agent
+learned twelve rules and their agent learned none. `patch_agent_module` refuses
+those now, naming the field it wanted — believe it and fix the name.
 
 **Stopping after `business` is the commonest failure and the worst**, because
 the agent looks configured and answers nothing.
+
+**Set the language in the same breath.** A new agent defaults to English and its
+generated prompt says never to show characters from other languages — so an
+agent taught from a Hebrew site answers Hebrew customers in English until
+`patch_agent_language` says otherwise (`supportedLangauges`, misspelled, plus
+`defaultLanguage` and `userGenderAssumption`). Whatever you just read tells you
+which language it is; nothing else in the flow will.
 
 **A phone number is never in the page text.** It is in a `tel:` link, the
 address is in a maps link, WhatsApp is a `wa.me` URL — and link text is skipped
