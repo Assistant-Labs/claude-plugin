@@ -279,12 +279,32 @@ Then one message carrying the result, the open questions AND the voice question
 > Cancelling — 6 hours on the מחירון, 4 in the תקנון.
 > WhatsApp — 058-572-5872 in the header, 052-872-5872 in the footer.
 >
-> **And one thing only you can answer — how should she sound?** Type this the
-> way you'd really send it: someone asks if there's room in tomorrow morning's
-> class.
+> ⚠️ **And one thing only you can answer: how she talks.**
+> Until you tell me, she'll answer correctly and sound like a form.
+>
+> **Write me one line, exactly as you'd really send it.** A student asks: *"יש
+> מקום מחר בבוקר?"*
+>
+> That one sentence is all I need. I'll have her speak as **"I", female** —
+> say if that's wrong.
 
-**Ask the disputed ones as real options**, not open text. The voice question
-stays open text — a sentence they actually type is the point.
+**Ask the disputed ones as real options.** The voice question stays open text —
+a sentence they actually type is the whole point.
+
+**Be exact about what you need, and ask for ONE thing.** "How should she sound?"
+is a question about a feeling and gets a shrug. "Write me one line, exactly as
+you'd really send it, to this message" is a task, takes ten seconds, and that
+one sentence carries tone, length and emoji habit at once.
+
+**Propose the gender, never ask it.** `assistantGender` is required and Hebrew
+needs it on every verb, but *"is she a 'we' or an 'I'?"* is a grammar question
+aimed at somebody who came here about their WhatsApp. You have read their site:
+a one-woman studio is `female`, a shop with staff is `plural`. Say what you are
+going to do and let them correct it.
+
+**Say what it costs to skip**, once and plainly — she answers correctly and
+sounds like a form. That is true, and it is what makes ten seconds feel worth
+spending.
 
 ### Message 2 — write it in and let them meet her
 
@@ -313,9 +333,15 @@ answers, and it sounds like nobody. **Never report "she's built" while
 `toneAndStyle` is empty.** Say what is outstanding and ask again, once:
 
 > ✅ **She knows the business** — prices, hours, both locations, 14 questions answered.
-> ⚠️ **One thing left, and it's the one only you can answer.** Right now she has
-> no voice of her own. Type this how you'd really send it: someone asks if
-> there's room in tomorrow morning's class.
+>
+> ⚠️ **One thing left, and I can't do it without you: how she talks.**
+> She'll answer correctly and sound like a form until you tell me.
+>
+> **One line, the way you'd really send it.** A student asks: *"יש מקום מחר
+> בבוקר?"*
+>
+> That's everything I need. I'll have her speak as **"I", female** unless you
+> say otherwise.
 
 **Read the config back before you claim anything else, too** — saying she
 answers questions you never wrote is a false statement about somebody's

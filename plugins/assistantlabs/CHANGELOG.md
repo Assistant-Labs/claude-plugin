@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.9.3 — 2026-09-01
+
+**It asks you one clear thing, instead of a question about a feeling.**
+
+- "How should she sound?" got skipped, because it isn't answerable in ten
+  seconds. It now asks you to write one line — exactly as you'd really send it —
+  in reply to a real customer message. That single sentence gives it your tone,
+  your length and whether you use emoji.
+- It stops asking you grammar. Whether she speaks as "I" or "we" is now
+  proposed from what your site already told it, for you to correct.
+- And it says plainly what skipping costs: she answers correctly and sounds
+  like a form.
+
 ## 0.9.2 — 2026-09-01
 
 **What it wrote into your agent now actually shows up.**
