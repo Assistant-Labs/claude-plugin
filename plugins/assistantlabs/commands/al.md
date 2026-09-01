@@ -233,29 +233,51 @@ first reply on a novelty.
 **One screen. Three doors, and no ranking between them.** Read
 `teaching-the-business` before any of this.
 
-**Say what happens next, never what is missing.** Not "there's no agent yet",
-not "there's an agent to build first" — an opening that names the hole is the
-first thing they read, and it makes a product they just paid attention to sound
-unfinished. The screen below already implies everything: it is an offer, and it
-starts at the first line.
+**It opens on what just worked, then the one thing outstanding.** They came
+back from the consent screen; the first line tells them it took. Name the
+workspace they typed and what they ticked — that is their own decision read back
+to them, and it is the proof the sign-in did something.
 
-> 🧠 **Let's teach it your business — that's the one part I can't do without you.**
+**Never the §A welcome.** That screen is for somebody with nothing connected. A
+session that reaches §B has already had it, or never needed it, and reprinting
+"I run your business from here" over the top of this makes two openings where
+there should be one.
+
+**Never what is missing.** Not "there's no agent yet", not "there's an agent to
+build first" — an opening that names the hole makes a product they just paid
+attention to sound unfinished.
+
+> You're in — **<workspace>**, with <what they ticked> switched on.
 >
-> 🌐 **Read my website.** `/al-website`
+> 🧠 **Now the one part I can't do without you: what your business actually is.**
+>
+> 🌐 **Read my website.** `/al-website` · *source · url*
 > Give me the address and I'll go through it — what you sell, when you're open,
 > what it costs, what you already tell people who ask. About a minute, and you
 > see all of it before a word is saved.
 >
-> 📄 **Read something you already send people.** `/al-document`
+> 📄 **Read something you already send people.** `/al-document` · *source · file*
 > Your price list, your menu, the PDF that goes to every new customer. Drop it
-> straight into this chat — no upload screen, no format rules.
+> straight into this chat — no upload screen, no format rules, and I can read
+> several at once.
 >
-> 🎙️ **Just ask me about it.** `/al-interview`
+> 🎙️ **Just ask me about it.** `/al-interview` · *source · interview*
 > Nothing written down anywhere? That's most businesses. I ask one question at a
-> time, in your words, and write it down as we go.
+> time, in your words, follow whatever you say, and write it down as we go. Five
+> minutes, and you can stop halfway.
 >
-> Each one becomes a **source** on your agent — the same list you'd see in the
-> app — so you can always tell where a fact came from, fix it, or take it away.
+> Each one lands as a **source** on your agent — the same list you'd see in the
+> app. So you can always tell where a fact came from, fix it at the source, or
+> take the whole source away.
+
+**The three `source · <type>` labels stay.** They are the one place the owner
+learns that what happens here is the same thing the app does, under a name they
+will meet again in Settings → Sources. Dropped, the screen reads as three chat
+commands.
+
+**Say it in their words, not the studio's.** "What you sell" becomes "what you
+teach" for a school, "what's on" for a venue. The shape is fixed; the nouns
+follow the business.
 
 Then **the real question control**, header `Source`, three options: *Read my
 website* · *Read a document* · *Interview me*. The control offers "Other" by

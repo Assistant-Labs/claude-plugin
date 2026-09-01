@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.10.2 — 2026-09-01
+
+**Rules it wrote for you are no longer blank.**
+
+- The studio rules it took off your website — cancellations, health forms, what
+  never to promise — were saved in a shape the app cannot read, so the Guidelines
+  screen showed a dozen empty rows and your agent followed none of them. It was
+  also possible to end up with two copies of every rule, all of them empty.
+- Fixed at both ends: writing a rule in the wrong shape is now refused with the
+  right shape named, and rules already stored wrongly repair themselves the next
+  time anything is saved — the text was never lost.
+- The same trap sat under links, where the label could vanish the same way.
+- The screen after you sign in now opens with your workspace name and what you
+  turned on, instead of repeating the welcome you already read.
+
 ## 0.10.1 — 2026-09-01
 
 **Reading your website actually reads it now.**
