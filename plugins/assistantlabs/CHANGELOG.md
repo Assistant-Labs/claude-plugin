@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.9.1 — 2026-09-01
+
+**She isn't finished until she sounds like you.**
+
+- Setup could report an agent as built while she still had no voice of her own —
+  everything written, every question answerable, and no tone, no greeting, and
+  the wrong grammatical gender. It looks fine and it fails quietly: she answers,
+  and she sounds like nobody.
+- It's the one part of setup your website can't answer, which is exactly why it
+  got skipped. Setup now checks the agent's real configuration before saying
+  she's ready, and asks again if her voice is still empty.
+
 ## 0.9.0 — 2026-09-01
 
 **Three messages, and you meet her at the end of them.**

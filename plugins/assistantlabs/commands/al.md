@@ -289,9 +289,37 @@ stays open text — a sentence they actually type is the point.
 ### Message 2 — write it in and let them meet her
 
 `set_agent_persona` from their sentence: tone, length, emoji habit, and
-`assistantGender`, which Hebrew needs on every verb. Then **read the config back
-before you claim anything** — saying she answers questions you never wrote is a
-false statement about somebody's business, and they find out from a customer.
+`assistantGender`, which Hebrew needs on every verb.
+
+**Then `get_agent_config` and check it against this list. All six or she is not
+built:**
+
+| | Not done until |
+|---|---|
+| `business` | `options.about` and `contactInformation` are filled |
+| `faq` | has items |
+| `catalog` | has items, or the business genuinely sells nothing nameable |
+| `links` | has items, or the site had none |
+| `guidelines` | has items, or the site states no rules |
+| **`persona`** | **`toneAndStyle` is non-empty and `assistantGender` is right** |
+
+**The persona is the one that gets skipped, every time.** It is the only item
+that cannot be answered from the website, so if they did not reply to the voice
+question it stays at the default — no tone, no greeting, and `plural`, which is
+wrong for almost every business we serve and wrong in Hebrew on every verb.
+
+**A default persona is a silent failure**: everything looks written, the agent
+answers, and it sounds like nobody. **Never report "she's built" while
+`toneAndStyle` is empty.** Say what is outstanding and ask again, once:
+
+> ✅ **She knows the business** — prices, hours, both locations, 14 questions answered.
+> ⚠️ **One thing left, and it's the one only you can answer.** Right now she has
+> no voice of her own. Type this how you'd really send it: someone asks if
+> there's room in tomorrow morning's class.
+
+**Read the config back before you claim anything else, too** — saying she
+answers questions you never wrote is a false statement about somebody's
+business, and they find out from a customer.
 
 > ✅ **Done. Four hours, and she gives out 052-872-5872.**
 > ✅ **She sounds like you** — warm, short, speaks as "I"

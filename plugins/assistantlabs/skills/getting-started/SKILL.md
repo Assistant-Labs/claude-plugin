@@ -130,6 +130,12 @@ and let their real conversations teach it — see §3b and §4.
 **It costs them a seat on their plan.** At the limit the call fails with a quota
 error; say so plainly rather than retrying.
 
+**An agent with the default persona is not finished.** `toneAndStyle` empty and
+`assistantGender: 'plural'` is what a brand-new agent ships with, and it is the
+one field no website can answer — so it is the one that gets skipped. It fails
+silently: everything looks configured, the agent replies, and it sounds like
+nobody. Check it in the config, not in your memory of having asked.
+
 **Finish the agent before mentioning a channel.** `business` AND `faq`, plus
 `catalog` / `links` / `guidelines` wherever the site gave you something, and then
 `set_agent_persona` — an agent with no tone, no greeting and the default plural
