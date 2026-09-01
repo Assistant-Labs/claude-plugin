@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.8.0 — 2026-09-01
+
+**Your agent is finished before anyone can message her.**
+
+- Setup used to write your business details and stop, then offer to connect
+  WhatsApp — putting real customers in front of an agent that knew almost
+  nothing. It now writes everything your site gave it: what you sell, your
+  links, your rules, and the questions you already answer.
+- **And it gives her a voice.** Type one reply the way you'd really send it and
+  she picks up your tone, your length, and whether you speak as "I" or "we" —
+  which Hebrew needs on every verb. A new agent defaults to none of that.
+- **Then you can try her before a customer can.** Ask her something a customer
+  would and watch her answer.
+- It no longer tells you she can answer things it hasn't written. It reads her
+  configuration back and reports what is actually there.
+- Channels come last, once she's actually ready.
+
 ## 0.7.0 — 2026-09-01
 
 **Setting up your agent, as four moments instead of one long message.**

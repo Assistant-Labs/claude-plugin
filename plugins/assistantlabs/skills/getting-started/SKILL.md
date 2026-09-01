@@ -130,6 +130,13 @@ and let their real conversations teach it — see §3b and §4.
 **It costs them a seat on their plan.** At the limit the call fails with a quota
 error; say so plainly rather than retrying.
 
+**Finish the agent before mentioning a channel.** `business` AND `faq`, plus
+`catalog` / `links` / `guidelines` wherever the site gave you something, and then
+`set_agent_persona` — an agent with no tone, no greeting and the default plural
+gender is not set up. Stopping after `business` leaves something that looks
+configured and answers nothing, and connecting a channel to it puts real
+customers in front of an agent that cannot help them.
+
 **Walking them into the app is the fallback, not the default.** Take it only
 when `create_agent` is genuinely absent — an older connection, or `agent:create`
 not granted on the consent screen. Offer `/al-login` first.
