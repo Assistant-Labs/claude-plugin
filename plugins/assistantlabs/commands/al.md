@@ -23,7 +23,7 @@ saying anything:
 | `.assistantlabs/setup.json` | whether setup ever ran here, and how far it got |
 | `list_assistants` | whether the connectors work, and whether they have an agent |
 | `list_channels` | whether any customer can reach them |
-| `list_business_memory` | whether this operator knows the business |
+| `list_business_memory` | whether this operator knows the business — **skip when `list_assistants` came back empty**: memory is stored against an agent, so on a true first run this can only fail |
 | `list_tasks` `blocked-on-a-human` | whether anything is already waiting on them |
 
 **Probe — never infer.** The ONLY evidence of a connection is a call you just
@@ -230,50 +230,72 @@ deflation: they just arrived and the first thing they hear is an absence. And do
 not ask what to call you here — that serves you, not them, and it spends their
 first reply on a novelty.
 
-**One question. The one that unlocks everything.**
+**One screen. Three doors, and no ranking between them.** Read
+`teaching-the-business` before any of this.
 
-> **Let's build your agent — she's the one who'll answer your customers.**
+> 🧠 **Now the one part I can't do without you: what your business actually is.**
 >
-> What's your website? I'll read it and have her knowing your prices, your
-> hours and the questions you get asked, in about a minute.
+> 🌐 **Read my website.** `/al-website`
+> Give me the address and I'll go through it — what you sell, when you're open,
+> what it costs, what you already tell people who ask. About a minute, and you
+> see all of it before a word is saved.
+>
+> 📄 **Read something you already send people.** `/al-document`
+> Your price list, your menu, the PDF that goes to every new customer. Drop it
+> straight into this chat — no upload screen, no format rules.
+>
+> 🎙️ **Just ask me about it.** `/al-interview`
+> Nothing written down anywhere? That's most businesses. I ask one question at a
+> time, in your words, and write it down as we go.
+>
+> Each one becomes a **source** on your agent — the same list you'd see in the
+> app — so you can always tell where a fact came from, fix it, or take it away.
 
-That is the whole opening. No preamble, no second question, no menu.
+Then **the real question control**, header `Source`, three options: *Read my
+website* · *Read a document* · *Interview me*. The control offers "Other" by
+itself, so somebody with a Facebook page instead of a site can say so.
 
-**No website is not a lesser path**, and never sounds like one:
-
-> No site? Then one line: what do you sell, and who buys it? That's enough to
-> start, and the real conversations teach her the rest.
+**No website is not the lesser door.** Written as a fallback it reads as one;
+written as one of three it is just the one that fits them. Most small businesses
+have nothing written down — that is the normal case, not the sad case.
 
 ---
 
-**Three messages, not six.** Everything below is grouped so each message is one
-thing they read and one reply they give. A setup that takes six round trips
+**Four messages, not ten.** Everything below is grouped so each message is one
+thing they read and one reply they give. A setup that takes ten round trips
 feels like a form no matter how warm the words are.
 
-### Message 1 — build it, then ask everything at once
+### Message 1 — teach it, then ask everything at once
 
-Do the work first, silently, then report once. `create_agent` → `read_website` →
-write every module the site gave you something for.
+**Run the route they picked** — `/al-website`, `/al-document` or
+`/al-interview`. Each one carries its own mechanics; `teaching-the-business`
+carries the parts they share. The short version: `create_agent` →
+`add_agent_source` → read → **show them what you understood** → write every
+module with its `sourceId`.
 
 | Module | Write it when |
 |---|---|
-| `business` | always — what they do, where, hours, how to reach them |
-| `faq` | always — the questions the site is plainly written to answer |
-| `catalog` | they sell nameable things: classes, treatments, products, courses |
-| `links` | booking, price list, timetable, terms |
-| `guidelines` | the site states a rule: cancellation, health form, refunds |
+| 🏢 `business` | always — what they do, where, hours, how to reach them |
+| ❓ `faq` | always — the questions they are plainly tired of answering |
+| 🛍️ `catalog` | they sell nameable things: classes, treatments, products, courses |
+| 🔗 `links` | booking, price list, timetable, terms |
+| 📏 `guidelines` | a stated rule: cancellation, health form, refunds |
 
 **Stopping after `business` is the commonest failure and the worst**, because
 the agent looks configured and answers nothing.
 
-Then one message carrying the result, the open questions AND the voice question
-— all answerable in a single reply:
+Then one message carrying **the receipt**, the open questions AND the voice
+question — all answerable in a single reply:
 
 > ✅ **She's built — הסטודיו של מיכל.**
 >
-> ✅ **Knows the business** — both locations, hours, how to reach you
-> ✅ **Answers 14 questions** — makeups, freezes, discounts, payment, the health form
-> ✅ **Knows what you sell** — 7 classes and courses, with prices
+> 🏢 **Knows the business** — both locations, hours, how to reach you
+> ❓ **Answers 14 questions** — makeups, freezes, discounts, payment, the health form
+> 🛍️ **Knows what you sell** — 7 classes and courses, with prices
+> 🔗 **3 links** — timetable, booking, directions
+>
+> Empty on purpose: scenarios, lead questions, when to fetch you, labels. Those
+> come from real conversations, and I'll propose them once there are some.
 >
 > ⚠️ **Two your site disagrees with itself on:**
 > Cancelling — 6 hours on the מחירון, 4 in the תקנון.
@@ -350,7 +372,7 @@ business, and they find out from a customer.
 > ✅ **Done. Four hours, and she gives out 052-872-5872.**
 > ✅ **She sounds like you** — warm, short, speaks as "I"
 >
-> 🔗 **[Try her →](https://assistantlabs.io/app/assistants/<id>?test=1)**
+> 🔗 **[Try her →](https://assistantlabs.io/app/assistants/:assistantId?test=1)**
 > Opens with the test chat already up. Ask her something a student would — no
 > customer can see any of it.
 >
@@ -361,7 +383,18 @@ business, and they find out from a customer.
 them to the page and telling them where to click is the version of this that
 does not get done.
 
-### Message 3 — the channel
+### Message 3 — what they already run
+
+Knowledge is what they *say*; integrations are what is *happening* — the
+timetable, the orders, the stock, the sheet everyone edits. Offer **two to four,
+chosen from what you just learned**, never a list of fifteen, and say in one
+line what you skipped and why. `teaching-the-business` has the picking table and
+the deep links; `/al-integration` covers anything with no button.
+
+Skip this message entirely when nothing fits. An offer that does not fit them is
+worse than no offer.
+
+### Message 4 — the channel
 
 Only once she is built and they have met her. §C.
 
@@ -372,24 +405,14 @@ that reaches a customer.
 **Somewhere after she works, lightly, once:** *"By the way — what do you want to
 call me?"* It is a warm closer, never a gate, and never the first thing you ask.
 
-**Do not use `scan_website` for this.** It hands the whole job to the server —
-crawl and extraction both — and reports nothing back here. You would be
-promising to show them what their agent learned and then never seeing it. It
-also merges into a live agent and can move hours they typed by hand. Keep it for
-a site too large to read, and then say plainly that the result lands in the app
-and you will not see it.
-
 **Reading it yourself is not the slower path, it is the whole point.** The owner
 watches their agent learn and fixes it in the same breath. A background job
 gives them a progress bar and a stranger's summary.
 
-**No website — that is not a lesser path.** Create it with just a name and say
-what happens next, because it is true:
-
-> "No website, no problem. One line: what do you sell, and who buys it? That's
-> enough to start — the rest it learns from your actual conversations, and the
-> questions people really ask are better material than anything either of us
-> would write now."
+**Whichever door they took, `add_agent_source` comes before the writes** and
+every module carries its `sourceId`. Knowledge with no source belongs to
+nothing: the owner cannot see where it came from, and cannot remove it as a set
+when it turns out to be wrong.
 
 **What creating one actually costs them** is a seat on their plan. If they are
 at their limit the call fails with a quota error: say that plainly, say what it
@@ -447,16 +470,16 @@ single pick means asking the same question again in a minute. Let
 Then **give them a door per channel**, in the same message — a titled link each,
 and one line saying what happens on the other side:
 
-> **[Connect WhatsApp →](https://assistantlabs.io/app/assistants/<id>/settings/channels?connect=whatsapp)**
+> **[Connect WhatsApp →](https://assistantlabs.io/app/assistants/:assistantId/settings/channels?connect=whatsapp)**
 > Opens on the WhatsApp step. You'll sign in with Facebook and pick the number.
 >
-> **[Turn on website chat →](https://assistantlabs.io/app/assistants/<id>/settings/channels?connect=website)**
+> **[Turn on website chat →](https://assistantlabs.io/app/assistants/:assistantId/settings/channels?connect=website)**
 > Nothing to approve. It's live the moment you paste the snippet.
 
-**Always a titled link, never a naked URL.** A raw
-`https://assistantlabs.io/app/assistants/assistant_4efc7a00-…/settings/channels?connect=whatsapp`
-is a wall of characters that reads as something technical went wrong. The
-title carries the promise; the URL is plumbing and should be invisible.
+**Always a titled link, never a naked URL.** A raw address with a uuid and a
+query string in it is a wall of characters that reads as something technical
+went wrong. The title carries the promise; the URL is plumbing and should be
+invisible.
 
 **`?connect=` opens that channel's modal on arrival** — see `opening-the-app`
 for the exact shapes. This matters more than it looks: a link that lands on the
@@ -490,8 +513,9 @@ Everything works; the memory is empty. **Do not open an interview.**
 
 1. **Look first.** How many conversations, what the agent knows, who is waiting,
    what it has been getting wrong. This is where the first real result comes from.
-2. **Scan their website** (`scan_website`) if they have one, then check what it
-   found *with* them, one screenful at a time. Correcting beats composing.
+2. **Read their website** (`/al-website`) if they have one, then check what it
+   found *with* them, one screenful at a time. Correcting beats composing. No
+   site: `/al-document` if they have a price list, `/al-interview` if not.
 3. **Ask two things, do some work, ask two more.** Six questions in a row is a
    form.
 

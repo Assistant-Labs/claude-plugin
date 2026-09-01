@@ -99,9 +99,15 @@ than hunting a tile. Use it every time you name a channel. Values:
   own screens rather than a modal on this page. Link the plain channels page.
 - **An unknown value lands them on the channels page with everything visible**,
   which is a safe failure, but do not rely on it: send a value from the list.
-| Check what the website scan found | `/app/assistants/:id/settings/faq` (and the other knowledge tabs) |
+
+Three more worth having to hand — these were orphaned below a prose block and
+rendered as literal pipes, so nobody could use them:
+
+| To | Send them |
+|---|---|
+| Check what the agent learned from their website | `/app/assistants/:assistantId/settings/faq` |
 | See the board you just filled | `https://assistantlabs-tasks.web.app` |
-| Change what this connection may do | `/app/assistants/:id/settings/claude-mcp` |
+| Change what this connection may do | `/app/assistants/:assistantId/settings/claude-mcp` |
 
 **Do not narrate a screen you could open.** "Go to Settings, then Channels, then
 find WhatsApp and click Connect" is four chances to lose somebody. One link is

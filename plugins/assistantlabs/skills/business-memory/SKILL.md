@@ -15,7 +15,15 @@ A generic operator is worthless. What makes it *this business's* operator is a
 small set of pages it reads before acting and writes the moment it learns
 something.
 
-**They live in the business's Assistant Labs workspace, not on anyone's laptop.**
+**They live in the business's Assistant Labs account, not on anyone's laptop.**
+
+**Stored against the AGENT, not the workspace.** Every memory route is
+`/assistants/:assistantId/memory*`, so the pages belong to one agent and a
+business running two agents has two independent sets with nothing reconciling
+them. Two consequences worth knowing before you write anything: **there is
+nowhere to write until an agent exists** — on a true first run, create the agent
+first — and if the business later adds a second agent, its memory starts empty
+rather than inheriting what the first one learned.
 
 ```
 list_business_memory                    → what is known, and how full each page is
@@ -27,7 +35,7 @@ start_business_memory                   → creates the empty starter pages (set
 They are plain markdown and the owner can read and edit every one. **Nothing in
 here is written for a machine.**
 
-## Why the workspace and not a local folder
+## Why the account and not a local folder
 
 Four reasons, and each one is a way the local version fails:
 
@@ -36,9 +44,9 @@ Four reasons, and each one is a way the local version fails:
   memory that does not exist when it matters most.
 - **The owner changes computer, or has two.** Their business should not forget
   them because they opened Claude somewhere else.
-- **Everything else can read it.** Memory in the workspace is available to the
-  rest of the product and to anything built on top of it. Memory in a folder is
-  available to one process on one machine.
+- **Everything else can read it.** Memory held against the agent is available to
+  the rest of the product and to anything built on top of it. Memory in a folder
+  is available to one process on one machine.
 - **It survives this project.** A folder gets deleted, renamed, or left behind in
   a repo nobody opens again.
 

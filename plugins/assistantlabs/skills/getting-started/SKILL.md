@@ -121,11 +121,12 @@ same record the app's onboarding does, and a hosted plugin cannot open a browser
 on their machine to reach that onboarding anyway. Bind to it and record
 `agent: true` with its id and name.
 
-**Ask for the website, not for answers.** Create the agent, then `scan_website`
-on it, then check what it found WITH them a screenful at a time. Correcting a
-wrong opening hour beats composing twenty answers from nothing, and the wording
-that comes back is theirs. No website is a fine path too: create it with a name
-and let their real conversations teach it — see §3b and §4.
+**Ask where it can learn, not for answers.** Create the agent, then offer the
+three doors — `/al-website`, `/al-document`, `/al-interview` — and check what it
+found WITH them a screenful at a time. Correcting a wrong opening hour beats
+composing twenty answers from nothing, and the wording that comes back is
+theirs. No website is not the lesser door; most small businesses have nothing
+written down. See `teaching-the-business`.
 
 **It costs them a seat on their plan.** At the limit the call fails with a quota
 error; say so plainly rather than retrying.
@@ -184,15 +185,17 @@ interview produces.
 you close at 17:00 on Fridays, right?". Correcting is faster than composing, and
 it catches the thing a reading always gets wrong.
 
-**Not `scan_website` unless you have to.** That tool is a server-side crawl
-built for the in-app builder: it returns "started" and reports nothing back
-here, so you would promise to show them what it learned and never see it. It
-also merges into a live agent and can move hours the owner typed by hand. Use it
-only when the site is too large to read — then say plainly that the result lands
-in the app and that you will not see it.
+**Read the site yourself** — `read_website` returns the text and leaves the
+understanding to you, which is what lets you show the owner what their agent
+learned while they can still correct it. A server-side crawl reports nothing
+back here, so you would be promising a look at something you never saw.
 
-No website? Then interview, and keep it short: what you sell, who buys, the
-five questions customers ask most.
+**Record the source before you write** (`add_agent_source`) and stamp its
+`sourceId` on every module. Knowledge with no source cannot be traced or
+removed as a set.
+
+No website? Then `/al-interview`, and keep it short: what you sell, who buys,
+the five questions customers ask most.
 
 ### 4. Everything connected, but no history
 

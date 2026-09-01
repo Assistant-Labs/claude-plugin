@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.10.0 — 2026-09-01
+
+**Three ways to teach it your business, and a receipt for what it wrote.**
+
+- A website was the only real door. Now there are three, and no ranking between
+  them: `/al-website` reads your site, `/al-document` reads the price list or
+  PDF you already send people — drop it straight into the chat — and
+  `/al-interview` just asks you, one question at a time, when there's nothing
+  written down anywhere. Most small businesses are in that last case.
+- Each one is recorded as a **source** on your agent, the same list you see in
+  the app under Settings → Sources. So you can tell where any fact came from,
+  replace one source when your prices change, or delete it and take everything
+  it taught with it. Until now, knowledge taught through Claude belonged to
+  nothing — and asking "where did it learn from?" answered "nothing" for every
+  agent that had sources.
+- When the writing is done you get a **receipt**: every section, with a count.
+  "11 answers", "4 items with prices", your correction quoted back on the line
+  it changed — and the sections that are still empty, named, with the reason.
+  Half of them stay empty after any source, because they come from real
+  conversations.
+- Then it offers the two or three integrations that actually fit you — your
+  calendar, your shop, your spreadsheet — and says out loud which ones it
+  skipped and why.
+- It no longer opens by telling you what you haven't got.
+
 ## 0.9.3 — 2026-09-01
 
 **It asks you one clear thing, instead of a question about a feeling.**
