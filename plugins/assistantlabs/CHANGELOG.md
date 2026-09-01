@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.9.2 — 2026-09-01
+
+**What it wrote into your agent now actually shows up.**
+
+- Setup wrote your FAQ, links, catalogue and rules into the wrong field. Every
+  write was accepted, nothing errored, and the settings screens stayed empty —
+  so you were told your agent knew 14 answers while the FAQ page showed none.
+- Writing to the wrong place is now refused outright, with the right place
+  named, instead of quietly succeeding.
+
 ## 0.9.1 — 2026-09-01
 
 **She isn't finished until she sounds like you.**
