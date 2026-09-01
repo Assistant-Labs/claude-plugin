@@ -77,10 +77,16 @@ come up:
 | Connect Messenger | `/app/assistants/:id/settings/channels?connect=messenger` |
 | Connect website chat | `/app/assistants/:id/settings/channels?connect=website` |
 | Connect email, or anything else | `/app/assistants/:id/settings/channels` |
+| **Try the agent** | `/app/assistants/:id?test=1` — opens with the test chat already up |
 
 **Always render these as titled markdown links** — `**[Connect WhatsApp →](…)**`
 — never as a bare URL. These URLs carry an `assistant_` uuid and a query string;
 pasted raw they read as machinery and make the conversation feel technical.
+
+**`?test=1` opens the try-it dock on arrival.** Use it the moment an agent is
+built — watching her answer is what makes it real, and "you can try her in the
+app" is the version that never gets done. It works on any assistant route, so
+pair it with the page you actually want them on.
 
 **`?connect=` opens that channel's connect flow on arrival** — the modal is
 already up when the page paints, so they are one click from connected rather

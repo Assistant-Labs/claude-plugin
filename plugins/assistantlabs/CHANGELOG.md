@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.9.0 — 2026-09-01
+
+**Three messages, and you meet her at the end of them.**
+
+- Setup asked six questions across six replies. It now asks one — your website —
+  then does the whole build and comes back with what she knows, the two things
+  your site contradicts itself on, and how you'd like her to sound. All
+  answerable in one reply.
+- **It opens on what you get, not on what's missing.** "There's no agent yet" is
+  a deflating first sentence, and asking what to call it before doing anything
+  spent your opening reply on a novelty. That question moved to the end, where
+  it belongs.
+- **You can try her before anyone else can.** The link opens the app with the
+  test chat already up — ask her something a customer would and watch her
+  answer. No customer sees any of it.
+
 ## 0.8.0 — 2026-09-01
 
 **Your agent is finished before anyone can message her.**

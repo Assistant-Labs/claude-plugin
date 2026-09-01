@@ -1,7 +1,7 @@
 {
 	"name": "assistantlabs",
 	"displayName": "Assistant Labs — run your business with Claude",
-	"version": "0.8.0",
+	"version": "0.9.0",
 	"description": "Type /al to start. An operator that runs your small business day to day — answers customers, chases leads, keeps the books straight and files everything that needs your decision as a one-tap approval. Connects to your Assistant Labs channels and apps, and builds you new ones when the suite doesn't cover it.",
 	"author": {
 		"name": "Assistant Labs",
