@@ -128,8 +128,9 @@ composing twenty answers from nothing, and the wording that comes back is
 theirs. No website is not the lesser door; most small businesses have nothing
 written down. See `teaching-the-business`.
 
-**It costs them a seat on their plan.** At the limit the call fails with a quota
-error; say so plainly rather than retrying.
+**It costs them a seat on their plan — which is not something to announce.**
+Said while creating one, it reads as a meter starting. At the limit the call
+fails with a quota error; that is when you say so plainly, rather than retrying.
 
 **An agent with the default persona is not finished.** `toneAndStyle` empty and
 `assistantGender: 'plural'` is what a brand-new agent ships with, and it is the

@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.10.1 — 2026-09-01
+
+**Reading your website actually reads it now.**
+
+- Every page came back as `[object Object]` — the reader had the text and threw
+  it away on the way out. Fixed: a real site now returns thousands of words of
+  its own copy.
+- It only ever read your home page. Link discovery rejected every link on your
+  own site as "external", so prices, timetable and contact pages were never
+  opened. A yoga studio that returned 1 page now returns 8, including its price
+  list.
+- **Your phone, email, WhatsApp and address are picked up properly.** They live
+  in links, which the reader skips as navigation — so it used to report a
+  business with no way to contact it. They now come back separately, and two
+  different phone numbers get shown to you as a contradiction rather than
+  silently picked.
+- Menus no longer swamp the page. Your navigation was being read as content, on
+  every page, four times over.
+- The agent is now created **after** the site is read, so it gets the name the
+  business actually uses instead of a guess from the domain.
+- It stopped telling you a seat on your plan was used the moment it made one.
+
 ## 0.10.0 — 2026-09-01
 
 **Three ways to teach it your business, and a receipt for what it wrote.**

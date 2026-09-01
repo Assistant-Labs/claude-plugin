@@ -33,6 +33,16 @@ true, all the wrong first sentence. It is their first minute; naming the hole
 makes the product sound unfinished and makes them feel behind. Offer the three
 doors instead. Every business can walk through at least one of them.
 
+## Name the agent what they call themselves
+
+The business's own name, in its own language, from the site or from their mouth
+— never the domain and never a transliteration of it. A yoga studio called
+הסטודיו של מיכל does not want an agent called "Michal Yoga", and correcting it is
+a poor use of somebody's first two minutes.
+
+`read_website` needs no agent, so on a website route you know the real name
+before you create anything. Read, then create.
+
 ## Every route records a source, before it writes anything
 
 `add_agent_source` first, then the modules, each carrying `sourceId`.
@@ -55,6 +65,7 @@ uses — `get_agent_module` first, and send the FULL object back.
 | Module | Write it when | Content key |
 |---|---|---|
 | 🏢 `business` | always — what they do, where, hours, how to reach them | `options.about` + `options.contactInformation` |
+
 | ❓ `faq` | always — the questions they are plainly tired of answering | `options.faq` |
 | 🛍️ `catalog` | they sell nameable things: classes, treatments, products, courses | `options.items` |
 | 🔗 `links` | booking, price list, timetable, terms | `options.items` |
@@ -63,6 +74,12 @@ uses — `get_agent_module` first, and send the FULL object back.
 
 **Stopping after `business` is the commonest failure and the worst**, because
 the agent looks configured and answers nothing.
+
+**A phone number is never in the page text.** It is in a `tel:` link, the
+address is in a maps link, WhatsApp is a `wa.me` URL — and link text is skipped
+as navigation. `read_website` returns them in a separate `contacts` array;
+that is where `contactInformation` comes from. Two different numbers means the
+site disagrees with itself: ask which one, never pick.
 
 **These stay empty after any source, and that is correct:** 🎬 `scenario`,
 🎯 `lead-qualification`, 🙋 `human-escalation`, 🩹 `unsatisfied-customer`,
