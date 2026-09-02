@@ -20,7 +20,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const DEFAULT_BASE = 'https://mcp-server-150134556021.us-central1.run.app';
+const DEFAULT_BASE = 'https://mcp.assistantlabs.io';
 
 /** Refresh this far before expiry, so a call never races the clock. */
 const REFRESH_SKEW_MS = 90 * 1000;

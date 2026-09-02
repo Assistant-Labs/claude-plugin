@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.5 — 2026-09-02
+
+**A connector address you can read.**
+
+- The connector is now `https://mcp.assistantlabs.io/mcp`, in place of the long
+  Google-hosted one. Same service, same permissions. If you already connected
+  with the old address it keeps working, and reconnecting with this one takes
+  the usual few seconds.
+
 ## 0.10.4 — 2026-09-01
 
 **It speaks your language, and it reads the page your rules are on.**

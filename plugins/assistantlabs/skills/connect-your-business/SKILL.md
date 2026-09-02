@@ -22,7 +22,7 @@ There is **one address**, and it carries everything the credential is allowed to
 reach:
 
 ```
-https://mcp-server-150134556021.us-central1.run.app/mcp
+https://mcp.assistantlabs.io/mcp
 ```
 
 | What it reaches | Needs |

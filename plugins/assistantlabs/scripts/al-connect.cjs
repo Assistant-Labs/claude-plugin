@@ -23,7 +23,7 @@ const os = require('os');
 const path = require('path');
 const { execFile } = require('child_process');
 
-const DEFAULT_BASE = 'https://mcp-server-150134556021.us-central1.run.app';
+const DEFAULT_BASE = 'https://mcp.assistantlabs.io';
 const CLIENT_NAME = 'Assistant Labs operator (Claude)';
 
 /**

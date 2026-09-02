@@ -38,7 +38,7 @@ words, not theirs.
 > **3.** Paste this in and click **Add**:
 >
 > ```
-> https://mcp-server-150134556021.us-central1.run.app/mcp
+> https://mcp.assistantlabs.io/mcp
 > ```
 >
 > It'll ask you to sign in — that's your normal Assistant Labs login. Tick what
@@ -56,7 +56,7 @@ labels stay in English because that is what is on their screen:
 > **3.** הדביקו את הכתובת הזאת ולחצו **Add**:
 >
 > ```
-> https://mcp-server-150134556021.us-central1.run.app/mcp
+> https://mcp.assistantlabs.io/mcp
 > ```
 >
 > יבקשו מכם להתחבר. זה החשבון הרגיל שלכם ב-Assistant Labs. סמנו מה אתם רוצים
@@ -108,7 +108,7 @@ Both hosts move together; the tunnel serves the API and the MCP from one domain:
 
 | | Production | Local (ngrok) |
 |---|---|---|
-| Connector URL | `https://mcp-server-150134556021.us-central1.run.app/mcp` | `https://assistantlabs.ngrok.app/mcp/mcp` |
+| Connector URL | `https://mcp.assistantlabs.io/mcp` | `https://assistantlabs.ngrok.app/mcp/mcp` |
 | `A=` in the terminal flow below | `https://server-150134556021.us-central1.run.app` | `https://assistantlabs.ngrok.app/server` |
 
 **Confirm it is up before sending anybody anywhere** — a tunnel that is down
