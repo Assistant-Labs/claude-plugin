@@ -21,7 +21,7 @@ const path = require('path');
  * them, and it is written from here — nowhere else in this session sees it.
  */
 const RECORDED =
-	/(send_message_to_customer|send_whatsapp_template|send_email|send_message|create_whatsapp_template|attach_group_to_journey|notify_owner|ask_owner_to_approve|create_task|update_task|patch_agent_module|set_extra_instructions|update_contact|api_request)/;
+	/(send_message_to_customer|send_whatsapp_template|send_email|send_message|create_whatsapp_template|attach_group_to_journey|notify_owner|ask_owner_to_approve|create_task|update_task|patch_agent_module|set_extra_instructions|update_contact|api_(?:request|create|update|replace|delete))/;
 
 try {
 	const payload = JSON.parse(fs.readFileSync(0, 'utf8'));

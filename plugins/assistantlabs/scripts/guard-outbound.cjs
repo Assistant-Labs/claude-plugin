@@ -41,9 +41,17 @@ const OUTBOUND = [
 const DESTRUCTIVE = /(^|_)(delete|remove|disconnect|revoke|cancel|purge)_/;
 
 /**
- * `api_request` is the escape hatch to any `/api/v1` path, so a red action can
- * arrive wearing a generic name. Judge it by the path it is about to call.
+ * The escape hatches reach any `/api/v1` path, so a red action can arrive
+ * wearing a generic name. Judge them by the path they are about to call. The
+ * server splits them one per verb (`api_request` is the old single one).
  */
+const ESCAPE_HATCHES = new Set([
+	'api_request',
+	'api_create',
+	'api_update',
+	'api_replace',
+	'api_delete',
+]);
 const OUTBOUND_PATH =
 	/(channel-messages|whatsapp\/send-template|\/emails|\/messages(\/stream)?$|payments|charges|refunds|subscriptions)/i;
 
@@ -60,10 +68,13 @@ function reason(toolName, input) {
 		].join(' ');
 	}
 
-	if (short === 'api_request') {
+	if (ESCAPE_HATCHES.has(short)) {
 		const target = `${input?.path || ''} ${input?.url || ''}`;
 		if (OUTBOUND_PATH.test(target)) {
 			return `This call reaches customers or money (${target.trim()}). It needs the owner's yes, not a workaround through a generic endpoint.`;
+		}
+		if (short === 'api_delete') {
+			return `This deletes ${target.trim()} and cannot be undone. Confirm with the owner, and say exactly what disappears.`;
 		}
 		return null;
 	}
