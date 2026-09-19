@@ -1,23 +1,36 @@
 {
 	"name": "assistantlabs",
-	"displayName": "Assistant Labs — run your business with Claude",
-	"version": "0.10.5",
-	"description": "Type /al to start. An operator that runs your small business day to day — answers customers, chases leads, keeps the books straight and files everything that needs your decision as a one-tap approval. Connects to your Assistant Labs channels and apps, and builds you new ones when the suite doesn't cover it.",
+	"displayName": "AssistantLabs — run your business with Claude",
+	"version": "0.11.0",
+	"description": "AssistantLabs runs your small business from Claude. Your own AI agents answer customers on WhatsApp, Instagram, Messenger, email and website chat; this plugin brings that whole workspace here. Ask who is waiting for a reply and get the drafts, chase the leads going cold, read what customers keep asking, keep the CRM and the task board straight, fill the appointment book, see how your posts and Meta ads are doing, and approve anything that reaches a customer with one tap on WhatsApp. Type /al to start. For small businesses, agencies and online stores doing customer support, sales and marketing in one place.",
 	"author": {
-		"name": "Assistant Labs",
+		"name": "AssistantLabs",
 		"url": "https://assistantlabs.io"
 	},
-	"homepage": "https://assistantlabs.io",
+	"homepage": "https://assistantlabs.io/claude",
 	"license": "SEE LICENSE IN LICENSE",
 	"keywords": [
-		"business",
-		"automation",
-		"smb",
-		"customer-support",
-		"sales",
+		"assistantlabs",
 		"whatsapp",
+		"instagram",
+		"messenger",
+		"agent",
+		"ai-agent",
+		"customer-support",
+		"helpdesk",
+		"sales",
+		"leads",
 		"crm",
-		"assistant-labs"
+		"meta-ads",
+		"marketing",
+		"ecommerce",
+		"bookings",
+		"appointments",
+		"tasks",
+		"small-business",
+		"smb",
+		"automation",
+		"business"
 	],
 	"userConfig": {
 		"autonomy": {
@@ -34,5 +47,6 @@
 			"default": "https://mcp.assistantlabs.io",
 			"required": false
 		}
-	}
+	},
+	"repository": "https://github.com/Assistant-Labs/claude-plugin"
 }

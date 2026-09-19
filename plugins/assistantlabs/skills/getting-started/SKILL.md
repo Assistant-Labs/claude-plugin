@@ -122,8 +122,9 @@ on their machine to reach that onboarding anyway. Bind to it and record
 `agent: true` with its id and name.
 
 **Ask where it can learn, not for answers.** Create the agent, then offer the
-three doors — `/al-website`, `/al-document`, `/al-interview` — and check what it
-found WITH them a screenful at a time. Correcting a wrong opening hour beats
+doors — `/al-website`, `/al-document`, `/al-interview`, and `/al-conversations`
+once their WhatsApp history is in — and check what it found WITH them a
+screenful at a time. Correcting a wrong opening hour beats
 composing twenty answers from nothing, and the wording that comes back is
 theirs. No website is not the lesser door; most small businesses have nothing
 written down. See `teaching-the-business`.
@@ -195,7 +196,9 @@ back here, so you would be promising a look at something you never saw.
 `sourceId` on every module. Knowledge with no source cannot be traced or
 removed as a set.
 
-No website? Then `/al-interview`, and keep it short: what you sell, who buys,
+No website? If they have been answering on WhatsApp, `/al-conversations` first —
+the five questions customers ask most are already answered there, in their
+words. Otherwise `/al-interview`, and keep it short: what you sell, who buys,
 the five questions customers ask most.
 
 ### 4. Everything connected, but no history

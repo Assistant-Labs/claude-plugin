@@ -1,4 +1,4 @@
-# Assistant Labs
+# AssistantLabs
 
 **An operator that runs your business. You stay the one who decides.**
 
@@ -7,7 +7,7 @@ reads every conversation, answers what it can, chases the leads going cold,
 notices the invoice you never sent — and puts anything that needs *you* in front
 of you as one decision you can make in ten seconds.
 
-It runs on your own [Assistant Labs](https://assistantlabs.io) workspace, so it
+It runs on your own [AssistantLabs](https://assistantlabs.io) workspace, so it
 reaches the channels and apps your business already uses: WhatsApp, email, your
 website chat, your store, your CRM, your task board.
 
@@ -34,12 +34,12 @@ Then, in the folder you want to run your business from:
 That is the only command you have to remember. It works out where you are —
 brand new, half set up, or running for months — and takes you one step forward.
 
-On a first run it connects your Assistant Labs workspace: you sign in, you tick
+On a first run it connects your AssistantLabs workspace: you sign in, you tick
 which permissions it gets, and **no key or password is ever pasted anywhere**.
 Then it goes and learns your business from your real data before it asks you a
 single question.
 
-**No Assistant Labs account yet?** Say so and it will point you at the sign-up
+**No AssistantLabs account yet?** Say so and it will point you at the sign-up
 and wait. It will never create an account for you or ask for a password.
 
 ---
@@ -49,7 +49,7 @@ and wait. It will never create an account for you or ask for a password.
 | | |
 |---|---|
 | `/al` | **Start here.** Set up, or pick up where you left off |
-| `/al-login` | Connect Assistant Labs — and check the connection really works |
+| `/al-login` | Connect AssistantLabs — and check the connection really works |
 | `/al-setup` | The setup steps on their own — resumes, never restarts |
 | `/al-status` | Is it set up, and what's missing |
 | `/al-brief` | What's happening right now — who's waiting, what's at risk, today's three things |
@@ -59,6 +59,9 @@ and wait. It will never create an account for you or ask for a password.
 | `/al-customer <name>` | Everything about one customer and what to do next |
 | `/al-money` | What's owed, what's at risk, what's coming in |
 | `/al-agent-review` | Where your AI answered badly this week — and the fix |
+| `/al-conversations` | Teach the agent from the WhatsApp answers you have already typed |
+| `/al-daily` | Today's queue: who is waiting on you, and what is broken |
+| `/al-weekly` | The weekly review — what moved, what's at risk, what needs you |
 | `/al-report` | A written report, for you or for a customer |
 | `/al-build <what>` | Something the suite doesn't do yet |
 | `/al-integration <system>` | Connect your agent to a system you already run |
@@ -103,14 +106,14 @@ It will never send a message because nobody was around to say no.
 
 ## The memory
 
-Assistant Labs keeps what it knows about your business in your workspace — plain
+AssistantLabs keeps what it knows about your business in your workspace — plain
 markdown pages you can read and edit, stored with your account rather than on one
 computer, so it still knows you from a new laptop and when it runs while you sleep:
 
 `business` · `voice` · `policies` · `people` · `offers` ·
 `customers` · `decisions` · `stack`
 
-The important one is `voice`. Assistant Labs learns how *your people* actually write
+The important one is `voice`. AssistantLabs learns how *your people* actually write
 to customers — real sentences from your real replies — so drafts sound like the
 business and not like a chatbot.
 
@@ -144,9 +147,9 @@ operator.
 | Setting | Default | |
 |---|---|---|
 | Autonomy | `standard` | `supervised` asks before anything at all leaves the building |
-| MCP host | Assistant Labs production | Only change for staging or self-hosted |
+| MCP host | AssistantLabs production | Only change for staging or self-hosted |
 
-What it knows about your business lives in your Assistant Labs workspace, not on
+What it knows about your business lives in your AssistantLabs workspace, not on
 this computer — so it still knows you from a different machine, and when it runs
 overnight with nobody there.
 
@@ -154,7 +157,7 @@ overnight with nobody there.
 
 ## What you need
 
-- An [Assistant Labs](https://assistantlabs.io) account. Free to start. **Don't
+- An [AssistantLabs](https://assistantlabs.io) account. Free to start. **Don't
   have one? Run `/al` anyway** — it walks you through it and picks up
   on its own once you're in.
 - An agent, and at least one channel your customers actually use — WhatsApp,
@@ -169,7 +172,7 @@ stand at any point.
 WhatsApp templates, who else works with you, the scheduled brief. Say no to any
 of them and setup is still finished; nothing will nag you about it again.
 
-Built by [Assistant Labs](https://assistantlabs.io).
+Built by [AssistantLabs](https://assistantlabs.io).
 
 ---
 

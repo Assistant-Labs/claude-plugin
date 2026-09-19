@@ -54,11 +54,12 @@ they use it, because their customers already have it and approvals ride on it.
 Do not block: carry on and say once what is limited.
 
 **5 · Fill the agent's head before interviewing them.** If the agent's
-knowledge is thin, offer the three doors — `/al-website` if they have a site,
-`/al-document` if they have a price list or a PDF they already send people,
-`/al-interview` if neither. Check the result with them rather than asking from
-scratch — see `teaching-the-business`. Correcting beats composing, and one
-reading replaces twenty questions.
+knowledge is thin, offer the doors — `/al-conversations` first if their WhatsApp
+history is in, because the answers are already written and in their words;
+`/al-website` if they have a site; `/al-document` if they have a price list or a
+PDF they already send people; `/al-interview` if none of those. Check the result
+with them rather than asking from scratch — see `teaching-the-business`.
+Correcting beats composing, and one reading replaces twenty questions.
 
 **6 · Look around before asking anything.** How many conversations, how many
 contacts, what the agent already knows, whether anyone is waiting, what it has

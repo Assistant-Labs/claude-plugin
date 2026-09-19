@@ -1,5 +1,44 @@
 # Changelog
 
+## 0.11.0 — 2026-09-09
+
+**Your agent can learn from what you already told customers.**
+
+- `/al-conversations` reads the WhatsApp conversations you have already had —
+  the questions people keep asking and the answers you keep typing — and turns
+  them into answers your agent gives. You see every one before anything is
+  saved, and drop whatever is wrong or out of date.
+- For a business that has been running on WhatsApp for years this replaces most
+  of the interview. You have typed the delivery charge two hundred times; there
+  is no reason to be asked for it again.
+- Nothing with a person in it is kept — no names, phone numbers, addresses or
+  order numbers. These answers get shown to your other customers.
+- Needs your WhatsApp history to have been brought in, which happens when you
+  connect the channel.
+
+**The day and the week, written for you.**
+
+- `/al-daily` is today's queue: who is waiting on you, what is broken, what you
+  can clear in ten minutes. `/al-weekly` is the review — what moved, what is at
+  risk, and the decisions waiting on you.
+
+**One connection, every product.**
+
+- The plugin declares a single connector again. A second Sales connection had
+  crept back in, which meant signing in twice for tools the one connection
+  already carries.
+
+## 0.10.6 — 2026-09-04
+
+**Review and approve the agent's training, not just suggest it.**
+
+- Before, a training suggestion could only be filed for later — you had to open
+  the app to see the queue and decide. Now the whole loop is here: list the
+  proposals waiting on a decision, read the exact change each one would make,
+  tune it, then approve it (the agent starts answering the new way) or reject
+  it. Approving changes how the agent talks to real customers, so it approves
+  only what you would want live.
+
 ## 0.10.5 — 2026-09-02
 
 **A connector address you can read.**

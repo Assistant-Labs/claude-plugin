@@ -1,12 +1,13 @@
 ---
 name: teaching-the-business
 description: >
-  How an agent learns a business — the three sources (website, document,
-  interview), recording each one so the owner can see where a fact came from,
-  which module every kind of fact goes into, and the receipt you show when the
-  writing is done. Read before creating or teaching an agent, before running
-  /al-website, /al-document or /al-interview, and any time you are about to
-  write knowledge into somebody's agent.
+  How an agent learns a business — the four sources (website, document,
+  interview, their own past conversations), recording each one so the owner can
+  see where a fact came from, which module every kind of fact goes into, and the
+  receipt you show when the writing is done. Read before creating or teaching an
+  agent, before running /al-website, /al-document, /al-interview or
+  /al-conversations, and any time you are about to write knowledge into
+  somebody's agent.
 ---
 
 # Teaching the business
@@ -15,16 +16,29 @@ An agent that does not know the business is a chatbot. Everything an owner
 values — the right price, the right hours, the answer they are tired of typing
 — arrives through here.
 
-**Three ways in, and no ranking between them:**
+**Four ways in:**
 
 | Route | Command | Source type | For |
 |---|---|---|---|
+| What they already told customers | `/al-conversations` | `conversations` | anyone who has been answering on WhatsApp |
 | Their website | `/al-website` | `url` | anyone with a site, however thin |
 | A document they already send people | `/al-document` | `file` | price lists, menus, the PDF for new customers |
-| Asking them | `/al-interview` | `interview` | no site, nothing written down — most small businesses |
+| Asking them | `/al-interview` | `interview` | no site, nothing written down |
 
 They stack. A site plus twenty minutes of questions beats either alone, and the
 second route is not a repair of the first.
+
+**There is one ranking, and it is worth acting on.** When a business has been
+running on WhatsApp for years, their conversations beat the interview — not
+marginally. They have typed the delivery charge two hundred times, in their own
+words, to people who asked exactly the way the next person will ask. The
+interview asks them to reconstruct all of that from memory, badly, while tired.
+Check `/al-conversations` first; ask only about what the conversations never
+covered.
+
+This route is open only once their WhatsApp history has been brought in, which
+happens when they connect the channel. `get_imported_conversations` coming back
+empty means "not yet", not "no" — say which.
 
 ## Never open on what they lack
 
@@ -46,6 +60,10 @@ before you create anything. Read, then create.
 ## Every route records a source, before it writes anything
 
 `add_agent_source` first, then the modules, each carrying `sourceId`.
+(`/al-conversations` is the one exception, and only mechanically:
+`save_learned_answers` records its own source and writes the module in one
+call. Do not call `add_agent_source` on that route — you will create an empty
+second source the owner then has to tell apart from the real one.)
 
 This is not bookkeeping. It is what lets the owner ask "where did it get that?",
 replace one source's knowledge wholesale when their prices change, and delete a
@@ -172,6 +190,9 @@ one, which is what `/al-integration` is for.
 
 - **No channel until the agent is worth reaching.** Connecting WhatsApp to an
   empty agent puts real customers in front of something that cannot help them.
+  A business that ALREADY runs on WhatsApp is a different case: connecting is
+  how their history arrives, and their agent stays muted until they say
+  otherwise. There the order is connect, `/al-conversations`, then go live.
 - **No "setup complete".** End on their business — what happens the next time a
   customer writes.
 - **No inventing.** If the site does not say the cancellation policy, it is an

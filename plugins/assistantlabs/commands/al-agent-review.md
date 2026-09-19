@@ -40,5 +40,14 @@ months.
 - **The persona or the core instructions** — red. That is the business's voice,
   and it is the owner's. Propose, never patch.
 
+**Working the proposal queue.** A proposal is not a one-way submission — you can
+see it through. `list_training_proposals` (status `pending`) shows what is
+waiting; `get_training_proposal` reads the exact change Chiron worked out;
+`edit_training_proposal` tunes that change before it goes live;
+`approve_training_proposal` applies it (from then on the agent answers the new
+way); `reject_training_proposal` dismisses it. Approving changes how the agent
+talks to real customers — approve only what the owner would want live, and when
+in doubt leave it `pending` for them.
+
 Report: how many conversations you read, how many had a problem, the top three
 by how often they happen, and what you changed or want to change. One line each.
