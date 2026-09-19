@@ -1,21 +1,65 @@
-MIT License
+Assistant Labs Plugin License
 
-Copyright (c) 2026 Assistant Labs
+Copyright (c) 2026 Assistant Labs. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This repository contains the Assistant Labs plugin for Claude (the "Plugin"),
+including its commands, skills, agents, hooks, scripts, prompts and
+documentation. The Plugin is proprietary software. Its source is published so
+that you can see exactly what it does before you install it. Publishing it
+grants no rights beyond the ones written below.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. WHAT YOU MAY DO
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   (a) Install the Plugin, including through Claude Code, Claude Cowork, the
+       Claude plugin directory, or any plugin marketplace that points to this
+       repository, and use it with the Assistant Labs service to run your own
+       business.
+   (b) Read the source to decide whether to install it and to understand what
+       it does.
+   (c) Change the settings the Plugin exposes, and change your own installed
+       copy for your own internal use with the Assistant Labs service, as long
+       as you do not share or distribute the changed copy.
+
+2. WHAT YOU MAY NOT DO without prior written permission from Assistant Labs
+
+   (a) Copy, reproduce, translate or adapt the Plugin or any part of it,
+       including the text of any command, skill, agent, hook or prompt, into
+       any other plugin, product, service, prompt library, template or
+       publication.
+   (b) Create, publish or distribute derivative works of the Plugin.
+   (c) Redistribute, sublicense, sell, rent, lease or otherwise make the
+       Plugin or any part of it available to others, other than by pointing
+       them to this repository.
+   (d) Use the Plugin or any part of it with any service other than Assistant
+       Labs, or to build, improve or benchmark a product or service that
+       competes with Assistant Labs.
+   (e) Use the Plugin or any part of it to train or fine-tune a machine
+       learning model.
+   (f) Remove or change this license or any copyright notice.
+
+3. PLUGIN DIRECTORIES
+
+   Anthropic PBC, and the operators of Claude plugin directories and
+   marketplaces, may reproduce, host, cache, index, review, test, scan and
+   distribute unmodified copies of the Plugin, and display its name,
+   description and documentation, so that it can be listed and users can
+   install it.
+
+4. TRADEMARKS
+
+   "Assistant Labs" and its logos are trademarks of Assistant Labs. This
+   license grants no right to use them.
+
+5. TERMINATION
+
+   Your rights under this license end automatically if you use the Plugin in
+   any way it does not allow.
+
+6. NO WARRANTY
+
+   THE PLUGIN IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED. IN NO EVENT SHALL ASSISTANT LABS BE LIABLE FOR ANY CLAIM, DAMAGES
+   OR OTHER LIABILITY ARISING FROM, OUT OF OR IN CONNECTION WITH THE PLUGIN OR
+   THE USE OR OTHER DEALINGS IN THE PLUGIN.
+
+Questions or permission requests: support@assistantlabs.io
