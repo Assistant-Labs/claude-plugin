@@ -173,4 +173,12 @@ stand at any point.
 WhatsApp templates, who else works with you, the scheduled brief. Say no to any
 of them and setup is still finished; nothing will nag you about it again.
 
+---
+
+## Codex and ChatGPT
+
+The same operator, built for OpenAI's tools, is in
+[`plugins/assistantlabs-codex`](plugins/assistantlabs-codex). Its README has the
+install steps.
+
 Built by [Assistant Labs](https://assistantlabs.io).

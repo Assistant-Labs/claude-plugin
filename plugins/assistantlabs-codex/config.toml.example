@@ -1,0 +1,16 @@
+# Assistant Labs — the MCP connection for Codex
+#
+# Append to ~/.codex/config.toml (global), or .codex/config.toml inside a
+# trusted project. Then sign in:
+#
+#     codex mcp login assistantlabs
+#     codex mcp list
+#
+# One address carries every product. What it reaches is decided on the sign-in
+# screen — tick the products you want — and can be changed or revoked any time
+# from Assistant Labs → Account → Developers → Connected apps.
+
+[mcp_servers.assistantlabs]
+url = "https://mcp.assistantlabs.io/mcp"
+auth = "oauth"
+tool_timeout_sec = 120

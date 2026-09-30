@@ -1,0 +1,200 @@
+---
+name: teaching-the-business
+description: >
+  How an agent learns a business — the four sources (website, document,
+  interview, their own past conversations), recording each one so the owner can
+  see where a fact came from, which module every kind of fact goes into, and the
+  receipt you show when the writing is done. Read before creating or teaching an
+  agent, before running the `website` skill, the `document` skill, the `interview` skill or
+  the `conversations` skill, and any time you are about to write knowledge into
+  somebody's agent.
+---
+
+# Teaching the business
+
+An agent that does not know the business is a chatbot. Everything an owner
+values — the right price, the right hours, the answer they are tired of typing
+— arrives through here.
+
+**Four ways in:**
+
+| Route | Command | Source type | For |
+|---|---|---|---|
+| What they already told customers | The `conversations` skill | `conversations` | anyone who has been answering on WhatsApp |
+| Their website | The `website` skill | `url` | anyone with a site, however thin |
+| A document they already send people | The `document` skill | `file` | price lists, menus, the PDF for new customers |
+| Asking them | The `interview` skill | `interview` | no site, nothing written down |
+
+They stack. A site plus twenty minutes of questions beats either alone, and the
+second route is not a repair of the first.
+
+**There is one ranking, and it is worth acting on.** When a business has been
+running on WhatsApp for years, their conversations beat the interview — not
+marginally. They have typed the delivery charge two hundred times, in their own
+words, to people who asked exactly the way the next person will ask. The
+interview asks them to reconstruct all of that from memory, badly, while tired.
+Check the `conversations` skill first; ask only about what the conversations never
+covered.
+
+This route is open only once their WhatsApp history has been brought in, which
+happens when they connect the channel. `get_imported_conversations` coming back
+empty means "not yet", not "no" — say which.
+
+## Never open on what they lack
+
+"There is no agent yet", "your agent knows nothing", "nothing is set up" — all
+true, all the wrong first sentence. It is their first minute; naming the hole
+makes the product sound unfinished and makes them feel behind. Offer the three
+doors instead. Every business can walk through at least one of them.
+
+## Name the agent what they call themselves
+
+The business's own name, in its own language, from the site or from their mouth
+— never the domain and never a transliteration of it. A yoga studio called
+הסטודיו של מיכל does not want an agent called "Michal Yoga", and correcting it is
+a poor use of somebody's first two minutes.
+
+`read_website` needs no agent, so on a website route you know the real name
+before you create anything. Read, then create.
+
+## Every route records a source, before it writes anything
+
+`add_agent_source` first, then the modules, each carrying `sourceId`.
+(the `conversations` skill is the one exception, and only mechanically:
+`save_learned_answers` records its own source and writes the module in one
+call. Do not call `add_agent_source` on that route — you will create an empty
+second source the owner then has to tell apart from the real one.)
+
+This is not bookkeeping. It is what lets the owner ask "where did it get that?",
+replace one source's knowledge wholesale when their prices change, and delete a
+bad import in one action instead of hunting the modules it left behind. Modules
+written with no source belong to nothing, and nothing can take them away as a
+set.
+
+**In the app it is Settings → Sources**, the same list, so what you did from
+here looks exactly like what the app does. Use the name they would use — the
+site's name, the document's name, "What Michal told me, 14 Aug".
+
+## Where each kind of fact goes
+
+`patch_agent_module`, one call per module, content under the key that module
+uses — `get_agent_module` first, and send the FULL object back.
+
+| Module | Write it when | Content key | Each item |
+|---|---|---|---|
+| 🏢 `business` | always — what they do, where, hours, how to reach them | `options.about` + `options.contactInformation` | — |
+| ❓ `faq` | always — the questions they are plainly tired of answering | `options.faq` | `{ question, answer }` |
+| 🛍️ `catalog` | they sell nameable things: classes, treatments, products, courses | `options.items` | `{ name, description, price }` |
+| 🔗 `links` | booking, price list, timetable, terms | `options.items` | `{ description, url }` — `description` is the label |
+| 📏 `guidelines` | a stated rule: cancellation, deposits, health form, refunds | `options.rules` | `{ text }` — **not** `rule` |
+| 🏷️ `labels` | rarely at setup — labels come from real conversations | `options.labels` | plain strings |
+
+**The item field names are the part that gets guessed wrong**, and getting one
+wrong is worse than an error: `{ rule: '...' }` where the module reads `text` is
+stored, counted, and drawn as an empty row, so the owner is told their agent
+learned twelve rules and their agent learned none. `patch_agent_module` refuses
+those now, naming the field it wanted — believe it and fix the name.
+
+**Stopping after `business` is the commonest failure and the worst**, because
+the agent looks configured and answers nothing.
+
+**Set the language in the same breath.** A new agent defaults to English and its
+generated prompt says never to show characters from other languages — so an
+agent taught from a Hebrew site answers Hebrew customers in English until
+`patch_agent_language` says otherwise (`supportedLangauges`, misspelled, plus
+`defaultLanguage` and `userGenderAssumption`). Whatever you just read tells you
+which language it is; nothing else in the flow will.
+
+**A phone number is never in the page text.** It is in a `tel:` link, the
+address is in a maps link, WhatsApp is a `wa.me` URL — and link text is skipped
+as navigation. `read_website` returns them in a separate `contacts` array;
+that is where `contactInformation` comes from. Two different numbers means the
+site disagrees with itself: ask which one, never pick.
+
+**These stay empty after any source, and that is correct:** 🎬 `scenario`,
+🎯 `lead-qualification`, 🙋 `human-escalation`, 🩹 `unsatisfied-customer`,
+🏷️ `labels`. They come from watching real conversations. Propose them later,
+from what customers actually wrote.
+
+## Show your working before you write
+
+Whatever the route, the owner sees what you understood **before** it goes in,
+and can correct it in the same breath. Watching their agent learn, and fixing
+it while it happens, is the entire reason to do this in a conversation instead
+of in a settings screen.
+
+Correct first, write second. Never both at once, and never a write announced as
+a question.
+
+## The receipt
+
+When the writes are done, say exactly what went in — one line per module, with
+its emoji and a **count**:
+
+> Saved. Here's what your agent now knows:
+>
+> 🏢 **Business** — Michal Yoga, Ramat Gan, since 2003. Closed Saturdays.
+> ❓ **FAQ** — 11 answers: mats · beginners · what to wear · parking · cancelling…
+> 🛍️ **Catalog** — 4 items: single class ₪70 · card of 10 ₪650 *(your correction)* · monthly ₪450…
+> 🔗 **Links** — 3: the timetable, the booking page, directions
+> 📏 **Guidelines** — 1 rule: Thursday evening is advanced, say so before anyone books
+>
+> Empty on purpose: scenarios, lead questions, when to fetch you, unhappy
+> customer, labels. Those come from real conversations, and I'll propose them
+> once there are some.
+>
+> **Anything above wrong? Say so and I'll change it now.**
+
+**Counts, not adjectives.** "11 answers" is checkable; "your FAQ is set up" is
+not, and the second is how people end up believing their agent knows things it
+does not.
+
+**Quote their correction back** on the line it changed. It is the proof you
+listened, and it takes four words.
+
+**Name the empty ones.** A summary that quietly omits half the modules reads as
+complete when it is not — and saying *why* they are empty turns a gap into the
+next thing that happens.
+
+**Read the config back before you claim any of it.** `get_agent_config` and
+look. Reporting knowledge the agent does not have is a false statement about
+somebody's business, and they find out from a customer.
+
+## Then: what they already run
+
+Knowledge is what they *say*. Integrations are what is *happening* — the
+timetable, the orders, the stock, the sheet. Offer them right after the receipt,
+while the agent is fresh in their mind, and before any channel goes live.
+
+**Two to four, chosen — never a list of fifteen.** Pick from what you just
+learned about them:
+
+| They are | Offer |
+|---|---|
+| selling online (Shopify / WooCommerce / Wix / eShop detected on the site) | that store first, always |
+| booking time — classes, treatments, appointments | 📅 `googleCalendar`, `calendly` |
+| tracking people and deals | 📇 `monday`, `fireberry`, and the Assistant Labs CRM |
+| running a spreadsheet everyone edits | 📊 `googleSheets` |
+| none of the above, or something bespoke | 🔌 the `integration` skill — if it has an API, it can be built |
+
+**Say what you skipped and why**, in one line: *"Skipping the shop connectors —
+you don't sell online."* That is what proves the two you offered were chosen
+rather than listed alphabetically.
+
+**Connecting is a link, never a paragraph.** Each one has a screen at
+`/app/assistants/:assistantId/settings/integrations/:integrationKey` — OAuth happens where it
+already works. See `opening-the-app`. The one route with no screen is a custom
+one, which is what the `integration` skill is for.
+
+## What never happens here
+
+- **No channel until the agent is worth reaching.** Connecting WhatsApp to an
+  empty agent puts real customers in front of something that cannot help them.
+  A business that ALREADY runs on WhatsApp is a different case: connecting is
+  how their history arrives, and their agent stays muted until they say
+  otherwise. There the order is connect, the `conversations` skill, then go live.
+- **No "setup complete".** End on their business — what happens the next time a
+  customer writes.
+- **No inventing.** If the site does not say the cancellation policy, it is an
+  open question you ask, not a sensible-sounding default you write into
+  somebody's agent.
