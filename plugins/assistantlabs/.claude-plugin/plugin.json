@@ -1,7 +1,7 @@
 {
 	"name": "assistantlabs",
 	"displayName": "AssistantLabs — run your business with Claude",
-	"version": "0.14.0",
+	"version": "0.14.1",
 	"description": "AssistantLabs runs your small business from Claude. Your own AI agents answer customers on WhatsApp, Instagram, Messenger, email and website chat; this plugin brings that whole workspace here. Ask who is waiting for a reply and get the drafts, chase the leads going cold, read what customers keep asking, keep the CRM and the task board straight, fill the appointment book, write the posts, email campaigns and Meta ads and see how they did, and approve anything that reaches a customer with one tap on WhatsApp. Type /al to start. For small businesses, agencies and online stores doing customer support, sales and marketing in one place.",
 	"author": {
 		"name": "AssistantLabs",

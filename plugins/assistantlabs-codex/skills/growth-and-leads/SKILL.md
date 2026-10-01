@@ -123,11 +123,27 @@ Not "send everyone a message". The model is **a group, and a journey attached to
 it** — and using it beats hand-rolling messages, because it survives you and the
 business can see it.
 
-1. **A group is the audience** (`create_group`) — built from a label, a segment,
-   or a list they give you. Getting the group right is most of the work; a
-   journey against a sloppy group is a mistake delivered efficiently.
+1. **A group is the audience.** `create_group` makes one from a list they give
+   you. A Shopify segment or a label becomes a group in the Sales app, where its
+   live count shows before it is added — 🔗 `https://sales.assistantlabs.io/team/source`;
+   with the store connected, every Shopify segment is offered there.
+   `get_sales_overview` lists the groups that exist, and which journey each one
+   runs. Getting the group right is most of the work; a journey against a
+   sloppy group is a mistake delivered efficiently.
 2. **A journey is the sequence** (`create_journey`, `update_journey`) — the
    steps, what each one says, how long between them. **Drafting one is 🟢.**
+
+   **Every WhatsApp step is a template.** A journey cannot know whether someone
+   wrote in the last 24 hours — an abandoned cart, a segment, a list: none of
+   them did — and outside that window WhatsApp drops free text without telling
+   anyone. So before writing the steps, run `list_whatsapp_templates` and match
+   each step to an approved template whose *words* say what that step should.
+   When none fits, say so and offer to write one: draft it in the business's
+   voice, get the owner's yes on the exact text, submit it with
+   `create_whatsapp_template`, and name it in the step. The journey saves while
+   Meta reviews it (minutes to a day) and cannot go live until it is approved.
+   Free text is for email steps. A customer's own cart link cannot go in a
+   template yet, so an abandoned-cart template links the store.
 3. **Attaching the group** (`attach_group_to_journey`) says who the sequence is
    for. It sends nothing and does not switch the journey on — the tool is
    explicit about that, and a group runs at most one journey. **Nothing in this

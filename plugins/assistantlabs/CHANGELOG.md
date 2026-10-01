@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.14.1 — 2026-10-01
+
+- **WhatsApp journeys are built from templates.** A journey can't tell who wrote
+  to the business in the last day, and WhatsApp quietly drops anything else
+  after that — so every WhatsApp step is now an approved template. When none of
+  yours says the right thing, it offers to write one with you and sends it to
+  Meta for approval.
+- **Audiences from your Shopify segments and labels** are added in the Sales
+  app, where you see how many people are in them first.
+
 ## 0.14.0 — 2026-09-30
 
 **Your marketing, run from Claude: posts, email, Instagram automations and ads.**
