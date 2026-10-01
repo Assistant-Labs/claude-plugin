@@ -1,5 +1,97 @@
 # Changelog
 
+## 0.14.0 — 2026-09-30
+
+**Your marketing, run from Claude: posts, email, Instagram automations and ads.**
+
+- **Email campaigns.** Ask for a newsletter or a sale announcement and it builds
+  the whole thing — who it goes to, with the exact number of people, the emails,
+  and the waits between them. You get a test in your own inbox, and it goes out
+  on your yes. Afterwards it tells you who opened, who clicked and who
+  unsubscribed.
+- **Email templates.** It designs emails in Studio from ready-made starters —
+  a sale, a launch, a newsletter, a welcome — and files them by category and tag
+  so a campaign can start from one.
+- **One brand, everywhere.** Every email takes its logo and colours from your
+  brand kit. Change them once and every template follows; it can update the kit
+  for you, and asks first.
+- **Instagram automations.** "Comment GUIDE and I'll send you the link": it
+  reads what people really write under your posts, builds the rule, tries it
+  without sending anything, and switches it on only when you say so.
+- **Meta ads.** It drafts the ad, puts it on your ad account paused, and asks
+  before switching it on — naming the daily budget and who will see it. Pausing
+  never needs a yes.
+- **Your plan.** It can keep the marketing strategy, the research and the
+  product profile up to date, and proposes changes to goals and budget rather
+  than making them.
+- **Three new permissions**, all off unless you tick them when you sign in:
+  *Send marketing email*, *Run Instagram automations* and *Spend on ads*.
+  Without them it still prepares everything and you press the button in the
+  app. Already connected? Reconnect to add them.
+
+**The approval gate reaches further.**
+
+- It now stops and asks before a public post, an email campaign, a test email,
+  an ad being created on your account or switched on, and any automation or
+  follow-up sequence being switched on.
+- It now runs however the plugin was installed. Before, the check and the
+  record of what went out (`.assistantlabs/outbound.jsonl`) were attached only
+  to a connection added by hand; on a normal install Claude stopped because its
+  instructions said to, with no second check behind it.
+- The background helpers that read and analyse for it — the lead board, the
+  customer sweep, the agent review — are fenced the same way: they cannot send,
+  publish, email or spend.
+- Links into Marketing open the page itself. Posts, automations, ads and the
+  social accounts moved, and the old addresses were only redirecting.
+
+## 0.13.0 — 2026-09-29
+
+**A first run that feels like one: your agent is ready before you've finished signing in.**
+
+- `/al` now goes one step at a time. A welcome that says what AssistantLabs does
+  for your business, then one question: your business, what you sell, your
+  website.
+- While you sign in, it reads your website and builds your agent from it. When
+  you come back, the agent is already there, with a link you can open and chat
+  with, before any customer sees it.
+- It works out whether your site runs on Shopify, WooCommerce, Wix or WordPress,
+  and plans your setup around it. If you have a store, connecting it comes first.
+- Every product you switched on gets its own steps, quickest wins first, and
+  each step says which product it sets up. A free integration meeting with our
+  team is offered alongside the plan, for anyone who'd rather do it together.
+- The sign-in screen now shows each product and what it does for you. Your task
+  board is always included, because approvals depend on it.
+- Links into the app now open the exact page: each channel, each integration,
+  every product. Signing in on the way no longer loses where the link was going.
+
+**Talk to AssistantLabs support without leaving Claude.**
+
+- `/al-help` opens a conversation with our support, right in Claude. It is the
+  same support that answers our WhatsApp line: ask anything about the product,
+  your setup or your bill, book a meeting with the team, or ask for a person.
+- A person on our team can pick the conversation up. When they answer, run
+  `/al-help` again and their reply is waiting.
+- It works before you've signed in, and even when your connection is the thing
+  that broke. After you sign in, the same conversation carries on. And if Claude
+  can't reach us at all, `/al-help` gives you every other way in: WhatsApp, the
+  support page, email and a meeting link.
+- Only what you write goes to support. Your customers' conversations and
+  details stay in your workspace unless you ask to send something specific.
+
+## 0.12.0 — 2026-09-27
+
+**Your agent trains itself every night. You approve.**
+
+- `/al-agent-self-training` sets up a nightly routine on your own Claude plan.
+  Every night at 02:00 it reads the day's conversations, finds where the agent
+  got it wrong — a wrong price, a question it could not answer, a callback it
+  promised — and writes the exact fix.
+- Each fix waits in the agent's Training tab until you approve it. Approve
+  there, or open that night's run in Claude and say which ones.
+- It runs in the cloud, so your computer can be off. It needs the AssistantLabs
+  connector on your claude.ai account.
+- Suggestions you no longer want can be deleted from Claude, not only rejected.
+
 ## 0.11.0 — 2026-09-09
 
 **Your agent can learn from what you already told customers.**

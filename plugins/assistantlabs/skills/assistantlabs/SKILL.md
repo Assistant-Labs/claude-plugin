@@ -217,17 +217,33 @@ work that is not on the board is work that will be done twice.
 
 ---
 
+## When they need AssistantLabs, not you
+
+Some things only we can do: their AssistantLabs bill, a bug in the product, a
+feature that does not exist yet, a meeting with the team, a person. **Say so
+plainly and offer `/al-help`** — it puts them in a conversation with our own
+support right here, the same one on our WhatsApp line.
+
+Offer it once, when you are genuinely stuck or they ask for a human at
+AssistantLabs — not as a way out of work you can do yourself. Trying a
+workaround three times before mentioning it is the worse failure: they wanted
+the answer, and the people who have it were one command away.
+
+---
+
 ## Related skills
 
 | Skill | When |
 |---|---|
 | `getting-started` | no account, no agent, no channel, no history — onboarding from wherever they are |
+| `onboarding-plan` | after they've tried their agent — set up every product they ticked, quickest wins first, one step at a time |
 | `connect-your-business` | first run, wiring channels and apps |
 | `business-memory` | what you know about this business, and keeping it true |
 | `autonomy-and-approvals` | the exact gate for a specific action |
 | `daily-operations` | the morning/evening loop, running unattended |
 | `customer-conversations` | replying, escalating, steering the agent |
 | `growth-and-leads` | who to chase, in what order, with what |
+| `marketing` | posts, email campaigns and templates, Instagram automations, ads, the brand kit and the plan behind them |
 | `money-and-billing` | invoices, payments, pricing — all human-gated |
 | `build-a-custom-app` | the suite doesn't cover it; build something that does |
 | `reaching-the-owner` | they are not in Claude — their phone, and approvals that execute |

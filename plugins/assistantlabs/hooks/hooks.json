@@ -13,7 +13,7 @@
 		],
 		"PreToolUse": [
 			{
-				"matcher": "mcp__assistantlabs.*",
+				"matcher": "mcp__.*[Aa]ssistant_?[Ll]abs.*",
 				"hooks": [
 					{
 						"type": "command",
@@ -25,7 +25,7 @@
 		],
 		"PostToolUse": [
 			{
-				"matcher": "mcp__assistantlabs.*",
+				"matcher": "mcp__.*[Aa]ssistant_?[Ll]abs.*",
 				"hooks": [
 					{
 						"type": "command",

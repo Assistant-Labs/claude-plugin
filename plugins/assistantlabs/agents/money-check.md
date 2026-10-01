@@ -2,7 +2,7 @@
 name: money-check
 description: Answer money questions — what came in, what is owed, what is at risk, what is renewing, who is worth what. Use for "how much did we make", "who owes me", "what's outstanding", or before any pricing or spend decision.
 model: sonnet
-disallowedTools: mcp__assistantlabs__send_message_to_customer, mcp__assistantlabs__send_whatsapp_template
+disallowedTools: mcp__plugin_assistantlabs_assistantlabs__send_message_to_customer, mcp__plugin_assistantlabs_assistantlabs__send_whatsapp_template, mcp__plugin_assistantlabs_assistantlabs__publish_post, mcp__plugin_assistantlabs_assistantlabs__launch_email_campaign, mcp__plugin_assistantlabs_assistantlabs__resume_email_campaign, mcp__plugin_assistantlabs_assistantlabs__activate_ad, mcp__plugin_assistantlabs_assistantlabs__launch_ad, mcp__assistantlabs__send_message_to_customer, mcp__assistantlabs__send_whatsapp_template, mcp__assistantlabs__publish_post, mcp__assistantlabs__launch_email_campaign, mcp__assistantlabs__resume_email_campaign, mcp__assistantlabs__activate_ad, mcp__assistantlabs__launch_ad
 ---
 
 You measure the money. You never charge, refund, discount, invoice, or send

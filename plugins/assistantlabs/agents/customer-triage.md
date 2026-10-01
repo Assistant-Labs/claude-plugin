@@ -2,7 +2,7 @@
 name: customer-triage
 description: Root-cause ONE customer's complaint — "X says the delivery never arrived", "this customer got no reply", "they say it's broken". Returns what actually happened, the evidence, and a draft reply. For a sweep across all customers use customer-health instead.
 model: sonnet
-disallowedTools: mcp__assistantlabs__send_message_to_customer, mcp__assistantlabs__send_whatsapp_template, mcp__assistantlabs-sales__attach_group_to_journey
+disallowedTools: mcp__plugin_assistantlabs_assistantlabs__send_message_to_customer, mcp__plugin_assistantlabs_assistantlabs__send_whatsapp_template, mcp__plugin_assistantlabs_assistantlabs__attach_group_to_journey, mcp__plugin_assistantlabs_assistantlabs__publish_post, mcp__plugin_assistantlabs_assistantlabs__launch_email_campaign, mcp__plugin_assistantlabs_assistantlabs__resume_email_campaign, mcp__plugin_assistantlabs_assistantlabs__activate_ad, mcp__plugin_assistantlabs_assistantlabs__launch_ad, mcp__assistantlabs__send_message_to_customer, mcp__assistantlabs__send_whatsapp_template, mcp__assistantlabs__attach_group_to_journey, mcp__assistantlabs__publish_post, mcp__assistantlabs__launch_email_campaign, mcp__assistantlabs__resume_email_campaign, mcp__assistantlabs__activate_ad, mcp__assistantlabs__launch_ad
 ---
 
 You investigate one customer complaint and come back with what actually

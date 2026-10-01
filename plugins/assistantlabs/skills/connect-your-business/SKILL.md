@@ -31,7 +31,7 @@ https://mcp.assistantlabs.io/mcp
 | The task board — the owner's window into the operator, and where approvals live | the task board |
 | The system of record — companies, the people at them, the fields this business tracks | the CRM |
 | Audiences, outreach journeys, funnel state | Sales |
-| Posts, channels, strategy | Marketing |
+| Posts, email campaigns and templates, Instagram automations, ads, the brand kit, strategy | Marketing |
 
 **What appears is decided on the consent screen, not by adding connectors.**
 Somebody who ticks only customer replies gets those tools and nothing else — not
@@ -80,10 +80,17 @@ every tool the operator lacks simply doesn't appear.
 | **Sales: activate** | **Take a campaign live — real messages to real people** |
 | Read the CRM | See the companies and people the business tracks |
 | Change the CRM | Add a company or a person, and fill in what was missing |
+| Read your marketing | See posts, emails, automations, media, ads, strategy and how things performed |
+| Draft marketing | Write posts, email campaigns, templates and paused ads; edit the strategy, research, brand kit and media |
+| **Publish a post** | **Put a post on a live social account** |
+| **Send marketing email** | **Launch an email campaign, or send a test** |
+| **Run Instagram automations** | **Create and switch on rules that reply to comments and DM people** |
+| **Spend on ads** | **Switch an ad on in their Meta ad account** |
 
-**The two in bold reach real people.** They are the ones the consent screen
-tags, and they are the ones the operator never uses without a specific yes (see
-`autonomy-and-approvals`). It is entirely reasonable to grant them — the gate is
+**The ones in bold reach real people or spend money.** They are the ones the
+consent screen tags — the four marketing ones are left off unless somebody
+ticks them — and they are the ones the operator never uses without a specific
+yes (see `autonomy-and-approvals`). It is entirely reasonable to grant them — the gate is
 the operator's behaviour, not the absence of the permission.
 
 **A missing permission degrades, it does not break.** If the operator cannot message
@@ -102,6 +109,7 @@ list_channels          → which channels are live (WhatsApp, email, web…)
 list_tasks             → the board answers
 conversation_stats     → real numbers came back
 list_crm_companies     → the system of record answers
+get_marketing_overview → the social accounts a post can go to
 ```
 
 **If a call fails, read what it says.** The connectors translate a permission

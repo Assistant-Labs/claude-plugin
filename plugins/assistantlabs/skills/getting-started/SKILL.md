@@ -90,36 +90,41 @@ in flight and why.
 
 ### 1. No Assistant Labs account (or nothing authorised yet)
 
-The connectors will not authorise, because there is nothing to authorise
+The main connection will not authorise, because there is nothing to authorise
 against. **A tool call failing here is the answer, not an error to report** — it
 means they have not connected, which is the expected state on a first run.
 
-**Say what this is, in one short paragraph, before sending them anywhere.** They
-installed a plugin; they did not sign up for a platform. Something like: *"This
-runs on Assistant Labs — it's what connects your WhatsApp and gives you the AI
-that answers customers. It's free to start. You'll make an account, I'll do the
-rest."*
+**Start anyway — sign-in is not the first step.** The login-free AssistantLabs
+connection works with no account: it reads their website, builds their agent
+while they sign in (`site-reader`), and reaches our support (`/al-help`). `/al`
+runs it in order — welcome, their business and website, connect, and their
+agent waiting for them when they come back.
 
-**They create the account themselves.** Point them at
-[assistantlabs.io](https://assistantlabs.io) and wait. Never offer to create an
-account, and never take a password — that is theirs, and it stays theirs.
+**They create the account themselves**, on the sign-in screen the connect steps
+open ("sign in, or sign up — it's free"). Never offer to create an account, and
+never take a password — that is theirs, and it stays theirs. Record
+`account: true` once `list_assistants` answers.
 
-Then pick straight back up: as soon as they say they are in, run the connector
-authorisation and carry on. Record `account: true`.
-
-**If they do not want to sign up right now**, say plainly what the plugin can
-and cannot do without it (nothing useful — every tool needs their workspace),
-put it down, and leave the state file so it resumes cleanly. Do not sell.
+**If they do not want to sign up right now**, say plainly what waits for them —
+the agent built from their site keeps for a week — put it down, and leave the
+state file so it resumes cleanly. Do not sell.
 
 ### 2. Account, but no agent
 
 `list_assistants` comes back empty.
 
 An agent is the thing that answers their customers, so this is the real first
-step, not an administrative one. **Make it here** — `create_agent` mints the
-same record the app's onboarding does, and a hosted plugin cannot open a browser
-on their machine to reach that onboarding anyway. Bind to it and record
-`agent: true` with its id and name.
+step, not an administrative one.
+
+**A draft is waiting more often than not.** If their site was read before they
+signed in, `.assistantlabs/setup.json` holds `draft.claimCode`, and
+`claim_agent_draft` turns it into their agent in one call — knowledge, language,
+a first guess at the voice, and a public link to try it. That is `/al` Step 3.
+
+**No draft: make it here** — `create_agent` mints the same record the app's
+onboarding does, and a hosted plugin cannot open a browser on their machine to
+reach that onboarding anyway. Bind to it and record `agent: true` with its id
+and name.
 
 **Ask where it can learn, not for answers.** Create the agent, then offer the
 doors — `/al-website`, `/al-document`, `/al-interview`, and `/al-conversations`
@@ -134,10 +139,12 @@ Said while creating one, it reads as a meter starting. At the limit the call
 fails with a quota error; that is when you say so plainly, rather than retrying.
 
 **An agent with the default persona is not finished.** `toneAndStyle` empty and
-`assistantGender: 'plural'` is what a brand-new agent ships with, and it is the
-one field no website can answer — so it is the one that gets skipped. It fails
+`assistantGender: 'plural'` is what a brand-new agent ships with. It fails
 silently: everything looks configured, the agent replies, and it sounds like
-nobody. Check it in the config, not in your memory of having asked.
+nobody. A draft carries a first guess from how their site talks; the owner's own
+line refines it — **after** they have tried the agent, never before (it is a step
+in `onboarding-plan`), and before real customers reach it. Check it in the
+config, not in your memory of having asked.
 
 **Finish the agent before mentioning a channel.** `business` AND `faq`, plus
 `catalog` / `links` / `guidelines` wherever the site gave you something, and then
@@ -159,13 +166,13 @@ is theatre without it**: no customers can reach the agent, there is nothing to
 answer, nobody to notify, and no WhatsApp for approvals.
 
 Say it in one line — *"nobody can message it yet"* — then ask which ones they
-want and **hand over a link per channel that opens its connect screen already
-open** (`…/settings/channels?connect=whatsapp` — the shapes are in
-`opening-the-app`). WhatsApp first if they use it, because it is what their
-customers already have and it is what approvals ride on.
+want and **hand over a link per channel, straight to that channel's own page**
+(`…/settings/channels/whatsapp` — every one is in `opening-the-app`). WhatsApp
+first if they use it, because it is what their customers already have and it is
+what approvals ride on.
 
 **A link, never navigation instructions.** "Go to Settings → Channels → click
-WhatsApp" is a chore; a link that lands with the modal up is a door.
+WhatsApp" is a chore; a link that lands on the channel's page is a door.
 
 If they are not ready, carry on: the memory and the board still work, and the
 operator can prepare everything. **Say once what is limited, and do not repeat

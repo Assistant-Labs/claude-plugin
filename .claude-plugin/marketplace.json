@@ -6,14 +6,14 @@
 	},
 	"metadata": {
 		"description": "Plugins from AssistantLabs — run and operate a small business with Claude.",
-		"version": "0.11.0"
+		"version": "0.14.0"
 	},
 	"plugins": [
 		{
 			"name": "assistantlabs",
 			"source": "./plugins/assistantlabs",
-			"description": "AssistantLabs runs your small business from Claude. Your own AI agents answer customers on WhatsApp, Instagram, Messenger, email and website chat; this plugin brings that whole workspace here. Ask who is waiting for a reply and get the drafts, chase the leads going cold, read what customers keep asking, keep the CRM and the task board straight, fill the appointment book, see how your posts and Meta ads are doing, and approve anything that reaches a customer with one tap on WhatsApp. Type /al to start. For small businesses, agencies and online stores doing customer support, sales and marketing in one place.",
-			"version": "0.11.0",
+			"description": "AssistantLabs runs your small business from Claude. Your own AI agents answer customers on WhatsApp, Instagram, Messenger, email and website chat; this plugin brings that whole workspace here. Ask who is waiting for a reply and get the drafts, chase the leads going cold, read what customers keep asking, keep the CRM and the task board straight, fill the appointment book, write the posts, email campaigns and Meta ads and see how they did, and approve anything that reaches a customer with one tap on WhatsApp. Type /al to start. For small businesses, agencies and online stores doing customer support, sales and marketing in one place.",
+			"version": "0.14.0",
 			"author": {
 				"name": "AssistantLabs",
 				"url": "https://assistantlabs.io"
@@ -33,6 +33,8 @@
 				"crm",
 				"meta-ads",
 				"marketing",
+				"email-marketing",
+				"social-media",
 				"ecommerce",
 				"bookings",
 				"appointments",

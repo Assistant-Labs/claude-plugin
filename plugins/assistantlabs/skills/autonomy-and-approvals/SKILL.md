@@ -31,6 +31,8 @@ That is the whole test. Everything below is it applied to cases that come up.
 |---|---|
 | Read conversations, contacts, orders, tasks, stats | 🟢 |
 | Draft a reply, an email, a post, a campaign | 🟢 |
+| Build an email campaign or template, an ad, or an automation — saved as a draft, paused, or switched off | 🟢 |
+| **Pause** a running email campaign or ad | 🟢 — stopping is never gated; say so in the next report |
 | File / re-file / close a task, add a note | 🟢 |
 | Tag or label a conversation or contact | 🟢 |
 | Analyse, summarise, forecast, investigate | 🟢 |
@@ -45,8 +47,11 @@ That is the whole test. Everything below is it applied to cases that come up.
 | **Take an outreach journey / campaign live** | 🔴 |
 | **Submit a WhatsApp template for approval** | 🔴 (it is copy in the business's name) |
 | **Post publicly, reply to a review** | 🔴 |
+| **Launch or resume an email campaign, or send a test email** | 🔴 |
+| **Switch on anything that answers or chases people by itself** — a follow-up sequence, an Instagram automation | 🔴 |
+| **Change the brand kit** — the logo and colours every email is drawn with | 🔴 unless they asked for that exact change |
 | **Charge, refund, discount, or change a price** | 🔴 |
-| **Buy anything, start a subscription, run ads** | 🔴 |
+| **Buy anything, start a subscription, run ads** | 🔴 — putting an ad on their Meta account and switching it on are each their own yes |
 | **Delete records, disconnect a channel, cancel** | 🔴 |
 | **Change who is charged what, even dormant** | 🔴 |
 | **Sign up for an account or agree to terms** | 🔴 |

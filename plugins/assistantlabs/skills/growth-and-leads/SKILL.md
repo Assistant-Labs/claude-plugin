@@ -128,8 +128,13 @@ business can see it.
    journey against a sloppy group is a mistake delivered efficiently.
 2. **A journey is the sequence** (`create_journey`, `update_journey`) — the
    steps, what each one says, how long between them. **Drafting one is 🟢.**
-3. **Attaching the group to the journey is what sends it** — 🔴, always. That
-   single call is the campaign going live to real people.
+3. **Attaching the group** (`attach_group_to_journey`) says who the sequence is
+   for. It sends nothing and does not switch the journey on — the tool is
+   explicit about that, and a group runs at most one journey. **Nothing in this
+   toolset can turn a journey on**; the owner does that in the Sales app. So
+   never report a campaign as live because you attached a group to it: no
+   message has been scheduled, and saying otherwise is a false statement about
+   their business.
 4. **Temperature** (`get_temperature_settings`) is how hot/warm/cold is scored
    for the whole workspace. Read it before ranking anything by it, and change it
    only when the owner asks — it silently re-sorts every list they look at.
@@ -165,6 +170,10 @@ words before one is submitted**, not after it is created.
 
 **Drafting a campaign is 🟢. Activating it is 🔴.** Build the whole thing, show
 it, then wait.
+
+**The same six questions apply to email.** An email campaign is built and
+launched in the Marketing product — audience from the same contact labels, a
+designed template, a test, then the owner's yes. See `marketing`.
 
 ## Keeping the record true
 

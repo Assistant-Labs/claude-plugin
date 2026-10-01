@@ -35,6 +35,33 @@ const OUTBOUND = [
 	'create_whatsapp_template',
 	// Enrolling an audience in a journey IS the campaign going out.
 	'attach_group_to_journey',
+	// An email campaign starting: everyone in the audience, and no recall.
+	'launch_email_campaign',
+	'resume_email_campaign',
+	// A "test" is still mail from the business, to whatever address was typed.
+	'send_campaign_test_email',
+	'send_email_template_test',
+];
+
+/** Public, in the business's name, and not recallable from here. */
+const PUBLIC = ['publish_post', 'retry_failed_channels'];
+
+/**
+ * The business's ad account. Switching an ad on spends its budget every day
+ * until someone pauses it; pushing one to Meta creates it there, and re-pushes
+ * a running one live.
+ */
+const SPEND = ['activate_ad', 'launch_ad'];
+
+/**
+ * Saving one of these switched off is ordinary drafting. `enabled: true` is
+ * the moment it starts answering or chasing real people with nobody reading
+ * each send — so the gate is on the switch, not on the tool.
+ */
+const SWITCH_ON = [
+	'create_instagram_automation',
+	'update_instagram_automation',
+	'update_follow_up',
 ];
 
 /** Anything irreversible. */
@@ -65,6 +92,26 @@ function reason(toolName, input) {
 			'The owner approves the exact text, once, for this one send.',
 			'If they are not here: file it as a task with status "blocked-on-a-human"',
 			'and the complete message in the body — never send on their behalf.',
+		].join(' ');
+	}
+
+	if (PUBLIC.includes(short)) {
+		return [
+			'This goes out publicly on the business\'s social accounts and cannot be recalled from here.',
+			'The owner approves the exact post, once, for this one publish.',
+		].join(' ');
+	}
+
+	if (SPEND.includes(short)) {
+		return short === 'activate_ad'
+			? 'This switches an ad on: it spends the daily budget from the business\'s ad account until it is paused. The owner approves the ad, the budget and the audience first.'
+			: 'This creates the ad on the business\'s Meta ad account (an ad that is already running is re-pushed live). The owner approves the ad, the budget and the audience first.';
+	}
+
+	if (SWITCH_ON.includes(short) && input?.enabled === true) {
+		return [
+			'This switches it on: from now it messages real people by itself, with nobody reading each send.',
+			'Save it switched off, show the owner exactly what it says and to whom, and switch it on only on their yes.',
 		].join(' ');
 	}
 

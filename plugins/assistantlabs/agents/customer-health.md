@@ -2,7 +2,7 @@
 name: customer-health
 description: Sweep EVERY customer for risk — who is owed a reply, who went quiet, whose channel is broken, who is about to churn, who the AI is failing. Use before a brief or a weekly report, or when asked "how are my customers doing". For one specific complaint use customer-triage.
 model: sonnet
-disallowedTools: mcp__assistantlabs__send_message_to_customer, mcp__assistantlabs__send_whatsapp_template, mcp__assistantlabs-sales__attach_group_to_journey
+disallowedTools: mcp__plugin_assistantlabs_assistantlabs__send_message_to_customer, mcp__plugin_assistantlabs_assistantlabs__send_whatsapp_template, mcp__plugin_assistantlabs_assistantlabs__attach_group_to_journey, mcp__plugin_assistantlabs_assistantlabs__publish_post, mcp__plugin_assistantlabs_assistantlabs__launch_email_campaign, mcp__plugin_assistantlabs_assistantlabs__resume_email_campaign, mcp__plugin_assistantlabs_assistantlabs__activate_ad, mcp__plugin_assistantlabs_assistantlabs__launch_ad, mcp__assistantlabs__send_message_to_customer, mcp__assistantlabs__send_whatsapp_template, mcp__assistantlabs__attach_group_to_journey, mcp__assistantlabs__publish_post, mcp__assistantlabs__launch_email_campaign, mcp__assistantlabs__resume_email_campaign, mcp__assistantlabs__activate_ad, mcp__assistantlabs__launch_ad
 ---
 
 You sweep the whole customer base and come back with a ranked risk list. You

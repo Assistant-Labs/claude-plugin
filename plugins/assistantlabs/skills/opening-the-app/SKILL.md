@@ -30,15 +30,43 @@ A generated page is justified only when something genuinely spans surfaces that
 have no shared screen, and even then, prefer a short written answer plus a link
 to the nearest real one. Building one is a decision to maintain it.
 
-## The screens
+## Where each product lives
 
-**The host is `https://assistantlabs.io`.** There is no `app.` subdomain — it
-does not resolve, so a link built on one is dead and the owner sees a browser
-error with our name on it. The app lives at `assistantlabs.io/app/...`.
+Seven products, seven hosts. **Never invent one** — an `app.` subdomain, a
+`tasks.` one, a path under the wrong host: each of those is a browser error with
+our name on it.
 
-Every path below is `https://assistantlabs.io` + the route, with `:assistantId`
-filled in from the workspace. Keep this in step with `RoutePath` in the app —
-if a link 404s, the enum is the source of truth, not this table.
+| Product | Host |
+|---|---|
+| Agents | `https://assistantlabs.io` — the app itself is under `/app/...` |
+| Sales | `https://sales.assistantlabs.io` |
+| Booking | `https://booking.assistantlabs.io` |
+| CRM | `https://crm.assistantlabs.io` |
+| Helpdesk | `https://helpdesk.assistantlabs.io` |
+| Marketing | `https://marketing.assistantlabs.io` |
+| Tasks | `https://assistantlabs-tasks.web.app` |
+
+**Agents links carry the agent's id** — everything sits under
+`/app/assistants/:id`. **The other six never do** — each reads the workspace from whoever is signed in, so the same
+link works for anyone on the team.
+
+**Not signed in there yet is fine** — every product signs them in and returns
+them to the exact link, query string included.
+
+**Two things that do break a good link:**
+
+- **Not switched on for them.** Each product sends somebody without access to
+  its own request-access page. Link only products this connection actually
+  reaches.
+- **Sales hides two sections by default** — Team (where groups live) and
+  Customers. A link into either bounces to the Sales home unless that
+  workspace turned it on.
+
+## Agents — the screens
+
+Every path below is `https://assistantlabs.io` + the route, with `:id` filled
+in from the workspace. Keep this in step with `RoutePath` in the app — if a link
+404s, the enum is the source of truth, not this table.
 
 | Screen | Path | Open it when |
 |---|---|---|
@@ -54,7 +82,8 @@ if a link 404s, the enum is the source of truth, not this table.
 | **Analytics** | `/app/assistants/:id/analytics` | They ask how it is going over time |
 | **Agent knowledge** | `/app/assistants/:id/settings/faq` · `…/catalog` · `…/business-details` · `…/persona` · `…/links` · `…/guidelines` | You changed something in the agent's head, or want them to check it |
 | **Labels** | `/app/assistants/:id/settings/labels` | Labels come up — they are the substrate for everything targetable |
-| **Channels** | `/app/assistants/:id/settings/channels` (`…/whatsapp`, `…/email`, `…/instagram`, `…/messenger`, `…/website`, `…/shareable-link`) | A channel is down, or nothing is connected yet |
+| **Channels** | `/app/assistants/:id/settings/channels` — the overview; each channel has its own page (below) | They want to see everything at once |
+| **Integrations** | `/app/assistants/:id/settings/integrations` — the overview; each one has its own page (below) | They ask what it can connect to |
 | **Notifications** | `/app/assistants/:id/settings/notifications` | Setting up who gets told what. Behind a feature flag — if it bounces them to Sources, that account does not have it, so do the work over the API and do not send them again |
 | **Claude connection** | `/app/assistants/:id/settings/claude-mcp` | Permissions need changing, or a connection was revoked |
 | **Flows** | `/app/assistants/:id/settings/flows` | A deterministic flow may already handle what they are asking for |
@@ -62,52 +91,139 @@ if a link 404s, the enum is the source of truth, not this table.
 | **Marketing media library** | `/app/assistants/:id/growth/media` | Images for posts and campaigns. A different library from the catalogue one |
 | **Billing** | `/app/billing` | Plan, invoices, payment |
 | **API keys** | `/app/account/organization/api-docs` | API keys, scopes, the developer reference |
-| **Task board** | `https://assistantlabs-tasks.web.app` (a task: `/t/<taskId>`) | Anything you filed, and every approval waiting on them |
+| **Inbox** | `/app/assistants/:id/crm` | The agent's own inbox of conversations |
+| **Sources** | `/app/assistants/:id/settings/sources` | Where each piece of the agent's knowledge came from |
+| **Public chat page** | `https://assistantlabs.io/chat/:id` | Somebody wants to talk to the agent with no app — see *Try the agent* below |
+
+## Try the agent
+
+Two doors, for two different people:
+
+| For | Link | What happens |
+|---|---|---|
+| **The owner, signed in** | `/app/assistants/:id?test=1` | The app opens with the test chat already up. `?test=1` works on every agent page, so pair it with the page you want them on — `/app/assistants/:id/settings/faq?test=1` shows the answers and the chat side by side |
+| **Anyone, no sign-in** | `https://assistantlabs.io/chat/:id` | A public chat page. An agent made with `create_agent` has it switched on, and the call returns it as `chatLink` — hand over that. **An older agent shows "unavailable" there until the owner switches it on** (`/app/assistants/:id/settings/channels/shareable-link`), so for one of those, send that page instead of a link that opens on an error |
+
+`?test=1` is read once and removed, so a refresh does not reopen a chat they
+closed.
+
+## Connecting a channel — one page each
+
+**Every channel has its own page, and that page is the door.** It explains the
+channel and carries the button that starts the connection. Nothing opens by
+itself: there is no parameter that starts a connection for them, and the old
+`?connect=` on the channels overview is dead — nothing reads it any more.
+
+| Channel | Page | What they do there |
+|---|---|---|
+| WhatsApp | `/app/assistants/:id/settings/channels/whatsapp` | Click connect and sign in with Facebook. The page shows our Meta badge |
+| Instagram | `/app/assistants/:id/settings/channels/instagram` | Click connect and approve in Instagram |
+| Messenger | `/app/assistants/:id/settings/channels/messenger` | Click connect and pick the Facebook page |
+| Email | `/app/assistants/:id/settings/channels/email` | Set up a forwarding address — step-by-step guides per provider at `/app/assistants/:id/settings/channels/email/guides` |
+| Website chat | `/app/assistants/:id/settings/channels/website` | Copy one snippet onto their site |
+| Public chat link | `/app/assistants/:id/settings/channels/shareable-link` | Switch it on, then copy the link or the QR code |
+| LinkedIn | `/app/assistants/:id/settings/channels/linkedin` | Click connect |
+
+## Connecting the tools they already run
+
+**Agents** — `/app/assistants/:id/settings/integrations/:key`, one page each.
+The keys: `shopify`, `woocommerce`, `eshop`, `wix`, `monday`, `googleCalendar`,
+`googleSheets`, `booking`, `calendly`, `facebookCatalog`, `flashy`, `sendMsg`,
+`make`, `assistantlabs`. Anything with no page there: `/al-integration`.
+
+| To connect | Link | What they do there |
+|---|---|---|
+| **A Shopify store** | `/app/assistants/:id/settings/integrations/shopify` | One button, **Install from Shopify**. They pick the store in Shopify, approve, and land back connected. **One install serves every product** — Sales and the Helpdesk reuse it, with no second approval in Shopify |
+| **A WooCommerce store** | `/app/assistants/:id/settings/integrations/woocommerce` | Paste the store's REST API keys (WooCommerce → Settings → Advanced → REST API in their WordPress) |
+| **Booking, into the agent** | `/app/assistants/:id/settings/integrations/booking` | Switch it on; the agent books appointments mid-conversation |
+
+**The other side of a connection has its own page too:**
+
+| To | Link |
+|---|---|
+| Put Sales on their Shopify store | `https://sales.assistantlabs.io/settings/store/shopify` — asks for the store's name, then reuses the existing install |
+| Put Sales on their agent | `https://sales.assistantlabs.io/connect` |
+| Put Booking on their agent | `https://booking.assistantlabs.io/settings/agent` |
+| Connect Google Calendar to Booking | `https://booking.assistantlabs.io/settings/calendar` |
+| Put the CRM on their agent | `https://crm.assistantlabs.io/settings/connections` — only an admin can connect |
+| Put the Helpdesk on their agent | `https://helpdesk.assistantlabs.io/settings/agent` — channels and intake live here too |
+| Connect Instagram, Facebook, YouTube or TikTok for posting | `https://marketing.assistantlabs.io/settings/channels` |
+| Connect a Meta ad account | `https://marketing.assistantlabs.io/settings/ads` |
+
+## The other products — the screens worth opening
+
+**Sales** — `https://sales.assistantlabs.io`
+
+| Screen | Path |
+|---|---|
+| Leads board / one lead | `/leads` · `/leads/<contactId>` |
+| Journeys / one journey | `/journeys` · `/journeys?open=<journeyId>` (no page of its own) |
+| Groups / one group | `/team/source` · `/team/source/<groupId>` — Team is off by default |
+| WhatsApp templates | `/tools/whatsapp-templates` |
+| Test users | `/settings/test-users` |
+| Integrations | `/settings/integrations` (`/agents`, `/booking`) |
+| Lead settings | `/settings/leads` |
+
+**Booking** — `https://booking.assistantlabs.io`
+
+| Screen | Path |
+|---|---|
+| The diary / one appointment | `/` · `/appointments/<appointmentId>` |
+| Services / new service | `/services` · `/services/new` |
+| Business name and booking address | `/settings` |
+| Opening hours / booking rules | `/settings/hours` · `/settings/rules` |
+| The public booking page | `/book/<slug>` — public, no sign-in. The slug is set at `/settings` |
+
+**CRM** — `https://crm.assistantlabs.io`
+
+| Screen | Path |
+|---|---|
+| Contacts / one contact | `/contacts` · `/contacts/<contactId>` — import is a button on `/contacts`, not a page |
+| Companies / one company | `/companies` · `/companies/<companyId>` |
+| Customers | `/customers` |
+| Record types | `/settings/record-layouts` |
+
+**Helpdesk** — `https://helpdesk.assistantlabs.io`
+
+| Screen | Path |
+|---|---|
+| Inbox / one ticket | `/inbox` · `/inbox/<ticketId>` — `?queue=escalated`, `?queue=unassigned`, `?queue=stale`, `?queue=me` narrow it |
+| Workflows / a new one | `/settings/workflows` · `/settings/workflows/new` |
+| Business hours / SLA / team | `/settings/business-hours` · `/settings/sla` · `/settings/team` |
+| Integrations | `/settings/integrations` |
+
+**Marketing** — `https://marketing.assistantlabs.io`
+
+| Screen | Path |
+|---|---|
+| Strategy / one strategy | `/strategy` · `/strategy/<strategyId>` |
+| Product profile / research | `/strategy/profile` · `/strategy/research` |
+| Posts / a new post / one post | `/social/posts` · `/social/posts/new` · `/social/posts/<postId>` |
+| Instagram automations / one rule / what they did | `/social/automations` · `/social/automations/<automationId>` · `/social/automations/activity` |
+| Email campaigns / one campaign | `/email` · `/email/<campaignId>` — Launch and Pause are buttons on the campaign |
+| Email templates / one in the editor | `/studio/email-templates` · `/studio/email-templates/<templateId>` |
+| Media library / brand kit | `/studio` · `/studio/branding` |
+| Ads / a new ad / one ad | `/ads` · `/ads/new` · `/ads/<adId>` |
+| Settings: social accounts / Meta ad account / in-app AI | `/settings/channels` · `/settings/ads` · `/settings/ai` |
+
+**Tasks** — `https://assistantlabs-tasks.web.app`
+
+| Screen | Path |
+|---|---|
+| What needs them | `/needs-you` |
+| The board / one task | `/board` · `/t/<taskId>` |
 
 ## During setup, a link beats a paragraph
 
-The moments in onboarding where a screen is the right answer, in the order they
-come up:
-
-| They need to | Send them to |
-|---|---|
-| Create their first agent | `/onboarding` |
-| Connect WhatsApp | `/app/assistants/:id/settings/channels?connect=whatsapp` |
-| Connect Instagram | `/app/assistants/:id/settings/channels?connect=instagram` |
-| Connect Messenger | `/app/assistants/:id/settings/channels?connect=messenger` |
-| Connect website chat | `/app/assistants/:id/settings/channels?connect=website` |
-| Connect email, or anything else | `/app/assistants/:id/settings/channels` |
-| **Try the agent** | `/app/assistants/:id?test=1` — opens with the test chat already up |
-
 **Always render these as titled markdown links** — `**[Connect WhatsApp →](…)**`
-— never as a bare URL. These URLs carry an `assistant_` uuid and a query string;
-pasted raw they read as machinery and make the conversation feel technical.
-
-**`?test=1` opens the try-it dock on arrival.** Use it the moment an agent is
-built — watching her answer is what makes it real, and "you can try her in the
-app" is the version that never gets done. It works on any assistant route, so
-pair it with the page you actually want them on.
-
-**`?connect=` opens that channel's connect flow on arrival** — the modal is
-already up when the page paints, so they are one click from connected rather
-than hunting a tile. Use it every time you name a channel. Values:
-`whatsapp`, `instagram`, `messenger`, `website`.
-
-- **The param is consumed once** and stripped from the URL, so a refresh does
-  not reopen a modal they just closed. Send the link again if they need it again.
-- **Email and the shareable link have no `?connect=` value** — they have their
-  own screens rather than a modal on this page. Link the plain channels page.
-- **An unknown value lands them on the channels page with everything visible**,
-  which is a safe failure, but do not rely on it: send a value from the list.
-
-Three more worth having to hand — these were orphaned below a prose block and
-rendered as literal pipes, so nobody could use them:
+— never as a bare URL. These URLs carry an `assistant_` uuid; pasted raw they
+read as machinery and make the conversation feel technical.
 
 | To | Send them |
 |---|---|
-| Check what the agent learned from their website | `/app/assistants/:assistantId/settings/faq` |
-| See the board you just filled | `https://assistantlabs-tasks.web.app` |
-| Change what this connection may do | `/app/assistants/:assistantId/settings/claude-mcp` |
+| Check what the agent learned from their website | `/app/assistants/:id/settings/faq` |
+| Change what this connection may do | `/app/assistants/:id/settings/claude-mcp` |
+| See the board you just filled | `https://assistantlabs-tasks.web.app/board` |
 
 **Do not narrate a screen you could open.** "Go to Settings, then Channels, then
 find WhatsApp and click Connect" is four chances to lose somebody. One link is

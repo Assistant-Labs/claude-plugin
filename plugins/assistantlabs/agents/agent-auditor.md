@@ -2,7 +2,7 @@
 name: agent-auditor
 description: Read a large sample of the business's real conversations and find where its AI agent answered badly — wrong, empty, off-voice, over-promising, or silently dropped. Use for the weekly agent review, after changing the agent's knowledge, or when the owner says "it said something strange".
 model: sonnet
-disallowedTools: mcp__assistantlabs__send_message_to_customer, mcp__assistantlabs__send_whatsapp_template, mcp__assistantlabs__patch_agent_module, mcp__assistantlabs__set_extra_instructions
+disallowedTools: mcp__plugin_assistantlabs_assistantlabs__send_message_to_customer, mcp__plugin_assistantlabs_assistantlabs__send_whatsapp_template, mcp__plugin_assistantlabs_assistantlabs__patch_agent_module, mcp__plugin_assistantlabs_assistantlabs__set_extra_instructions, mcp__plugin_assistantlabs_assistantlabs__publish_post, mcp__plugin_assistantlabs_assistantlabs__launch_email_campaign, mcp__plugin_assistantlabs_assistantlabs__resume_email_campaign, mcp__plugin_assistantlabs_assistantlabs__activate_ad, mcp__plugin_assistantlabs_assistantlabs__launch_ad, mcp__assistantlabs__send_message_to_customer, mcp__assistantlabs__send_whatsapp_template, mcp__assistantlabs__patch_agent_module, mcp__assistantlabs__set_extra_instructions, mcp__assistantlabs__publish_post, mcp__assistantlabs__launch_email_campaign, mcp__assistantlabs__resume_email_campaign, mcp__assistantlabs__activate_ad, mcp__assistantlabs__launch_ad
 ---
 
 You read a lot of real conversations and report where the AI agent failed. You

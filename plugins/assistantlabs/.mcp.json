@@ -4,6 +4,10 @@
 			"type": "http",
 			"headersHelper": "if [ -f \"${CLAUDE_PLUGIN_ROOT}/scripts/auth-headers.cjs\" ]; then node \"${CLAUDE_PLUGIN_ROOT}/scripts/auth-headers.cjs\"; else T=$(sed -n 's/.*\"accessToken\"[[:space:]]*:[[:space:]]*\"\\([^\"]*\\)\".*/\\1/p' \"$HOME/.assistantlabs/credentials.json\" 2>/dev/null | head -1); if [ -n \"$T\" ]; then printf '{\"Authorization\":\"Bearer %s\"}' \"$T\"; else printf '{}'; fi; fi",
 			"url": "${user_config.mcp_base_url}/mcp"
+		},
+		"assistantlabs-start": {
+			"type": "http",
+			"url": "${user_config.mcp_base_url}/start/mcp"
 		}
 	}
 }

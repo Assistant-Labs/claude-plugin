@@ -34,10 +34,14 @@ Then, in the folder you want to run your business from:
 That is the only command you have to remember. It works out where you are —
 brand new, half set up, or running for months — and takes you one step forward.
 
-On a first run it connects your AssistantLabs workspace: you sign in, you tick
-which permissions it gets, and **no key or password is ever pasted anywhere**.
-Then it goes and learns your business from your real data before it asks you a
-single question.
+On a first run it asks about your business and your website, reads the site
+while you connect your AssistantLabs workspace, and has your agent built and
+ready to try by the time you're back. You sign in and tick the products you
+want, and **no key or password is ever pasted anywhere**.
+
+The plugin carries two connections: your workspace, and a small login-free one
+that can read a website, hold the agent it builds until you sign in, and reach
+our support. The login-free one never sees your workspace.
 
 **No AssistantLabs account yet?** Say so and it will point you at the sign-up
 and wait. It will never create an account for you or ask for a password.
@@ -59,6 +63,7 @@ and wait. It will never create an account for you or ask for a password.
 | `/al-customer <name>` | Everything about one customer and what to do next |
 | `/al-money` | What's owed, what's at risk, what's coming in |
 | `/al-agent-review` | Where your AI answered badly this week — and the fix |
+| `/al-agent-self-training` | Every night, your agent learns from its own conversations — you approve each fix |
 | `/al-conversations` | Teach the agent from the WhatsApp answers you have already typed |
 | `/al-daily` | Today's queue: who is waiting on you, and what is broken |
 | `/al-weekly` | The weekly review — what moved, what's at risk, what needs you |
@@ -67,6 +72,7 @@ and wait. It will never create an account for you or ask for a password.
 | `/al-integration <system>` | Connect your agent to a system you already run |
 | `/al-remember <fact>` | Teach it something about your business |
 | `/al-autopilot` | A full unattended pass — does everything, sends nothing |
+| `/al-help` | Talk to AssistantLabs support — questions, a meeting with the team, or a person |
 
 ---
 
@@ -81,9 +87,10 @@ records straight, building itself better tools.
 a customer's phone number. Anything you could undo in a minute with nobody
 outside the business ever knowing.
 
-🔴 **It stops and asks** — *every* message to a customer, *every* shekel,
-anything you can't undo, anything that changes what someone is charged. Every
-time. An approval yesterday is not an approval today.
+🔴 **It stops and asks** — *every* message to a customer, *every* public post
+and email campaign, *every* shekel, anything you can't undo, anything that
+changes what someone is charged. Every time. An approval yesterday is not an
+approval today.
 
 When you're not there, it reaches you **on WhatsApp** — from your own business
 number, the one you already use — with the finished thing and two buttons.

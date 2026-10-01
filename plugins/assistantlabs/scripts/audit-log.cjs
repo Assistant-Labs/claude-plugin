@@ -20,8 +20,33 @@ const path = require('path');
  * phone sends it. The proposal is the only record of what was put in front of
  * them, and it is written from here — nowhere else in this session sees it.
  */
-const RECORDED =
-	/(send_message_to_customer|send_whatsapp_template|send_email|send_message|create_whatsapp_template|attach_group_to_journey|notify_owner|ask_owner_to_approve|create_task|update_task|patch_agent_module|set_extra_instructions|update_contact|api_(?:request|create|update|replace|delete))/;
+const RECORDED = new RegExp(
+	[
+		'send_message_to_customer',
+		'send_whatsapp_template',
+		'send_email',
+		'send_message',
+		'create_whatsapp_template',
+		'attach_group_to_journey',
+		'notify_owner',
+		'ask_owner_to_approve',
+		'create_task',
+		'update_task',
+		'patch_agent_module',
+		'set_extra_instructions',
+		'update_contact',
+		'api_(?:request|create|update|replace|delete)',
+		// Marketing: mail, public posts, the ad account, and anything that
+		// answers people on its own.
+		'(?:launch|resume|pause)_email_campaign',
+		'send_campaign_test_email',
+		'publish_post',
+		'retry_failed_channels',
+		'(?:launch|activate|pause)_ad',
+		'(?:create|update)_instagram_automation',
+		'update_follow_up',
+	].join('|'),
+);
 
 try {
 	const payload = JSON.parse(fs.readFileSync(0, 'utf8'));
