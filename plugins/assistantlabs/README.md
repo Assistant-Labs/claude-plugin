@@ -1,11 +1,25 @@
-# AssistantLabs
+# AssistantLabs — Personal Assistant for Business
 
-**An operator that runs your business. You stay the one who decides.**
+**A personal assistant for your business, inside Claude.** It answers your
+customers on WhatsApp, Instagram, Messenger, email and website chat, and keeps
+the rest of the business moving: your helpdesk, CRM, leads, appointment
+bookings, tasks, social media posts, email campaigns and Meta ads.
 
-This plugin turns Claude into the person who opens your shop in the morning: it
-reads every conversation, answers what it can, chases the leads going cold,
-notices the invoice you never sent — and puts anything that needs *you* in front
-of you as one decision you can make in ten seconds.
+**You stay in charge.** Anything that reaches a customer, goes public or spends
+money waits for your approval, which you can give with one tap on WhatsApp.
+
+Use it for WhatsApp Business automation, customer support, lead follow-up,
+booking appointments, and recovering abandoned carts, all from one place.
+
+**Ask Claude things like**
+
+- "Who is waiting for a reply?"
+- "Which leads went cold this week?"
+- "Fill Thursday's empty appointment slots."
+- "Write this week's posts and an email campaign for the new collection."
+- "What are customers asking about most?"
+
+**Built for** small businesses, online stores (Shopify) and agencies.
 
 It runs on your own [AssistantLabs](https://assistantlabs.io) workspace, so it
 reaches the channels and apps your business already uses: WhatsApp, email, your
@@ -15,33 +29,31 @@ website chat, your store, your CRM, your task board.
 
 ## Install
 
-```
-/plugin marketplace add assistantlabs/assistantlabs
-/plugin install assistantlabs
-```
+Add **AssistantLabs** from the Claude plugin directory (claude.ai, Cowork or
+Claude Code), or from the command line:
 
-<!-- Publication pending: until the public repo exists, install from a local
-     checkout with `claude plugin marketplace add ./` at the repo root, then
-     `claude plugin install assistantlabs@assistantlabs`. -->
-
+```
+claude plugin marketplace add Assistant-Labs/claude-plugin
+claude plugin install assistantlabs@assistantlabs
+```
 
 Then, in the folder you want to run your business from:
 
 ```
-/assistantlabs
+/al
 ```
 
 That is the only command you have to remember. It works out where you are —
 brand new, half set up, or running for months — and takes you one step forward.
 
 On a first run it asks about your business and your website, reads the site
-while you connect your AssistantLabs workspace, and has your agent built and
+while you connect your AssistantLabs workspace, and has your assistant built and
 ready to try by the time you're back. You sign in and tick the products you
 want, and **no key or password is ever pasted anywhere**.
 
 The plugin carries two connections: your workspace, and a small login-free one
-that can read a website, hold the agent it builds until you sign in, and reach
-our support. The login-free one never sees your workspace.
+that can read a website, hold the assistant it builds until you sign in, and
+reach our support. The login-free one never sees your workspace.
 
 **No AssistantLabs account yet?** Say so and it will point you at the sign-up
 and wait. It will never create an account for you or ask for a password.
@@ -62,14 +74,14 @@ and wait. It will never create an account for you or ask for a password.
 | `/al-leads` | Who to chase, warmest first, with what to say |
 | `/al-customer <name>` | Everything about one customer and what to do next |
 | `/al-money` | What's owed, what's at risk, what's coming in |
-| `/al-agent-review` | Where your AI answered badly this week — and the fix |
-| `/al-agent-self-training` | Every night, your agent learns from its own conversations — you approve each fix |
-| `/al-conversations` | Teach the agent from the WhatsApp answers you have already typed |
+| `/al-agent-review` | Where your assistant answered badly this week — and the fix |
+| `/al-agent-self-training` | Every night, your assistant learns from its own conversations — you approve each fix |
+| `/al-conversations` | Teach the assistant from the WhatsApp answers you have already typed |
 | `/al-daily` | Today's queue: who is waiting on you, and what is broken |
 | `/al-weekly` | The weekly review — what moved, what's at risk, what needs you |
 | `/al-report` | A written report, for you or for a customer |
 | `/al-build <what>` | Something the suite doesn't do yet |
-| `/al-integration <system>` | Connect your agent to a system you already run |
+| `/al-integration <system>` | Connect your assistant to a system you already run |
 | `/al-remember <fact>` | Teach it something about your business |
 | `/al-autopilot` | A full unattended pass — does everything, sends nothing |
 | `/al-help` | Talk to AssistantLabs support — questions, a meeting with the team, or a person |
@@ -125,7 +137,7 @@ to customers — real sentences from your real replies — so drafts sound like 
 business and not like a chatbot.
 
 Tell it something once (`/al-remember we don't deliver on Saturdays`) and it lands
-in the right file with the date, in your words, and it fixes your AI agent's
+in the right file with the date, in your words, and it fixes your assistant's
 knowledge if that was wrong too.
 
 ---
@@ -167,7 +179,7 @@ overnight with nobody there.
 - An [AssistantLabs](https://assistantlabs.io) account. Free to start. **Don't
   have one? Run `/al` anyway** — it walks you through it and picks up
   on its own once you're in.
-- An agent, and at least one channel your customers actually use — WhatsApp,
+- An assistant, and at least one channel your customers actually use — WhatsApp,
   email, or your website chat. It handles it if you have neither.
 - Claude Code, Claude Desktop, or claude.ai.
 

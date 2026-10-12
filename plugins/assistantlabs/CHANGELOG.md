@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.14.2 — 2026-10-12
+
+- **Found as a personal assistant for business.** The listing now says what it
+  does in the words owners search for — WhatsApp Business automation, helpdesk
+  and customer support, CRM and lead follow-up, appointment booking, social
+  media, email marketing, Meta ads — and "assistant" replaces "AI agents"
+  everywhere it is described.
+- **A logo in the directory.** The listing has its own icon instead of the
+  publisher's default picture.
+
 ## 0.14.1 — 2026-10-01
 
 - **WhatsApp journeys are built from templates.** A journey can't tell who wrote
