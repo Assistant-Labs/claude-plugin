@@ -42,6 +42,8 @@ const RECORDED = new RegExp(
 		'send_campaign_test_email',
 		'publish_post',
 		'retry_failed_channels',
+		// The business's website going live.
+		'publish_site_change',
 		'(?:launch|activate|pause)_ad',
 		'(?:create|update)_instagram_automation',
 		'update_follow_up',

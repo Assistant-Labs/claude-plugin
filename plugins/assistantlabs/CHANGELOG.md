@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.15.0 — 2026-10-15
+
+- **Build a whole CRM from a description.** Hand Claude a spec — "we sell,
+  rent and service devices to clinics" — and it builds the workspace: the
+  things you keep (clinics, units, contracts, deals, payments), how they link,
+  totals and dates that work themselves out (days to renewal, what's still
+  owed), rules on what may change, tasks, automations, team roles, dashboards,
+  webhooks and spreadsheet import.
+- **And makes it look good.** Each kind of record gets its own colour and
+  icon, statuses become coloured pills, deadlines and balances turn amber or
+  red when they need attention, payments show as a progress bar, and every
+  page opens on a banner with the numbers that matter. Set the currency once
+  and money shows in it everywhere.
+- **Campaigns on WhatsApp and email together.** A campaign can now send your
+  approved WhatsApp templates and emails in one journey — "WhatsApp first, an
+  email two days later to whoever hasn't read it." It shows how many people each
+  channel reaches before you say yes, reminds you that WhatsApp charges per
+  marketing message, and afterwards tells you who read, who clicked and who
+  replied — with their reply.
+
 ## 0.14.2 — 2026-10-12
 
 - **Found as a personal assistant for business.** The listing now says what it

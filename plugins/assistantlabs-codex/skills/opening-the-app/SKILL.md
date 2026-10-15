@@ -200,7 +200,7 @@ The keys: `shopify`, `woocommerce`, `eshop`, `wix`, `monday`, `googleCalendar`,
 | Product profile / research | `/strategy/profile` · `/strategy/research` |
 | Posts / a new post / one post | `/social/posts` · `/social/posts/new` · `/social/posts/<postId>` |
 | Instagram automations / one rule / what they did | `/social/automations` · `/social/automations/<automationId>` · `/social/automations/activity` |
-| Email campaigns / one campaign | `/email` · `/email/<campaignId>` — Launch and Pause are buttons on the campaign |
+| Messaging campaigns (email + WhatsApp) / one campaign | `/messaging` · `/messaging/<campaignId>` — Launch and Pause are buttons on the campaign; the Report tab shows who read, clicked and replied |
 | Email templates / one in the editor | `/studio/email-templates` · `/studio/email-templates/<templateId>` |
 | Media library / brand kit | `/studio` · `/studio/branding` |
 | Ads / a new ad / one ad | `/ads` · `/ads/new` · `/ads/<adId>` |

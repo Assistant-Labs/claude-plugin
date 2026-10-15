@@ -1,13 +1,15 @@
 ---
 name: marketing
 description: >
-  The Marketing product, end to end — social posts, email campaigns and the
-  email templates they are written from, the brand kit and media library,
+  The Marketing product, end to end — social posts, messaging campaigns (email
+  and WhatsApp templates in one journey) and the email templates they are
+  written from, the brand kit and media library,
   Instagram comment-and-DM automations, Meta ads, and the strategy, research and
   product profile behind all of it. What can be drafted freely, the four moments
   that stop for the owner (publish, send, switch on, spend), which permission
   each one needs, and how to tell what actually went out. Use for "write a
-  post", "send a newsletter", "email my customers", "make an email template",
+  post", "send a newsletter", "email my customers", "WhatsApp my customers a
+  promotion", "who read / replied to the campaign", "make an email template",
   "reply to everyone who comments", "run an ad", "how did the post do", "change
   our logo or colours", or anything about the marketing plan.
 ---
@@ -48,12 +50,12 @@ when publishing until somebody reconnects it in the app.
 | Moment | Tool | Why it stops |
 |---|---|---|
 | A post goes public | `publish_post`, `retry_failed_channels` | the public sees it, under the business's name, and it cannot be recalled from here |
-| Mail reaches an inbox | `launch_email_campaign`, `resume_email_campaign`, and both test sends | real people, no recall |
+| A message reaches an inbox or a phone | `launch_email_campaign`, `resume_email_campaign`, and both test sends | real people, no recall — and every WhatsApp marketing message is charged to the business |
 | A rule starts answering people | `create_instagram_automation` or `update_instagram_automation` with `enabled: true` | it replies and DMs on its own from the next comment |
 | Money starts leaving | `activate_ad` — and `launch_ad`, which puts the ad on their Meta account | it spends the daily budget until someone pauses it |
 
 All four are 🔴 (see `autonomy-and-approvals`): the owner sees the exact thing —
-the caption and the picture, the email and the audience count, the rule's
+the caption and the picture, the email or the WhatsApp message and the audience count, the rule's
 trigger and its reply, the ad with its budget and targeting — and says yes to
 that one. **An away owner gets a task with the finished artefact in it, never
 the send.**
@@ -97,60 +99,102 @@ in a browser — `get_channel_connect_link` returns the link to hand over. If
 those tools are not there, the owner connects accounts themselves at
 `https://marketing.assistantlabs.io/settings/channels`.
 
-## Email campaigns
+## Messaging campaigns — email and WhatsApp
 
-A campaign is a short journey: an email, a wait, maybe a check on who opened or
-clicked, another email. It goes out through the email channel of the agent the
-workspace is connected to.
+A campaign is a short journey: a message, a wait, maybe a check on what the
+person did, another message. Each message is either an **email** (through the
+email channel of the agent the workspace is connected to) or a **WhatsApp
+template** (from that agent's WhatsApp number). Mix them freely — "WhatsApp
+first, an email two days later to whoever has not read it" is one campaign.
+The app calls this tab **Messaging**; the tool names still say "email" because
+they are older than WhatsApp.
 
 ```
-list_email_campaigns          every campaign, its numbers — and whether email can go out at all
-create_email_campaign         a draft: name, audience, steps
-update_email_campaign         change any of them
-preview_email_audience        how many people, with a sample — before saving
-get_email_campaign            the whole thing, and `problems`
-launch_email_campaign         🔴
-pause_email_campaign          the brake
-list_email_campaign_recipients  what happened to each person
+list_email_campaigns              every campaign, its numbers — and whether email and WhatsApp can go out at all
+list_campaign_whatsapp_templates  the agent's WhatsApp templates, approved first — the only thing a WhatsApp step can send
+create_email_campaign             a draft: name, audience, steps
+update_email_campaign             change any of them
+preview_email_audience            how many people, per channel, with a sample — before saving
+get_email_campaign                the whole thing, its per-step numbers, and `problems`
+launch_email_campaign             🔴
+pause_email_campaign              the brake
+list_email_campaign_recipients    who got each message, who read / opened, clicked, replied — and what they said
 ```
+
+**WhatsApp is templates only — never free text.** A campaign reaches people who
+have not written in, and outside a 24-hour window WhatsApp delivers nothing but
+a template the business got approved. Build the step from
+`list_campaign_whatsapp_templates`: copy the template's name, language and
+`template` fields, and fill its blanks (`variables`). If there is no approved
+template that says what the owner wants, say so — creating and approving one is
+a separate job on the agent's WhatsApp channel, and it takes Meta time.
 
 **Build it in this order, and do not skip the second step.**
 
-1. **Can mail go out?** `list_email_campaigns` says whether the agent has a
-   working email channel. If it does not, nothing below can send — the link is
-   the agent's email channel page in `opening-the-app`.
-2. **Who, exactly?** `preview_email_audience` before anything else. An audience
-   is contacts with any of the chosen labels, optionally only those who agreed
-   to marketing, plus any addresses added by hand. **No labels means every
-   contact with an email address** — say that number out loud before the owner
-   finds out the hard way. People who unsubscribed are already left out, and
-   every email carries its own unsubscribe link.
+1. **Can it go out?** `list_email_campaigns` says whether the agent has a
+   working email channel (`channel`) and a connected WhatsApp number
+   (`whatsapp`). A campaign only needs the channels its steps use. If one is
+   missing, nothing on it can send — the link is the agent's channel page in
+   `opening-the-app`.
+2. **Who, exactly?** `preview_email_audience` with the campaign's `channels`
+   before anything else. An audience is contacts with any of the chosen labels,
+   optionally only those who agreed to marketing, CRM records, plus anyone
+   added by hand (addresses in `extraEmails`, numbers with their country code in
+   `extraPhones`). **No labels means every contact the campaign can reach** —
+   say that number out loud before the owner finds out the hard way. The
+   preview's `reachable` says how many each channel reaches: someone with only
+   an email skips the WhatsApp steps, someone with only a phone skips the
+   emails. People who unsubscribed or opted out are already left out.
 3. **What does it say?** Write the steps. Start each email from a template
-   (below) rather than from nothing.
+   (below) rather than from nothing. Fill a WhatsApp template's blanks with the
+   person's fields — `{{firstName|there}}`, always with a fallback, because a
+   blank WhatsApp value is refused. A web address in a blank becomes each
+   person's own tracked short link, so a tap counts as a click.
 4. **Is it ready?** `get_email_campaign` returns `problems` — what stops it
-   from launching, in words. Empty means ready. Launching with problems is
+   from launching, in words (a template not chosen, a blank not filled, a
+   channel not connected). Empty means ready. Launching with problems is
    refused, so read them instead of trying.
-5. **One test, to the owner.** `send_campaign_test_email` sends one step to one
-   address, marked as a test. It is still mail from the business: it asks.
+5. **One test, to the owner.** `send_campaign_test_email` sends one step: an
+   email step to an address (marked as a test), a WhatsApp step to a phone
+   number. It is still a message from the business: it asks.
 6. **The yes.** Put it to the owner as one decision — *"Send 'Spring sale' to
-   412 people now? First email goes out immediately, the reminder three days
-   later to whoever did not open."* Then `launch_email_campaign`.
+   412 people now? A WhatsApp message goes to the 380 with a phone straight
+   away, and two days later an email to whoever has not read it. WhatsApp
+   charges you for each marketing message it delivers."* Then
+   `launch_email_campaign`.
 
 **Launching is immediate.** Everyone in the audience is enrolled and the first
-email leaves at once. There is no "schedule for Tuesday" on the launch — a wait
-belongs on a step.
+message leaves at once. There is no "schedule for Tuesday" on the launch — a
+wait belongs on a step.
+
+**WhatsApp costs money per message.** Meta charges the business for every
+marketing template it delivers. That makes a WhatsApp campaign's launch a money
+decision as well as a sending one: say the number of WhatsApp messages in the
+yes, every time.
 
 **Did they agree to hear from the business?** A list nobody consented to is not
 an audience (see `growth-and-leads`). When the owner is not sure, use only the
-contacts marked as agreed, and say why the number is smaller.
+contacts marked as agreed, and say why the number is smaller. On WhatsApp this
+is not only manners — numbers that block or report a business get its account
+limited.
 
 **A running campaign can be edited.** People already past a step do not get it
 again; people who have not reached it get the new version. That makes an edit
 to a live campaign a change to what customers receive — show it first.
 
-**Report what happened, per step.** Sent, opened, clicked, unsubscribed —
-`get_email_campaign` for the totals, `list_email_campaign_recipients` for who.
-"It went out" is not a report.
+**Checks** ask about one earlier message: did they **open** it (on WhatsApp:
+read it — the blue ticks), **click** a link in it, or **reply** to it (WhatsApp
+only). A click or a reply proves it was read, so someone with read receipts
+switched off still counts once they act.
+
+**Report what happened, per message and per person.** For each message:
+sent, delivered (WhatsApp), opened or read, clicked, replied (WhatsApp),
+passed over — `get_email_campaign` (`stepStats`) for the totals,
+`list_email_campaign_recipients` for who, including the words of each reply.
+A reply is a conversation with the agent from then on — if the owner should
+see someone's answer, say who and what they said. "It went out" is not a
+report. Email opens are approximate (some inboxes hide them); WhatsApp reads
+need read receipts on; clicks and replies are exact.
 
 **To send a finished campaign again**, `duplicate_email_campaign` makes a fresh
 draft. It launches like any other: with a yes.
@@ -254,7 +298,7 @@ pause_ad                    the brake
 
 | | Read | Change |
 |---|---|---|
-| Strategy | `list_strategies`, `get_strategy` | `update_strategy_section`, `save_strategy_campaign`, `save_strategy_wedge` |
+| Strategy | `list_strategies`, `get_strategy` | `update_strategy_section`, `save_strategy_campaign`, `save_campaign_experiment` |
 | Research | `get_research` | `save_research_finding`, `label_research_finding`, `dismiss_research_finding` |
 | Product profile | `get_product_profile` | `update_product_profile` |
 
@@ -300,7 +344,7 @@ Never treat a missing permission as something to get around.
 | They want to see | Path |
 |---|---|
 | The post you drafted | `/social/posts` |
-| The campaign, to read it or press Launch | `/email/<campaignId>` |
+| The campaign, to read it or press Launch | `/messaging/<campaignId>` |
 | A template in the editor | `/studio/email-templates/<templateId>` |
 | The brand kit | `/studio/branding` |
 | The automations and what they did | `/social/automations` · `/social/automations/activity` |

@@ -43,8 +43,12 @@ const OUTBOUND = [
 	'send_email_template_test',
 ];
 
-/** Public, in the business's name, and not recallable from here. */
-const PUBLIC = ['publish_post', 'retry_failed_channels'];
+/**
+ * Public, in the business's name, and not recallable from here. A website
+ * change is the same kind of thing as a post: every visitor sees it the moment
+ * it goes live, and every WordPress tool before this one only saved a draft.
+ */
+const PUBLIC = ['publish_post', 'retry_failed_channels', 'publish_site_change'];
 
 /**
  * The business's ad account. Switching an ad on spends its budget every day
@@ -92,6 +96,14 @@ function reason(toolName, input) {
 			'The owner approves the exact text, once, for this one send.',
 			'If they are not here: file it as a task with status "blocked-on-a-human"',
 			'and the complete message in the body — never send on their behalf.',
+		].join(' ');
+	}
+
+	if (short === 'publish_site_change') {
+		const when = input?.at ? ` at ${input.at}` : ' now';
+		return [
+			`This makes change ${input?.changeId ?? ''} live on the business's public website${when}.`,
+			'Only on the owner\'s yes to this change, after they saw its preview — once, for this one publish.',
 		].join(' ');
 	}
 

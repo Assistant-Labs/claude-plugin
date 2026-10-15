@@ -31,8 +31,8 @@ That is the whole test. Everything below is it applied to cases that come up.
 |---|---|
 | Read conversations, contacts, orders, tasks, stats | 🟢 |
 | Draft a reply, an email, a post, a campaign | 🟢 |
-| Build an email campaign or template, an ad, or an automation — saved as a draft, paused, or switched off | 🟢 |
-| **Pause** a running email campaign or ad | 🟢 — stopping is never gated; say so in the next report |
+| Build a messaging campaign (email or WhatsApp) or an email template, an ad, or an automation — saved as a draft, paused, or switched off | 🟢 |
+| **Pause** a running messaging campaign or ad | 🟢 — stopping is never gated; say so in the next report |
 | File / re-file / close a task, add a note | 🟢 |
 | Tag or label a conversation or contact | 🟢 |
 | Analyse, summarise, forecast, investigate | 🟢 |
@@ -46,7 +46,9 @@ That is the whole test. Everything below is it applied to cases that come up.
 | **Send an email or WhatsApp template** | 🔴 |
 | **Take an outreach journey / campaign live** | 🔴 |
 | **Submit a WhatsApp template for approval** | 🔴 (it is copy in the business's name) |
+| Draft a page, post, product or coupon on their website, or propose an edit to one | 🟢 — it is saved as a draft; nothing is live |
 | **Post publicly, reply to a review** | 🔴 |
+| **Publish a change to their website** — a page, SEO text, product, price, stock level or coupon | 🔴 — see *Website changes* below |
 | **Launch or resume an email campaign, or send a test email** | 🔴 |
 | **Switch on anything that answers or chases people by itself** — a follow-up sequence, an Instagram automation | 🔴 |
 | **Change the brand kit** — the logo and colours every email is drawn with | 🔴 unless they asked for that exact change |
@@ -122,6 +124,30 @@ The rules that make this work:
   things silently unresolved.
 - **P0 only for genuinely now.** Priority inflation is how a "needs you" list
   becomes something nobody opens.
+
+## Website changes: draft, then ask
+
+Every WordPress tool saves a draft — `create_site_draft`, `propose_site_edit`,
+`create_product_draft`, `propose_product_change`, `create_coupon_draft`.
+**`publish_site_change` is the only thing that makes anything live**, and
+there is no setting that skips it.
+
+1. **Save it as a draft.** Always, even for a typo fix.
+2. **Show the owner the preview link and the one-line summary** the tool
+   returned. The preview opens without logging in.
+3. **Ask when it should go live** — now, or at a time they choose.
+4. **Publish only on their yes to this change, in this conversation**, with
+   `at` when they named a time. Never on your own initiative, never because
+   the change "is obviously fine", never a batch they did not see.
+5. **Owner away** — `ask_owner_to_approve` with `actionKind:
+   "publish-site-change"`, the `changeId` and `siteId`, `publishAt` if they
+   asked for a time, and the summary plus preview link in `summary`. Their tap
+   publishes.
+
+A change they decline gets `discard_site_change`; a draft left waiting shows
+on `list_site_changes` and under **Pending changes** in WordPress admin. After
+publishing something the agent should know about, offer
+`refresh_agent_from_site` — it is never run on its own.
 
 ## Running unattended
 

@@ -31,7 +31,7 @@ https://mcp.assistantlabs.io/mcp
 | The task board — the owner's window into the operator, and where approvals live | the task board |
 | The system of record — companies, the people at them, the fields this business tracks | the CRM |
 | Audiences, outreach journeys, funnel state | Sales |
-| Posts, email campaigns and templates, Instagram automations, ads, the brand kit, strategy | Marketing |
+| Posts, messaging campaigns (email + WhatsApp) and email templates, Instagram automations, ads, the brand kit, strategy | Marketing |
 
 **What appears is decided on the consent screen, not by adding connectors.**
 Somebody who ticks only customer replies gets those tools and nothing else — not
@@ -78,9 +78,9 @@ every tool the operator lacks simply doesn't appear.
 | Read the CRM | See the companies and people the business tracks |
 | Change the CRM | Add a company or a person, and fill in what was missing |
 | Read your marketing | See posts, emails, automations, media, ads, strategy and how things performed |
-| Draft marketing | Write posts, email campaigns, templates and paused ads; edit the strategy, research, brand kit and media |
+| Draft marketing | Write posts, messaging campaigns, templates and paused ads; edit the strategy, research, brand kit and media |
 | **Publish a post** | **Put a post on a live social account** |
-| **Send marketing email** | **Launch an email campaign, or send a test** |
+| **Send marketing messages** | **Launch a messaging campaign (email and WhatsApp), or send a test** |
 | **Run Instagram automations** | **Create and switch on rules that reply to comments and DM people** |
 | **Spend on ads** | **Switch an ad on in their Meta ad account** |
 
@@ -116,6 +116,29 @@ is the answer, not a reason to guess.
 **One agent → it binds automatically.** Several → the tools take an
 `assistantId`, and `list_assistants` names them. Ask the owner which one this
 project is about, once, and write it into the `stack` memory page.
+
+## The website (WordPress / WooCommerce)
+
+A WordPress site connects from its own admin, not from here:
+
+1. In WordPress admin: **Plugins → Add New**, search **AssistantLabs**,
+   install and activate.
+2. Open the **AssistantLabs** menu → **Connect**, and sign in. The site joins
+   the **workspace**, and the owner picks which agent speaks for it — an
+   existing one, or a new one built from the site.
+3. A shop also installs **AssistantLabs for WooCommerce** — products, prices,
+   stock, coupons and the store summary need it.
+
+`list_wordpress_sites` shows every site in the workspace and the agent that
+speaks for each; `get_wordpress_site` checks one is reachable and whether the
+WooCommerce add-on is there. `set_site_agent` hands a site to another agent.
+With several sites, every site tool takes a `siteId` — ask which site once and
+note it on the `stack` memory page. Reading the site needs the permission to read
+integrations; drafting and publishing need the one to change integrations;
+updating the agent from the site needs "Change the agent".
+
+**Every website change is a draft until the owner says when it goes live** —
+the rule is in `autonomy-and-approvals`.
 
 ## What to record
 
