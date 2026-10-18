@@ -7,7 +7,8 @@ description: >
   time-to-wow with the product named on every one, and how to run them one at a
   time — by tool where one exists, by one titled link where it does not. Use
   right after the "try your agent" moment in /al, when a setup plan is resuming,
-  and whenever someone mid-setup asks "what's next?".
+  whenever someone mid-setup asks "what's next?", and to decide when to offer
+  the free integration meeting (setup done, or stuck).
 ---
 
 # The onboarding plan
@@ -148,8 +149,9 @@ nothing else. More than nine steps means the plan is too fine: merge, or leave
 the weakest for a later session.
 
 - **The meeting first, once** — the block below, word for word. It is the
-  founder's own wording: an offer, then a way to keep going without it. Never
-  again this session, unless they ask for a person.
+  founder's own wording: an offer, then a way to keep going without it. Only
+  if `get_integration_meeting_offer` says `offer: true`; otherwise go straight
+  to the plan. After this, it comes back only at the two moments in §9.
 - **Then the plan: number · bold label · the product(s) · what they get**, in
   their words.
 - **Tasks as a fact**, not an offer.
@@ -286,6 +288,90 @@ Setup gets interrupted. The plan must survive it.
 
 ---
 
+## 9 · The meeting — when it comes back
+
+The free integration meeting is the best thing we offer a new business: one
+hour, 1:1 with an AI expert on Google Meet, and they leave with it working. It
+is offered at the top of the plan (§4) and at **two more moments**, because
+those are when an hour with a person is worth the most. Nowhere else.
+
+**Ask first, every time: `get_integration_meeting_offer`.** `offer: false`
+means they said "don't remind me" (here or in the app), already booked, or are
+an agency's client — then the meeting does not exist; do not mention it, not
+even as a link. No such tool on this connection → offer it anyway, by the
+moments below.
+
+### Moment 1 · Setup done
+
+The last open step of the plan is `done` or `skipped`, or their first channel
+just went live. Answer the step first, then word for word — `<what runs now>`
+is one clause of what is true, from the checks:
+
+> 🎉 **<Business name> is set up.** <What runs now>.
+>
+> 💜 **You're not doing this alone.** Book your free integration meeting: one hour, 1:1 with an AI expert on Google Meet. We connect what's left with you — sales, lead follow-ups, bookings — and you leave with your next automation working. Free, no card.
+>
+> 📅 **[Book your free meeting →](https://booking.assistantlabs.io/book/assistantlabs)** — or say the word and I'll book it right here.
+
+In Hebrew:
+
+> 🎉 **<שם העסק> מוכן.** <מה עובד עכשיו>.
+>
+> 💜 **אתם לא לבד בזה.** קבעו פגישת הטמעה בחינם: שעה אחת, אחד על אחד עם מומחה AI ב-Google Meet. מחברים איתכם את מה שנשאר — מכירות, מעקב אחרי לידים, תורים — ויוצאים מהפגישה עם האוטומציה הבאה שכבר עובדת. בחינם, בלי כרטיס אשראי.
+>
+> 📅 **[לקביעת פגישה חינם ←](https://booking.assistantlabs.io/book/assistantlabs)** — או רק תגידו, ואקבע אותה כאן.
+
+### Moment 2 · Stuck
+
+Any one of these, during setup:
+
+- **the same step failed twice** — the check still does not pass after a second try;
+- **they say so** — *"I'm lost"*, *"this is too much"*, *"can someone just do this?"*;
+- **two steps skipped in a row**;
+- **a step needs what they do not have yet** — a Meta business account, the
+  WhatsApp number's verification, store admin access.
+
+Then the meeting is the way through — **an offer next to the next step, never
+instead of it.** Word for word, then one line with the next thing to try:
+
+> 💜 **Want an expert to do this one with you?** That's exactly what the free integration meeting is for: one hour on Google Meet, and we set it up together, live. Free, no card.
+>
+> 📅 **[Book your free meeting →](https://booking.assistantlabs.io/book/assistantlabs)** — or say the word and I'll book it right here.
+>
+> **Or let's keep going:** <the next thing to try, in one line>
+
+In Hebrew:
+
+> 💜 **רוצים שמומחה יעשה את זה איתכם?** בשביל זה בדיוק יש פגישת הטמעה בחינם: שעה ב-Google Meet, ומגדירים את זה יחד, בזמן אמת. בחינם, בלי כרטיס אשראי.
+>
+> 📅 **[לקביעת פגישה חינם ←](https://booking.assistantlabs.io/book/assistantlabs)** — או רק תגידו, ואקבע אותה כאן.
+>
+> **או שנמשיך:** <הדבר הבא לנסות, בשורה אחת>
+
+### Once, and never when it is not wanted
+
+- **Each moment once, ever.** Record it in `.assistantlabs/setup.json` as
+  `meeting.offered` — `["plan", "done", "stuck"]` as each is shown — and never
+  show a moment already there. Where there is no state file, at most one
+  meeting offer per session.
+- **"Not now" is not "no".** A plain *"no thanks"* or *"later"* only closes
+  this moment: say nothing more about it and carry on.
+- **"Don't remind me" is no.** *"Stop asking"*, *"I don't need a meeting"*,
+  *"don't remind me"* → `dismiss_integration_meeting_offer`, then one line:
+  *"Got it — I won't bring the meeting up again, here or in the app. If you ever
+  want it, just ask."* (Hebrew: *"הבנתי, לא אזכיר את הפגישה שוב — לא כאן ולא
+  באפליקציה. אם תרצו אותה פעם, רק תגידו."*)
+- **Booking:** *"book it"* → `ask_assistantlabs_support` with *"I'd like to
+  book the free integration meeting"*, then carry on where they were. Once
+  support confirms it is booked → `dismiss_integration_meeting_offer`,
+  silently: they have it, so it is not offered again.
+- **Never in a run nobody is watching** — a brief, autopilot, a scheduled
+  report — and never inside anything written for their customers.
+- **They ask for it** — any time, whatever the state says: book it. Asking is
+  never nagging.
+
+---
+
 ## Worked example — Luma Studio
 
 The site read found a **Shopify** candle shop: soy candles ₪69–₪149, gift sets,
@@ -344,6 +430,8 @@ there.
 
 - **Do not show the plan twice**, and do not re-number it mid-way — a step
   skipped is marked, not deleted.
+- **Do not offer the meeting outside §4 and §9's two moments**, and never after
+  `get_integration_meeting_offer` says no.
 - **Do not announce a product they did not tick**, and never offer Tasks as a
   choice.
 - **Do not claim a step done on their "done" alone** when a tool can check it.

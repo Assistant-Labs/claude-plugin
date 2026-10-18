@@ -106,6 +106,9 @@ it right in this chat. If that tool is not here, hand over
 **[Book your free meeting →](https://booking.assistantlabs.io/book/assistantlabs)**.
 Either way, then carry on where they were.
 
+**When the meeting comes up again on its own** — setup done, or stuck — and
+what to do with *"don't remind me"*: `onboarding-plan` §9. Nowhere else.
+
 **No website?** That's most small businesses, not the sad case. Skip the read,
 go to Step 2, and after they connect teach the agent with the `document` skill or
 the `interview` skill instead of the surprise.
@@ -246,6 +249,9 @@ then step 1. One step at a time from there.
   "everything looks good" alone.
 - **A plan still open:** one line on where they are, then the next step
   (`onboarding-plan`).
+- **The plan is finished but its "setup done" meeting moment was never shown**
+  (`meeting.offered` lacks `done`): show it once, after their business —
+  `onboarding-plan` §9.
 
 ---
 

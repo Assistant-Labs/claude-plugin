@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.16.0 — 2026-10-17
+
+- **An expert, when it helps most.** The free integration meeting — one hour,
+  1:1 with an AI expert on Google Meet — now comes back at the two moments it
+  is worth the most: the moment your setup is finished, and the moment a step
+  gets stuck. Each once, next to the next step, never instead of it. Say "book
+  it" and it is booked right in the chat.
+- **"Don't remind me" means it.** Say so once and the meeting is never offered
+  again — in Claude or in the AssistantLabs app, which share the setting.
+
 ## 0.15.0 — 2026-10-15
 
 - **Build a whole CRM from a description.** Hand Claude a spec — "we sell,

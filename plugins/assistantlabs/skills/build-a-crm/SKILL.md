@@ -44,8 +44,12 @@ down before touching anything:
    balances, VAT, commissions → `formula` and `rollup` fields. Never ask the
    team to type a number the CRM can compute.
 6. **The routine** — "when X, do Y" and "N days before Z, remind W" →
-   automations. Every reminder in the spec is a date rule ("N days before"); every
-   "when a lead comes in, create a task" is a "record created" rule.
+   automations. Every reminder in the spec is a date trigger ("N days before");
+   every "when a lead comes in, create a task" is a "record created" trigger. One
+   automation is a whole journey: its steps mix tasks, record updates, a
+   WhatsApp template and emails to the customer, with a `delay` (a wait) before
+   any step — "new lead → WhatsApp now, wait a day, call task". "When a company
+   churns" is an automation with `subject: "company"`.
 7. **Who sees what** → roles (sales, inventory, finance, logistics, view-only).
 8. **The numbers management wants** → dashboards.
 
@@ -72,7 +76,9 @@ The order matters because links and rollups can only name things that exist.
    page (details, then linked records, tasks, history) — following **Make it
    beautiful** below, not the bare default.
 7. Automations: `create_crm_automation` → `test_crm_automation` on a real record
-   → `set_crm_automation_enabled`. Rules are created switched off on purpose.
+   → `set_crm_automation_enabled`. They are created switched off on purpose.
+   WhatsApp and email steps send only when the workspace's sending is live; the
+   dry run shows what each would send, to whom, and how long after the trigger.
 8. Roles and dashboards — see the tools below.
 9. Data: import their spreadsheets rather than retyping them (dry run first).
 
