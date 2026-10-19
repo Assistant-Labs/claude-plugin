@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.17.0 — 2026-10-19
+
+- **Your money in the morning brief.** Connect your invoicing system (Morning /
+  Green Invoice) in AssistantLabs Finance, tick Finance when you connect, and
+  the brief tells you what came in yesterday, what is still owed, and who has
+  waited longest to pay.
+- **Ask about the money.** "Who owes us?", "did Dana pay?", "how's the month
+  going?" are answered from your real books, by client and invoice number.
+- **Read only, and private by design.** Your assistant sees names, numbers and
+  amounts, never bank or card details; tax ids are masked; there is no way to
+  export your whole client list; and every read is logged in your workspace.
+  Nothing can issue or cancel an invoice from a chat.
+
 ## 0.16.0 — 2026-10-17
 
 - **An expert, when it helps most.** The free integration meeting — one hour,

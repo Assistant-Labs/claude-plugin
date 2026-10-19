@@ -8,6 +8,13 @@ Arguments: [this month|last month|<question>]
 Answer the money question in `$ARGUMENTS`, or run the standing check if there is
 none. Read `money-and-billing` first.
 
+Read the books with the Finance tools — `get_money_brief`,
+`list_open_invoices`, `list_recent_payments`, and for one client in Morning
+(Green Invoice) `find_invoicing_client` then `get_invoicing_client`. They are
+read only. If they are missing or say Finance is not connected, say what would
+fix it (connect Morning in Finance → Settings → Integrations, and tick Finance
+when connecting AssistantLabs) instead of estimating.
+
 The standing check, in this order:
 
 1. **Who owes money and for how long** — oldest first, with the amount.

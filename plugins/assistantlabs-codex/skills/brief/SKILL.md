@@ -15,7 +15,12 @@ Gather first, write second. Never narrate the gathering.
 2. **What is blocked on the owner** — `list_tasks status: blocked-on-a-human`.
 3. **What the agent did since the last brief** — volume, anything that needed a
    human, anything it got wrong.
-4. **Money to watch** — outstanding, failed payments, anything renewing.
+4. **Money to watch** — `get_money_brief`: what was paid yesterday, what is
+   still owed and how old the oldest invoice is, and whether a money source
+   (Morning, the card processor) is failing. Then `list_open_invoices` for the
+   two or three most worth chasing, by name and days open. A failing source goes
+   next to the number it affects. Without Finance connected, say so in one line
+   and move on — never build a total from conversations.
 5. **The board** — what is open, by priority.
 6. **Drift** — what the last plan said, and what actually happened.
 

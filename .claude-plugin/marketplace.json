@@ -6,14 +6,14 @@
 	},
 	"metadata": {
 		"description": "Plugins from AssistantLabs — run and operate a small business with Claude.",
-		"version": "0.16.0"
+		"version": "0.17.0"
 	},
 	"plugins": [
 		{
 			"name": "assistantlabs",
 			"source": "./plugins/assistantlabs",
 			"description": "Your personal assistant for business. WhatsApp Business automation, Instagram and email replies, helpdesk and customer support, CRM and lead follow-up, appointment booking, social media, email marketing and Meta ads, for small businesses and Shopify stores. You approve everything that reaches a customer.",
-			"version": "0.16.0",
+			"version": "0.17.0",
 			"author": {
 				"name": "AssistantLabs",
 				"url": "https://assistantlabs.io"
