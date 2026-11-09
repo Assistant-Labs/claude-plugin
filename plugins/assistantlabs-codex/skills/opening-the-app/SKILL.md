@@ -109,6 +109,14 @@ closed.
 
 ## Connecting a channel — one page each
 
+**Several to connect? The connect window first.** `/app/connect/:id` (the
+`connectUrl` from `get_workspace_setup`) walks every open channel and tool from
+setup, one after another, on one page, and ticks each off when it is live.
+There the owner can also add or drop a pick, skip one, press **I'm stuck** with
+a note, or **Suggest a tool** we don't support yet; all of it comes back in
+`get_workspace_setup` (`picked`, `toolRequests`). The pages below are for one
+channel on its own, and for helping with the step the window is on.
+
 **Every channel has its own page, and that page is the door.** It explains the
 channel and carries the button that starts the connection. Nothing opens by
 itself: there is no parameter that starts a connection for them, and the old

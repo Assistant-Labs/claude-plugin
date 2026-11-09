@@ -77,6 +77,23 @@ is a failure. **Sending it is the owner's** (see `autonomy-and-approvals`).
   today" is a promise the business now has to keep. Name who, not when — or
   don't name it at all.
 
+### The helpdesk can draft it for them
+
+A workspace with a helpdesk can have it write a **brief** on every finished
+conversation: a short summary, the facts each label needs (what, since when,
+red flags…) and a reply waiting on the ticket for the owner to send, edit or
+not send. Set up with `set_helpdesk_ticket_view` — one playbook per label: how
+urgent it is, what to pull out, how to reply — and the same document hides the
+parts of the inbox the business doesn't use and picks the order it opens in.
+
+- **It costs usage. Say so before you switch it on.** Every finished
+  conversation is one paid AI call (GPT-5 mini, a small model), and so is every
+  `write_helpdesk_ticket_brief`. Off by default; switch it on only when the
+  owner asked for it, in words.
+- **It never sends anything.** The person sends from the ticket.
+- **Read `get_helpdesk_settings` section `ticket_view` first** — the write
+  replaces the whole document, and the read lists the labels the agent uses.
+
 ## Steering the agent on a thread you have a job on
 
 The business's AI agent answers customers continuously. When the operator starts

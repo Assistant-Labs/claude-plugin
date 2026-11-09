@@ -19,7 +19,7 @@ Both go over WhatsApp, on the business's **own** number — the one their
 customers already message and they already have saved. Not a second sender they
 have to learn to trust.
 
-## Setting it up (once, during `/al-setup`)
+## Setting it up (once, during `/al`)
 
 Three steps, in this order. Doing them out of order produces a configured
 operator that cannot actually send anything.

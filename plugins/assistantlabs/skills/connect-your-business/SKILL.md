@@ -12,8 +12,8 @@ description: >
 # Connecting the business
 
 The operator does not hold the business's data or credentials. It works through the
-business's own Assistant Labs workspace over three remote connectors, and the
-owner authorises each one by signing in — **no key is ever pasted, copied, or
+business's own AssistantLabs workspace over one remote connector, and the
+owner authorises it by signing in — **no key is ever pasted, copied, or
 stored in a file.**
 
 ## One connector, five products
@@ -45,16 +45,26 @@ before anything works is the tax this replaced.
 
 ## Connecting
 
-1. `/al-login` connects and verifies. `/al-setup` walks the whole thing.
-   Manually: **Settings → Connectors → Assistant Labs → Connect** on claude.ai,
-   the desktop app and Cowork; `/mcp` → pick the connector → **Connect** in a
-   Claude Code terminal. `/mcp` exists ONLY in the terminal — offering it on
-   another surface is a dead end.
-2. Claude opens the Assistant Labs sign-in. The owner signs in as themselves.
-3. A consent screen lists **which agent** and **which permissions**. They tick
-   and approve.
-4. Done. The grant belongs to their organisation and they can revoke it any time
+**One way, on every surface** — claude.ai, the desktop app, Cowork and Claude
+Code. `/al` hands it over word for word:
+
+1. Open **claude.ai/customize/connectors** → **+** → **Add custom connector**,
+   paste `https://mcp.assistantlabs.io/mcp`, and click **Add**.
+2. The AssistantLabs sign-in opens. The owner signs in, or signs up free, as
+   themselves.
+3. The consent screen lists **which agent** and **which products**. They tick
+   and approve, then say **done**.
+4. The grant belongs to their organisation, and they can revoke it any time
    from **Account → Developers → Connected apps**.
+
+**Claude Code picks the connector up from their claude.ai account** — there is
+nothing to add there separately, and the plugin ships no connection of its own,
+so nobody ends up with every tool twice.
+
+**The one exception:** Claude Code signed in with an API key instead of a
+claude.ai account does not load claude.ai connectors. Only then, and only if
+they say so: `claude mcp add --transport http assistantlabs
+https://mcp.assistantlabs.io/mcp`, then **/mcp** → **assistantlabs** → sign in.
 
 An API key still works and is fully supported (some connector UIs need one) —
 but signing in is the default and the better path, because a key in a URL leaks

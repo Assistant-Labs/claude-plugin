@@ -49,6 +49,8 @@ That is the whole test. Everything below is it applied to cases that come up.
 | Draft a page, post, product or coupon on their website, or propose an edit to one | 🟢 — it is saved as a draft; nothing is live |
 | **Post publicly, reply to a review** | 🔴 |
 | **Publish a change to their website** — a page, SEO text, product, price, stock level or coupon | 🔴 — see *Website changes* below |
+| Draft or change a landing page in Pages | 🟢 — a draft only its preview link opens |
+| **Publish a landing page, or take one down** | 🔴 — see `build-a-landing-page` |
 | **Launch or resume an email campaign, or send a test email** | 🔴 |
 | **Switch on anything that answers or chases people by itself** — a follow-up sequence, an Instagram automation | 🔴 |
 | **Change the brand kit** — the logo and colours every email is drawn with | 🔴 unless they asked for that exact change |

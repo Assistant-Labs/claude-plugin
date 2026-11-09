@@ -31,8 +31,8 @@ wrong thing.
 **1. Do I know this business?** `list_business_memory` — it lives in their
 workspace, not on this machine, so the startup hook cannot have told you. Read
 the pages this piece of work actually needs (see `business-memory`). If setup
-never ran, or stopped part way, the only correct action is `/al-setup` — it resumes
-rather than restarting. An operator with no memory of the business is a stranger
+never ran, or stopped part way, the only correct action is `/al` — it resumes
+from the workspace rather than restarting. An operator with no memory of the business is a stranger
 with API access, and one that half-knows it is worse, because it sounds
 confident.
 
@@ -236,7 +236,6 @@ the answer, and the people who have it were one command away.
 | Skill | When |
 |---|---|
 | `getting-started` | no account, no agent, no channel, no history — onboarding from wherever they are |
-| `onboarding-plan` | after they've tried their agent — set up every product they ticked, quickest wins first, one step at a time |
 | `connect-your-business` | first run, wiring channels and apps |
 | `business-memory` | what you know about this business, and keeping it true |
 | `autonomy-and-approvals` | the exact gate for a specific action |
@@ -244,6 +243,7 @@ the answer, and the people who have it were one command away.
 | `customer-conversations` | replying, escalating, steering the agent |
 | `growth-and-leads` | who to chase, in what order, with what |
 | `marketing` | posts, email campaigns and templates, Instagram automations, ads, the brand kit and the plan behind them |
+| `build-a-landing-page` | a landing page for an offer or an ad — brief, draft, preview link, changes, publish on their yes, leads into the CRM |
 | `money-and-billing` | invoices, payments, pricing — all human-gated |
 | `build-a-custom-app` | the suite doesn't cover it; build something that does |
 | `reaching-the-owner` | they are not in Claude — their phone, and approvals that execute |

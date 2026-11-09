@@ -14,7 +14,7 @@ time, say it runs nightly at 02:00 so that it reads a full day.
 ## 1 · Check what it needs
 
 1. **Signed in to AssistantLabs.** Call `list_assistants`. If it fails, run
-   `/al-login` first. If it returns no agents, stop — there is nothing to train.
+   `/al` first. If it returns no agents, stop — there is nothing to train.
 2. **Claude routines.** The routine is created with Claude Code's built-in
    `/schedule` skill (the `RemoteTrigger` tool). If neither is available here,
    say that this needs Claude Code signed in to a claude.ai account, and stop.

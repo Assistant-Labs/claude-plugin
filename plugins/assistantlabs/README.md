@@ -46,14 +46,15 @@ Then, in the folder you want to run your business from:
 That is the only command you have to remember. It works out where you are —
 brand new, half set up, or running for months — and takes you one step forward.
 
-On a first run it asks about your business and your website, reads the site
-while you connect your AssistantLabs workspace, and has your assistant built and
-ready to try by the time you're back. You sign in and tick the products you
-want, and **no key or password is ever pasted anywhere**.
+On a first run it shows what your assistant can do, and you connect your
+AssistantLabs workspace once: add the connector on claude.ai, sign in, and tick
+the products you want. Claude Code picks the same connector up from your
+claude.ai account. **No key or password is ever pasted anywhere.** Then it walks
+you through setup — your business, your channels, your tools — one step at a
+time.
 
-The plugin carries two connections: your workspace, and a small login-free one
-that can read a website, hold the assistant it builds until you sign in, and
-reach our support. The login-free one never sees your workspace.
+The plugin carries one small login-free connection, so you can reach our support
+before you sign in. It never sees your workspace.
 
 **No AssistantLabs account yet?** Say so and it will point you at the sign-up
 and wait. It will never create an account for you or ask for a password.
@@ -65,9 +66,6 @@ and wait. It will never create an account for you or ask for a password.
 | | |
 |---|---|
 | `/al` | **Start here.** Set up, or pick up where you left off |
-| `/al-login` | Connect AssistantLabs — and check the connection really works |
-| `/al-setup` | The setup steps on their own — resumes, never restarts |
-| `/al-status` | Is it set up, and what's missing |
 | `/al-brief` | What's happening right now — who's waiting, what's at risk, today's three things |
 | `/al-needs-me` | Everything waiting on your decision, one at a time, ready to approve |
 | `/al-waiting` | Every customer who hasn't been answered — with the replies already drafted |
@@ -184,12 +182,8 @@ overnight with nobody there.
 - Claude Code, Claude Desktop, or claude.ai.
 
 Setup takes a few minutes and **can be interrupted**. Stop halfway, come back
-tomorrow, and it resumes rather than starting over. `/al-status` tells you where you
-stand at any point.
-
-**Several of the steps are optional** — the number it reaches you on, the
-WhatsApp templates, who else works with you, the scheduled brief. Say no to any
-of them and setup is still finished; nothing will nag you about it again.
+tomorrow, and `/al` resumes rather than starting over — setup lives in your
+workspace, so the app shows the same progress.
 
 Built by [AssistantLabs](https://assistantlabs.io).
 

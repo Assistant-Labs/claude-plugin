@@ -1,13 +1,27 @@
-# Assistant Labs
+# AssistantLabs — Personal Assistant for Business
 
-**An operator that runs your business. You stay the one who decides.**
+**A personal assistant for your business, inside Claude.** It answers your
+customers on WhatsApp, Instagram, Messenger, email and website chat, and keeps
+the rest of the business moving: your helpdesk, CRM, leads, appointment
+bookings, tasks, social media posts, email campaigns and Meta ads.
 
-This plugin turns Claude into the person who opens your shop in the morning: it
-reads every conversation, answers what it can, chases the leads going cold,
-notices the invoice you never sent — and puts anything that needs *you* in front
-of you as one decision you can make in ten seconds.
+**You stay in charge.** Anything that reaches a customer, goes public or spends
+money waits for your approval, which you can give with one tap on WhatsApp.
 
-It runs on your own [Assistant Labs](https://assistantlabs.io) workspace, so it
+Use it for WhatsApp Business automation, customer support, lead follow-up,
+booking appointments, and recovering abandoned carts, all from one place.
+
+**Ask Claude things like**
+
+- "Who is waiting for a reply?"
+- "Which leads went cold this week?"
+- "Fill Thursday's empty appointment slots."
+- "Write this week's posts and an email campaign for the new collection."
+- "What are customers asking about most?"
+
+**Built for** small businesses, online stores (Shopify) and agencies.
+
+It runs on your own [AssistantLabs](https://assistantlabs.io) workspace, so it
 reaches the channels and apps your business already uses: WhatsApp, email, your
 website chat, your store, your CRM, your task board.
 
@@ -15,36 +29,34 @@ website chat, your store, your CRM, your task board.
 
 ## Install
 
-Two commands, in this order. The first tells Claude where to look; the second
-installs from there.
+Add **AssistantLabs** from the Claude plugin directory (claude.ai, Cowork or
+Claude Code), or from the command line:
 
 ```
-/plugin marketplace add Assistant-Labs/claude-plugin
+claude plugin marketplace add Assistant-Labs/claude-plugin
+claude plugin install assistantlabs@assistantlabs
 ```
-
-```
-/plugin install assistantlabs@assistantlabs
-```
-
-Works in Claude Code, Claude Desktop and claude.ai. If `/plugin install` says it
-cannot find it, the first command has not been run in this session.
-
 
 Then, in the folder you want to run your business from:
 
 ```
-/assistantlabs
+/al
 ```
 
 That is the only command you have to remember. It works out where you are —
 brand new, half set up, or running for months — and takes you one step forward.
 
-On a first run it connects your Assistant Labs workspace: you sign in, you tick
-which permissions it gets, and **no key or password is ever pasted anywhere**.
-Then it goes and learns your business from your real data before it asks you a
-single question.
+On a first run it shows what your assistant can do, and you connect your
+AssistantLabs workspace once: add the connector on claude.ai, sign in, and tick
+the products you want. Claude Code picks the same connector up from your
+claude.ai account. **No key or password is ever pasted anywhere.** Then it walks
+you through setup — your business, your channels, your tools — one step at a
+time.
 
-**No Assistant Labs account yet?** Say so and it will point you at the sign-up
+The plugin carries one small login-free connection, so you can reach our support
+before you sign in. It never sees your workspace.
+
+**No AssistantLabs account yet?** Say so and it will point you at the sign-up
 and wait. It will never create an account for you or ask for a password.
 
 ---
@@ -54,20 +66,23 @@ and wait. It will never create an account for you or ask for a password.
 | | |
 |---|---|
 | `/al` | **Start here.** Set up, or pick up where you left off |
-| `/al-login` | Connect Assistant Labs — and check the connection really works |
-| `/al-setup` | The setup steps on their own — resumes, never restarts |
-| `/al-status` | Is it set up, and what's missing |
 | `/al-brief` | What's happening right now — who's waiting, what's at risk, today's three things |
 | `/al-needs-me` | Everything waiting on your decision, one at a time, ready to approve |
 | `/al-waiting` | Every customer who hasn't been answered — with the replies already drafted |
 | `/al-leads` | Who to chase, warmest first, with what to say |
 | `/al-customer <name>` | Everything about one customer and what to do next |
 | `/al-money` | What's owed, what's at risk, what's coming in |
-| `/al-agent-review` | Where your AI answered badly this week — and the fix |
+| `/al-agent-review` | Where your assistant answered badly this week — and the fix |
+| `/al-agent-self-training` | Every night, your assistant learns from its own conversations — you approve each fix |
+| `/al-conversations` | Teach the assistant from the WhatsApp answers you have already typed |
+| `/al-daily` | Today's queue: who is waiting on you, and what is broken |
+| `/al-weekly` | The weekly review — what moved, what's at risk, what needs you |
 | `/al-report` | A written report, for you or for a customer |
 | `/al-build <what>` | Something the suite doesn't do yet |
+| `/al-integration <system>` | Connect your assistant to a system you already run |
 | `/al-remember <fact>` | Teach it something about your business |
 | `/al-autopilot` | A full unattended pass — does everything, sends nothing |
+| `/al-help` | Talk to AssistantLabs support — questions, a meeting with the team, or a person |
 
 ---
 
@@ -82,9 +97,10 @@ records straight, building itself better tools.
 a customer's phone number. Anything you could undo in a minute with nobody
 outside the business ever knowing.
 
-🔴 **It stops and asks** — *every* message to a customer, *every* shekel,
-anything you can't undo, anything that changes what someone is charged. Every
-time. An approval yesterday is not an approval today.
+🔴 **It stops and asks** — *every* message to a customer, *every* public post
+and email campaign, *every* shekel, anything you can't undo, anything that
+changes what someone is charged. Every time. An approval yesterday is not an
+approval today.
 
 When you're not there, it reaches you **on WhatsApp** — from your own business
 number, the one you already use — with the finished thing and two buttons.
@@ -107,19 +123,19 @@ It will never send a message because nobody was around to say no.
 
 ## The memory
 
-Assistant Labs keeps what it knows about your business in your workspace — plain
+AssistantLabs keeps what it knows about your business in your workspace — plain
 markdown pages you can read and edit, stored with your account rather than on one
 computer, so it still knows you from a new laptop and when it runs while you sleep:
 
 `business` · `voice` · `policies` · `people` · `offers` ·
 `customers` · `decisions` · `stack`
 
-The important one is `voice`. Assistant Labs learns how *your people* actually write
+The important one is `voice`. AssistantLabs learns how *your people* actually write
 to customers — real sentences from your real replies — so drafts sound like the
 business and not like a chatbot.
 
 Tell it something once (`/al-remember we don't deliver on Saturdays`) and it lands
-in the right file with the date, in your words, and it fixes your AI agent's
+in the right file with the date, in your words, and it fixes your assistant's
 knowledge if that was wrong too.
 
 ---
@@ -132,7 +148,7 @@ with the four lines that matter — and anything that needs you comes with
 buttons.
 
 ```
-/schedule weekdays at 08:30 → /brief morning
+/schedule weekdays at 08:30 → /al-brief morning
 ```
 
 Set up when you're ready — it's optional, like the brief itself: it creates two
@@ -148,9 +164,9 @@ operator.
 | Setting | Default | |
 |---|---|---|
 | Autonomy | `standard` | `supervised` asks before anything at all leaves the building |
-| MCP host | Assistant Labs production | Only change for staging or self-hosted |
+| MCP host | AssistantLabs production | Only change for staging or self-hosted |
 
-What it knows about your business lives in your Assistant Labs workspace, not on
+What it knows about your business lives in your AssistantLabs workspace, not on
 this computer — so it still knows you from a different machine, and when it runs
 overnight with nobody there.
 
@@ -158,27 +174,23 @@ overnight with nobody there.
 
 ## What you need
 
-- An [Assistant Labs](https://assistantlabs.io) account. Free to start. **Don't
+- An [AssistantLabs](https://assistantlabs.io) account. Free to start. **Don't
   have one? Run `/al` anyway** — it walks you through it and picks up
   on its own once you're in.
-- An agent, and at least one channel your customers actually use — WhatsApp,
+- An assistant, and at least one channel your customers actually use — WhatsApp,
   email, or your website chat. It handles it if you have neither.
 - Claude Code, Claude Desktop, or claude.ai.
 
 Setup takes a few minutes and **can be interrupted**. Stop halfway, come back
-tomorrow, and it resumes rather than starting over. `/al-status` tells you where you
-stand at any point.
+tomorrow, and `/al` resumes rather than starting over — setup lives in your
+workspace, so the app shows the same progress.
 
-**Several of the steps are optional** — the number it reaches you on, the
-WhatsApp templates, who else works with you, the scheduled brief. Say no to any
-of them and setup is still finished; nothing will nag you about it again.
+Built by [AssistantLabs](https://assistantlabs.io).
 
 ---
 
-## Codex and ChatGPT
+## Codex
 
-The same operator, built for OpenAI's tools, is in
+The same operator, built for OpenAI Codex, is in
 [`plugins/assistantlabs-codex`](plugins/assistantlabs-codex). Its README has the
 install steps.
-
-Built by [Assistant Labs](https://assistantlabs.io).

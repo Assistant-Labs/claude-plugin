@@ -1,21 +1,18 @@
 ---
 name: getting-started
 description: >
-  Onboarding from wherever they actually are — including no Assistant Labs
-  account, no agent, no connected channel, and no conversation history yet. The
-  setup state file, what to do at each dead end, and how to give a brand-new
-  business a real first result. Read at the start of /setup and /status, and any
-  time a connector, an agent, a channel or a customer history turns out to be
-  missing.
+  Onboarding from wherever they actually are — no AssistantLabs account, no
+  agent, no connected channel, no conversation history yet. What to do at each
+  dead end, and how to give a brand-new business a real first result. Read from
+  the `start` skill, and any time a connection, an agent, a channel or a customer history
+  turns out to be missing.
 ---
 
 # Getting started
 
-**The `start` skill is the front door** — the one command a business owner has to
-remember. It reads the state, works out which of the situations below they are
-in, and takes them one step forward. The `setup` skill runs the steps themselves and
-the `status` skill reports without changing anything; both are for people who want them,
-not things anyone must learn.
+**The `start` skill is the only start command.** It checks where they are with
+`get_workspace_setup`, shows the card, and takes them one step forward. This
+skill is what each of those steps needs to get right.
 
 Most onboarding is written for the customer you already have. This one has to
 work for the person who found a plugin in a marketplace on a Tuesday night, has
@@ -26,88 +23,43 @@ full of unanswered messages.
 ask that the data could have answered is a question that makes them feel like
 they are filling in a form.
 
-## The state file
+## Where setup lives
 
-`.assistantlabs/setup.json`, in their project. The `setup` and `status` skills
-write it, and it is read back at the start of the next session. It exists because setup is long, gets
-interrupted, and **must never restart from the top.**
+**In the workspace, not on this machine.** Setup is the app's own four steps —
+connect your AI, tell us about the business, pick your channels, pick your
+tools — and `get_workspace_setup` returns them, with what is still open and a
+link to each. Finish a step here and it is ticked in the app; finish it in the
+app and the next the `start` skill already knows. That is what lets setup stop and resume
+on any device, and never restart from the top.
 
-```json
-{
-  "assistantId": "assistant_…",
-  "assistantName": "Ori's Lighting",
-  "updatedAt": "2026-08-18T09:00:00.000Z",
-  "steps": {
-    "account": true,        "connected": true,
-    "agent": true,          "channels": true,
-    "memory": true,
-    "ownerNumber": true,    "templates": false,
-    "roles": "skipped",     "brief": false
-  },
-  "notes": "Templates submitted 18/8, waiting on Meta. They said the roles thing isn't relevant — one-person business."
-}
-```
+**After they connect, the order is fixed** (the `start` skill has the words): learn the
+business from every source at once → pick the channels → pick the tools →
+connect each pick, one at a time, in the connect window → set up every module
+from what is now connected, wired to the agent and to each other → test it,
+and close. Nothing gets connected while they are still picking.
 
-**Write it the moment a step becomes true**, not at the end. A crash between
-step 3 and step 8 must not lose steps 1–3.
+**Back from the connect window, read it, never ask.** `get_workspace_setup`'s
+`picked` says where every pick stands (connected, open, skipped, stuck with
+their note) and `toolRequests` what they asked us to support. The `start` skill has how to
+say it, and the fix for each stuck screen.
 
-**Only record a step as done when it is verifiably done.** `templates: true`
-means Meta approved them, not that they were submitted. An optimistic file is
-worse than no file: the next session skips a step that never happened, and the
-failure shows up when the owner is counting on a message arriving.
-
-### Required, optional, and the third state
-
-**Five steps are required** — `account`, `connected`, `agent`, `channels`,
-`memory`. Without them the operator cannot run the business at all, and setup is
-genuinely unfinished until each is `true`.
-
-**Four are optional** — `ownerNumber`, `templates`, `roles`, `brief`. They are
-real value and worth offering, and a business is entirely free to decline them.
-**Setup is complete without them.**
-
-Each step has three states:
-
-| Value | Means |
-|---|---|
-| `true` | done, verifiably |
-| `"skipped"` | offered, and they said no |
-| absent | never offered |
-
-**`"skipped"` is the one that earns its keep.** Without it an optional step
-either gets asked every single session — which is nagging — or gets offered once
-and forgotten. It only settles an OPTIONAL step; on a required one it still reads
-as outstanding, because declining an account does not produce a working operator.
-
-**Never mark a step `"skipped"` on your own.** It records that a person was asked
-and declined. Recording it because the moment did not come up is how a business
-silently never gets offered the thing that would have helped most.
-
-**`notes` is for the human**, and for the next session — one line about what is
-in flight and why.
+**Only call a step done when the call that does it came back.** An optimistic
+answer is worse than none: the next session skips a step that never happened.
 
 ## The five places people actually are
 
-### 1. No Assistant Labs account (or nothing authorised yet)
+### 1. Not connected yet
 
-The main connection will not authorise, because there is nothing to authorise
-against. **A tool call failing here is the answer, not an error to report** — it
-means they have not connected, which is the expected state on a first run.
+`get_workspace_setup` fails or is not there. **That is the answer, not an error
+to report** — it is the expected state on a first run. The `start` skill shows the welcome
+and the connect step.
 
-**Start anyway — sign-in is not the first step.** The login-free AssistantLabs
-connection works with no account: it reads their website, builds their agent
-while they sign in (`site-reader`), and reaches our support (the `help` skill). The `start` skill
-runs it in order — welcome, their business and website, connect, and their
-agent waiting for them when they come back.
+**They create the account themselves**, on the sign-in screen the connector
+opens ("sign up free"). Never offer to create an account, and never take a
+password — that is theirs, and it stays theirs.
 
-**They create the account themselves**, on the sign-in screen the connect steps
-open ("sign in, or sign up — it's free"). Never offer to create an account, and
-never take a password — that is theirs, and it stays theirs. Record
-`account: true` once `list_assistants` answers.
-
-**If they do not want to sign up right now**, say plainly what waits for them —
-the agent built from their site keeps for a week — put it down, and leave the
-state file so it resumes cleanly. Do not sell.
+**If they do not want to connect right now**, say in one line what is waiting
+for them and put it down. Do not sell.
 
 ### 2. Account, but no agent
 
@@ -116,15 +68,9 @@ state file so it resumes cleanly. Do not sell.
 An agent is the thing that answers their customers, so this is the real first
 step, not an administrative one.
 
-**A draft is waiting more often than not.** If their site was read before they
-signed in, `.assistantlabs/setup.json` holds `draft.claimCode`, and
-`claim_agent_draft` turns it into their agent in one call — knowledge, language,
-a first guess at the voice, and a public link to try it. That is the `start` skill Step 3.
-
-**No draft: make it here** — `create_agent` mints the same record the app's
+**Make it here** — `create_agent` mints the same record the app's
 onboarding does, and a hosted plugin cannot open a browser on their machine to
-reach that onboarding anyway. Bind to it and record `agent: true` with its id
-and name.
+reach that onboarding anyway. Bind to it.
 
 **Ask where it can learn, not for answers.** Create the agent, then offer the
 doors — the `website` skill, the `document` skill, the `interview` skill, and the `conversations` skill
@@ -141,9 +87,9 @@ fails with a quota error; that is when you say so plainly, rather than retrying.
 **An agent with the default persona is not finished.** `toneAndStyle` empty and
 `assistantGender: 'plural'` is what a brand-new agent ships with. It fails
 silently: everything looks configured, the agent replies, and it sounds like
-nobody. A draft carries a first guess from how their site talks; the owner's own
-line refines it — **after** they have tried the agent, never before (it is a step
-in `onboarding-plan`), and before real customers reach it. Check it in the
+nobody. A first guess comes from how their site talks; the owner's own line refines
+it — **after** they have tried the agent, never before, and before real
+customers reach it. Check it in the
 config, not in your memory of having asked.
 
 **Finish the agent before mentioning a channel.** `business` AND `faq`, plus
@@ -155,7 +101,7 @@ customers in front of an agent that cannot help them.
 
 **Walking them into the app is the fallback, not the default.** Take it only
 when `create_agent` is genuinely absent — an older connection, or `agent:create`
-not granted on the consent screen. Offer `codex mcp login assistantlabs` first.
+not granted on the consent screen. Offer to reconnect and tick Agents first.
 
 ### 3. Agent, but no channel connected
 
@@ -231,7 +177,7 @@ live conversations have nothing to read.
 ### 5. Several agents
 
 `list_assistants` returns more than one. Ask once which business this project is
-about, bind it, and record it. Never guess from the name, and never operate two
+about, and bind it. Never guess from the name, and never operate two
 in one project — the memory, the board and the owner's number all belong to one
 business.
 
@@ -257,9 +203,9 @@ business rather than a tutorial.
 - **Do not run the whole thing as a questionnaire.** Six questions in a row is a
   form. Ask two, do some work, ask two more.
 - **Do not block on Meta.** Template review takes minutes to hours. Say so, move
-  on, record it in `notes`, and finish the rest.
-- **Do not repeat what a previous session already established.** That is what
-  the state file is for, and re-asking is the single most annoying thing this
-  design exists to prevent.
+  on, and finish the rest.
+- **Do not repeat what a previous session already established.** The workspace
+  already knows, and re-asking is the single most annoying thing this design
+  exists to prevent.
 - **Do not claim setup is complete while a step is outstanding.** Say what is
   done, what is not, and what it costs them until it is.

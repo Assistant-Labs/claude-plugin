@@ -106,5 +106,5 @@ In Hebrew:
 > 🔗 **[לקביעת פגישה עם הצוות](https://booking.assistantlabs.io/book/assistantlabs)**
 > ✉️ **support@assistantlabs.io**
 
-Mention `/al-login` after the doors, once, and only if the connection is the
+Mention `/al` after the doors, once, and only if the connection is the
 thing they want fixed.

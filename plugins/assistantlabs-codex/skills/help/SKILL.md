@@ -108,5 +108,5 @@ In Hebrew:
 > 🔗 **[לקביעת פגישה עם הצוות](https://booking.assistantlabs.io/book/assistantlabs)**
 > ✉️ **support@assistantlabs.io**
 
-Mention `codex mcp login assistantlabs` after the doors, once, and only if the connection is the
+Mention the `start` skill after the doors, once, and only if the connection is the
 thing they want fixed.

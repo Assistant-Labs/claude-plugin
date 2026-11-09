@@ -19,7 +19,7 @@ value — not a nightly sync, not a report.
 **A workspace, and a paying account.** This builds against their live systems
 and puts a new tool in front of real customers; it is not part of a free trial.
 
-- **Check before you build, not after.** No workspace → the `setup` skill. Not on a
+- **Check before you build, not after.** No workspace → the `start` skill. Not on a
   paid plan → say so once, plainly, name what it would let them do, and stop.
   Never half-build it and hold it hostage.
 - **The check is not enforceable in the tools yet.** Until it is, ask, take

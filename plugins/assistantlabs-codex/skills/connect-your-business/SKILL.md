@@ -12,8 +12,8 @@ description: >
 # Connecting the business
 
 The operator does not hold the business's data or credentials. It works through the
-business's own Assistant Labs workspace over three remote connectors, and the
-owner authorises each one by signing in — **no key is ever pasted, copied, or
+business's own AssistantLabs workspace over one remote connector, and the
+owner authorises it by signing in — **no key is ever pasted, copied, or
 stored in a file.**
 
 ## One connector, five products
@@ -45,12 +45,12 @@ before anything works is the tax this replaced.
 
 ## Connecting
 
-1. `codex mcp login assistantlabs` connects. The `setup` skill walks the whole
-   thing.
-2. Codex opens the Assistant Labs sign-in. The owner signs in as themselves.
-3. A consent screen lists **which agent** and **which permissions**. They tick
-   and approve.
-4. Done. The grant belongs to their organisation and they can revoke it any time
+1. `codex mcp login assistantlabs` connects; the `start` skill hands it over.
+2. Codex opens the AssistantLabs sign-in. The owner signs in, or signs up free,
+   as themselves.
+3. The consent screen lists **which agent** and **which products**. They tick
+   and approve, then say **done**.
+4. The grant belongs to their organisation, and they can revoke it any time
    from **Account → Developers → Connected apps**.
 
 An API key still works and is fully supported (some connector UIs need one) —

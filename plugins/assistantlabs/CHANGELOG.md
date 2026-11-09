@@ -1,5 +1,41 @@
 # Changelog
 
+## 0.19.0 — 2026-11-09
+
+- **`/al` is the one way in.** Connect once through Claude's own sign-in
+  (`/mcp` in Claude Code); no second or third approval screen. `/al-login`,
+  `/al-setup` and `/al-status` are gone — `/al` does all three.
+- **A clearer approval page.** Name your business and say what Claude should
+  do first, pick the products, then the agents, and finish back in Claude
+  with prompts ready to paste.
+- **Book the free integration meeting while you wait.** Pick a time right on
+  the approval page, shown in your own time zone (change it if you're
+  travelling).
+- **Set up in one fixed order.** Claude learns the business from everything
+  it can see, you pick channels and tools once, then connect them one at a
+  time in a single window — WhatsApp first, then your store.
+- **Stuck? Say why.** "I'm stuck" takes a note, and Claude reads it back and
+  tells you the fix. Missing a tool? Suggest it from the same window.
+- **Then the workspace builds itself from what you connected**, gets tested in
+  the agent's test chat, and ends with things to try over your trial and a
+  link to see it all in the app.
+- **Approvals cover the connector too.** Nothing reaches a customer without
+  your yes, now also when you connected through claude.ai.
+
+## 0.18.0 — 2026-10-25
+
+- **A landing page from a sentence.** Say what the page is for — "a page for
+  the summer teeth-whitening offer" — and you get a draft in your brand
+  colours, in Hebrew or English, with a preview link you can open on your
+  phone. Nothing is public yet.
+- **Change it in your own words.** "Shorter headline", "add a question about
+  parking", "the price is ₪149" — and the preview shows it straight away.
+- **Live only when you say so.** Publishing always stops for your yes, after
+  you have seen the preview. `/al-landing` runs the whole thing.
+- **Every lead goes somewhere.** Connect your agent and each form becomes a
+  contact in your CRM, and the WhatsApp buttons open a chat your agent
+  answers. "Who signed up on the page?" is answered from the real list.
+
 ## 0.17.0 — 2026-10-19
 
 - **Your money in the morning brief.** Connect your invoicing system (Morning /

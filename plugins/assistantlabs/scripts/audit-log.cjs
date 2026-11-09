@@ -42,18 +42,29 @@ const RECORDED = new RegExp(
 		'send_campaign_test_email',
 		'publish_post',
 		'retry_failed_channels',
-		// The business's website going live.
+		// The business's website going live, and a landing page going live.
 		'publish_site_change',
+		'publish_landing_page',
 		'(?:launch|activate|pause)_ad',
 		'(?:create|update)_instagram_automation',
 		'update_follow_up',
 	].join('|'),
 );
+const EXACT = new RegExp(`^(?:${RECORDED.source})$`);
+const GENERIC = new Set(['send_email', 'send_message', 'create_task', 'update_task']);
 
 try {
 	const payload = JSON.parse(fs.readFileSync(0, 'utf8'));
 	const tool = payload.tool_name || '';
-	if (!RECORDED.test(tool)) process.exit(0);
+	// The connector's tools carry its id, not our name (see guard-outbound.cjs):
+	// off our server, record a tool only by its exact name, and never the
+	// generic ones another connector's Gmail or task board also has.
+	const short = tool.split('__').pop();
+	const ours = /assistant_?labs/i.test(tool.split('__')[1] || '');
+	const recorded = ours
+		? RECORDED.test(tool)
+		: !GENERIC.has(short) && EXACT.test(short);
+	if (!recorded) process.exit(0);
 
 	const dir = path.join(payload.cwd || process.cwd(), '.assistantlabs');
 	fs.mkdirSync(dir, { recursive: true });

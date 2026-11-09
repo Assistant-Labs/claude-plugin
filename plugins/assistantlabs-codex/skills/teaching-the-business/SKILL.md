@@ -25,6 +25,12 @@ values — the right price, the right hours, the answer they are tired of typing
 | A document they already send people | The `document` skill | `file` | price lists, menus, the PDF for new customers |
 | Asking them | The `interview` skill | `interview` | no site, nothing written down |
 
+**And what the operator already knows.** Its memory of the user, the project's
+files and instructions, earlier messages: often the business name, the site,
+what they sell. In the `start` skill it is the first source, before anything is asked. Show
+it as a draft, write only what they confirm, and record it as `interview`
+(*"What the operator already knew, 8 Nov"*). Pasted text is a document: `file`.
+
 They stack. A site plus twenty minutes of questions beats either alone, and the
 second route is not a repair of the first.
 
@@ -163,8 +169,10 @@ somebody's business, and they find out from a customer.
 ## Then: what they already run
 
 Knowledge is what they *say*. Integrations are what is *happening* — the
-timetable, the orders, the stock, the sheet. Offer them right after the receipt,
-while the agent is fresh in their mind, and before any channel goes live.
+timetable, the orders, the stock, the sheet. In the `start` skill they are picked right
+after the channels are, and connected with them, one at a time, after both
+are picked. Outside the `start` skill, offer them right after the receipt, while the agent
+is fresh in their mind.
 
 **Two to four, chosen — never a list of fifteen.** Pick from what you just
 learned about them:

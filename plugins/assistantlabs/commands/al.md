@@ -1,288 +1,473 @@
 ---
-description: Start here — set up your business, or pick up where you left off
+description: Start here — connect your business, set it up, or pick up where you left off
 argument-hint: "[what you want to do]"
 ---
 
-**The front door.** Whatever state this project is in, this command works out
-where they are and takes them **one step** forward. It is the only command
-anyone should have to remember.
+**The only start command.** Whatever state they are in, this works out where
+they are and takes them one step forward. There is no other setup command.
 
-`$ARGUMENTS` may already say what they want ("connect my whatsapp", "who hasn't
-been answered") — if so, do that and skip the tour.
+`$ARGUMENTS` may already say what they want ("connect my whatsapp", "who owes
+me money") — once they are connected, do that and skip the tour.
 
 ---
 
-## One step at a time — the whole design
+## How it talks
 
-- **Every message is one step and ends in one ask.** Then stop and wait. The
-  welcome, the connect steps and the plan each look like a lot; each is still
-  one thing to read and one thing to answer.
-- **The set pieces below are written. Use them word for word**, in English or in
-  Hebrew. Never translate one on the fly — live-translated Hebrew reads
-  translated, which is the first impression this command exists to avoid.
-- **Language:** before they are connected, mirror them — Hebrew in, Hebrew out,
-  from the first word. Once connected, `get_agent_language` is the authority.
-- **Every link is a titled link.** Never a bare URL. Screens and their exact
+- **One step per message, one ask at the end.** Then stop and wait.
+- **The set pieces below are locked. Use them word for word**, in English or
+  Hebrew. Never translate one on the fly.
+- **Language:** before they connect, mirror them — Hebrew in, Hebrew out. After,
+  `get_agent_language` decides.
+- **Every link is a titled link**, never a bare URL. Screens and their
   addresses are in `opening-the-app`.
-- **Never show the checklist, never narrate tool calls, never say "OAuth",
-  "MCP", "connector scope" or "draft".** They see a welcome, a question, a door,
-  and then their agent.
+- **Never say "OAuth", "MCP", "scope", "token" or "draft".** They see a
+  welcome, a card, and one step at a time.
 
 ---
 
 ## First: where are they? Silently.
 
-One pass, before saying anything. **Probe — never infer.** The only evidence of
-a connection is a call you just made; a session notice or a missing tool is not.
+Call `get_workspace_setup`. Only a call you just made is evidence — never a
+session notice, never a missing tool.
 
-| Check | Tells you |
+| What comes back | Go to |
 |---|---|
-| `list_assistants` | whether they are signed in, and whether they have an agent |
-| `.assistantlabs/setup.json` | a draft already built (`draft.claimCode`), a plan already running (`plan`) |
-| whether `read_business_website` is in your tools | whether the login-free AssistantLabs connection is here, so you can build before sign-in |
-
-| State | Where they go |
-|---|---|
-| Not signed in, nothing started | **Step 1** |
-| Not signed in, a draft already built | **Step 2** — skip the question; *"your agent is ready — one step left"* |
-| Signed in, a draft not yet claimed | **Step 3** |
-| Signed in, no agent, no draft | **Step 1** with the connection line reading ✅, then build and claim at once |
-| Signed in, agent built, `plan` open | `onboarding-plan` — resume at the first open step, one line on where you are |
-| Signed in, set up | **Coming back** below |
+| The call fails, is unauthorised, or the tool isn't here | **Welcome** |
+| Connected, setup not finished | **The card**, then the first open step |
+| Connected, setup finished | **Coming back** |
 
 ---
 
-## Step 1 · Welcome
+## Welcome — not connected
 
-**Their first minute with the product.** Word for word:
+Word for word:
 
-> 👋 **Welcome to AssistantLabs.**
-> **Your whole business, run from this chat.**
+> 👋 **Your personal assistant for business.**
+> Customers, sales, marketing and money, all run from this chat.
 >
-> ✅ **Every customer answered**: WhatsApp, Instagram and your website, day and night
-> ✅ **Every booking handled**: customers book and reschedule on their own
-> ✅ **Every lead followed up**: no quote or abandoned cart goes cold
-> ✅ **Every issue tracked**: support tickets, until they're solved
-> ✅ **Every customer remembered**: a CRM that fills itself from your chats
-> ✅ **Your marketing working**: strategy, social, email, ads and a creative studio
+> **Once you're connected, just ask:**
+> › *"Build an agent from my website that answers WhatsApp and Instagram 24/7"*
+> › *"Send a WhatsApp reminder to everyone who left a cart"*
+> › *"Let customers book appointments in the chat"*
+> › *"Make a landing page for my summer offer"*
+> › *"Who owes me money?"*
 >
-> 📱 **You stay in charge.** Anything important reaches you, one tap to approve.
+> Agents · Sales · Marketing · CRM · Helpdesk · Finance · Booking · Landing pages · Call center. One assistant, one CRM.
 >
-> 💜 **You're not alone.** Every new business gets a free integration meeting with our team. Say the word and I'll book it right here.
+> 💜 **Let us be your AI team.** In a free integration meeting we set up your whole workspace with you: your channels, your tools, your agent and your first automations. **[Book it →](https://booking.assistantlabs.io/book/assistantlabs)**
 >
-> ⏳ Checking your connection… ⚪ Not connected yet. That comes in a minute.
->
-> **Let's start with you: what's your business called, what do you sell, and what's your website?**
+> **Connect, 2 minutes:** **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)** → **+** → **Add custom connector** → paste:
+> ```
+> https://mcp.assistantlabs.io/mcp
+> ```
+> Sign up free (14 days, no card), tick what you want, and say **done**.
 
 In Hebrew:
 
-> 👋 **ברוכים הבאים ל-AssistantLabs.**
-> **כל העסק שלכם, מנוהל מהצ׳אט הזה.**
+> 👋 **העוזר האישי של העסק שלכם.**
+> לקוחות, מכירות, שיווק וכסף, הכול מנוהל מהצ׳אט הזה.
 >
-> ✅ **כל לקוח מקבל מענה**: בוואטסאפ, באינסטגרם ובאתר, יום ולילה
-> ✅ **כל תור מטופל**: לקוחות קובעים ומזיזים תורים בעצמם
-> ✅ **אף ליד לא נופל בין הכיסאות**: הצעות מחיר ועגלות נטושות לא מתקררות
-> ✅ **שום פנייה לא הולכת לאיבוד**: פניות שירות, מהפתיחה ועד הפתרון
-> ✅ **אף לקוח לא נשכח**: CRM שמתמלא לבד מהשיחות שלכם
-> ✅ **השיווק שלכם עובד**: אסטרטגיה, רשתות חברתיות, מיילים, מודעות וסטודיו קריאייטיב
+> **אחרי שמתחברים, פשוט מבקשים:**
+> › *"תבנה לי סוכן מהאתר שעונה בוואטסאפ ובאינסטגרם 24/7"*
+> › *"תשלח תזכורת בוואטסאפ לכל מי שהשאיר עגלה"*
+> › *"שהלקוחות יקבעו תורים בצ׳אט"*
+> › *"תבנה לי דף נחיתה למבצע הקיץ"*
+> › *"מי חייב לי כסף?"*
 >
-> 📱 **אתם בשליטה.** כל מה שחשוב מגיע אליכם, לאישור בלחיצה אחת.
+> סוכנים · מכירות · שיווק · CRM · מוקד שירות · כספים · תורים · דפי נחיתה · מוקד טלפוני. עוזר אחד, CRM אחד.
 >
-> 💜 **אתם לא לבד.** כל עסק חדש מקבל פגישת הטמעה חינם עם הצוות שלנו. רק תגידו, ואקבע אותה כאן.
+> 💜 **תנו לנו להיות צוות ה-AI שלכם.** בפגישת הטמעה בחינם אנחנו מקימים איתכם את הכול: הערוצים, הכלים, הסוכן והאוטומציות הראשונות. **[לקביעת פגישה ←](https://booking.assistantlabs.io/book/assistantlabs)**
 >
-> ⏳ בודק את החיבור… ⚪ עוד לא מחוברים. נגיע לזה עוד רגע.
->
-> **נתחיל מכם: איך קוראים לעסק, מה אתם מוכרים, ומה כתובת האתר?**
+> **מתחברים בשתי דקות:** **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)** ← **+** ← **Add custom connector** ← הדביקו:
+> ```
+> https://mcp.assistantlabs.io/mcp
+> ```
+> הירשמו בחינם (14 יום, בלי כרטיס אשראי), סמנו מה אתם רוצים, וכתבו **סיימתי**.
 
-**The ⏳ line is the probe's real result**, never decoration. Already signed in:
-*"⏳ Checking your connection… ✅ Connected: <workspace>."* (Hebrew: *"⏳ בודק את
-החיבור… ✅ מחוברים: <workspace>."*).
+**The same message on every surface** — claude.ai, the desktop app, Cowork and
+Claude Code. Claude Code loads the connector from their claude.ai account; the
+plugin has no connection of its own to sign in. The one exception (Claude Code
+on an API key) is in `connect-your-business`, and only when they say so.
 
 **"Book the meeting"**, now or at any step: `ask_assistantlabs_support` with
-*"I'd like to book the free integration meeting"* — our own support agent books
-it right in this chat. If that tool is not here, hand over
-**[Book your free meeting →](https://booking.assistantlabs.io/book/assistantlabs)**.
-Either way, then carry on where they were.
-
-**When the meeting comes up again on its own** — setup done, or stuck — and
-what to do with *"don't remind me"*: `onboarding-plan` §9. Nowhere else.
-
-**No website?** That's most small businesses, not the sad case. Skip the read,
-go to Step 2, and after they connect teach the agent with `/al-document` or
-`/al-interview` instead of the surprise.
+*"I'd like to book the free integration meeting"* — our support agent books it
+in this chat. Without that tool, the **Book it** link. Then carry on where they
+were.
 
 ---
 
-## Step 2 · Connect — while the site is read in the background
+## On "done"
 
-**Start the read first, then send the message.** They should never wait for it.
+Call `get_workspace_setup` again.
 
-- **In Claude Code:** launch the `site-reader` agent **in the background** with
-  their business name, what they sell, the website and their language. It reads
-  the site, builds the agent and saves it, and leaves the claim code in
-  `.assistantlabs/setup.json`.
-- **Where there are no background agents** (claude.ai, Cowork): send the
-  message below first, then in the same turn do what `site-reader` does — read
-  with `read_business_website`, build the agent per `teaching-the-business`,
-  save it with `save_agent_draft`, and keep the claim code. Silently.
-- **No login-free connection here** (`read_business_website` missing): send the
-  message anyway. After sign-in, build the agent with `read_website` and
-  `create_agent` per `teaching-the-business`, then go on from Step 3.
-
-Word for word — the connect steps for claude.ai:
-
-> ✅ **<Business name>**: <what they sell, in their words>. Got it.
->
-> 📖 I'm reading **<website>** in the background, so we can get to know your business while we set you up.
->
-> **Next: connect your AssistantLabs account.** About two minutes.
->
-> **1.** Open **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)**
-> **2.** Click **+**, then **Add custom connector**
-> **3.** Paste this and click **Add**:
-> ```
-> https://mcp.assistantlabs.io/mcp
-> ```
->
-> You'll sign in (or sign up, it's free) and see everything we do. **Tick what you need.** You can change it any time.
->
-> Then come back and say **done**. I'll have something ready for you.
-
-In Hebrew (the interface labels stay English — that is what is on their screen):
-
-> ✅ **<שם העסק>**: <מה הם מוכרים, במילים שלהם>. קיבלתי.
->
-> 📖 אני קורא את **<האתר>** ברקע, כדי שנכיר את העסק שלכם בזמן שאנחנו מחברים אתכם.
->
-> **הצעד הבא: חיבור החשבון שלכם ב-AssistantLabs.** בערך שתי דקות.
->
-> **1.** פתחו את **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)**
-> **2.** לחצו על **+** ואז על **Add custom connector**
-> **3.** הדביקו את הכתובת הזאת ולחצו **Add**:
-> ```
-> https://mcp.assistantlabs.io/mcp
-> ```
->
-> תתבקשו להתחבר (או להירשם, זה בחינם) ותראו את כל מה שאנחנו עושים. **סמנו את מה שאתם צריכים.** אפשר לשנות בכל רגע.
->
-> אחר כך חזרו לכאן וכתבו **סיימתי**. יחכה לכם כאן משהו.
-
-**In a Claude Code terminal**, replace the three numbered steps with the
-terminal sign-in in `/al-login` — the rest of the message stays.
-
-**The consent screen does the product tour.** It shows every product with what
-it does for them, and they tick what they need; Tasks is always included. Do not
-pre-explain it, and never tell them what to tick — the site read never reaches
-that screen.
+- **Not connected:** one line — the **Add** didn't go through, or the sign-in
+  was left half-way. Offer the same step once. Do not theorise. In Claude Code a
+  connector added mid-session may need a fresh session to appear — say so in
+  one line if they added it and the call still isn't here.
+- **Connected:** the card. If the connect window was the last thing handed
+  over, **Back from the connect window** (step 4) instead.
 
 ---
 
-## Step 3 · The surprise
+## The card
 
-On **done**:
+Setup is the app's own four steps, in the app's own words — finish one here and
+it is ticked in the app, and the other way round. Everything on the card comes
+from `get_workspace_setup`; never draw a line the call did not return.
 
-1. **`list_assistants`.** Not signed in yet → one line: the **Add** did not go
-   through or the sign-in was left half-finished; offer the same steps once
-   more. Do not theorise.
-2. **The draft.** Claude Code: if `site-reader` has not reported yet, say
-   *"Almost there — finishing your agent"* and wait for it. Its report says
-   `saved`, the `claimCode` and the `platform`.
-3. **`claim_agent_draft`** with the claim code. It creates the agent, writes
-   everything the site taught it, switches on its public chat page and returns
-   `chatLink`.
+| # | English | Hebrew |
+|---|---|---|
+| 1 | Connect your AI | חברו את ה-AI שלכם |
+| 2 | Tell us about the business | ספרו על העסק |
+| 3 | Pick your channels | בחרו ערוצים |
+| 4 | Pick your tools | בחרו כלים |
 
-Then word for word — `<products>` is what they ticked (the products whose
-tools this connection carries), named as the sign-in screen names them, `<what it knows>` one clause from what was
-written, in their words:
-
-> ✅ **You're in: <Business name>.** <Products> are switched on.
+> ✅ **Connected: <workspace>** · <plan, or "trial, N days left"> · setup <done> of 4
+> **Your modules:** <the products they ticked, in the welcome's order>
 >
-> 🎁 **And your agent is already waiting for you.**
-> While you were signing in, I read your whole site and built an agent that knows <what it knows>.
+> ✅ Connect your AI
+> ⚪ Tell us about the business
+> ⚪ Pick your channels
+> ⚪ Pick your tools
 >
-> 🔗 **[Chat with your agent →](<chatLink>)**
-> Open it and ask what a customer would. Your real customers won't see it until you decide where it goes live.
->
-> **Try it, then tell me how it did.**
+> **Next: <the first open step>.** <that step's one ask>
 
-In Hebrew — the product names exactly as the sign-in screen shows them: סוכני AI, תורים, מכירות, מוקד שירות AI, CRM, שיווק:
-
-> ✅ **אתם בפנים: <שם העסק>.** <המוצרים> מופעלים אצלכם.
->
-> 🎁 **והסוכן שלכם כבר מחכה לכם.**
-> בזמן שהתחברתם, קראתי את כל האתר ובניתי סוכן שמכיר את <מה הוא יודע>.
->
-> 🔗 **[דברו עם הסוכן שלכם ←](<chatLink>)**
-> פתחו אותו ושאלו מה שלקוח היה שואל. הלקוחות האמיתיים שלכם לא יראו אותו עד שתחליטו איפה הוא עולה לאוויר.
->
-> **נסו אותו, ואז ספרו לי איך הלך.**
-
-**Never claim knowledge that was not written.** `<what it knows>` comes from the
-claim's `modulesWritten` and the site read — nothing else.
-
-**When it does not go to plan — one line, then the next door:**
-
-| What happened | Say, and do |
-|---|---|
-| The site refused the read (`blocked`), or there was no website | *"Your site doesn't let me read it from here — let's do it another way."* `/al-document` or `/al-interview` |
-| The claim hit the plan's agent limit | Say plainly what it takes; do not retry |
-| `knowledgeWritten: false` | Write the returned `draft` in with `patch_agent_module` — silently — then show the surprise |
-| `accessGranted: false` | The agent exists and is theirs; reconnecting shows it. Never create another |
-| The code expired (seven days) | Read the site again and build it again — they never hear the word "draft" |
+A done step says what is there in a few words (*"✅ Tell us about the business —
+your agent learned from mayasceramics.com"*). Hebrew: the same card with the
+Hebrew step names.
 
 ---
 
-## Step 4 · Not alone, and the plan
+## After "done": the order, always
 
-They tried it. **Answer what they said first**, in one line — and if they caught
-something wrong, fix it with `patch_agent_module` before anything else, and say
-you did.
+Once they are connected, setup runs in this order and no other. Each phase
+finishes before the next one opens; a phase they skip is named as open on the
+card, never silently dropped.
 
-Then `onboarding-plan`: the meeting offer first, then the plan for **this**
-business — every step labelled with the product it sets up, ordered by how fast
-it pays off, the store first when the site read found Shopify, WooCommerce or eShop —
-then step 1. One step at a time from there.
+1. **Learn the business**: everything at once, from every source there is.
+2. **Pick the channels**: the picks only, nothing connected yet.
+3. **Pick the tools**: the picks only, nothing connected yet.
+4. **Connect them, one at a time**: every pick from 2 and 3, each checked before the next.
+5. **Set up the workspace**: the knowledge finished and every module set up from what is now connected, wired to the others.
+6. **Test it, then hand it over**: tried like a customer, fixed, and the closing.
+
+Picking everything before connecting anything is the point. They decide once,
+with the whole business in view, and then walk a list that has an end. Mixing
+"which ones?" with "now sign in to Meta" is what made setup feel endless.
+
+---
+
+## 1 · Learn the business
+
+**Start with what you already know.** Before you ask for anything, look at what
+is already in this conversation about them: Claude's memory of the user, the
+project's instructions and files, earlier messages. A business name, a website,
+what they sell, their hours, how they talk to customers. If there is something,
+open on it: *"Here's what I already know about the business: …. Right?"* Show it
+one screenful at a time, and treat it like any other source: it is a draft for
+them to correct, never a fact. Only what they confirm gets written.
+
+Then ask for everything else in one message, word for word:
+
+> **Next: tell me everything about the business.** Send any of these, as many as you have: your website, documents (price list, menu, the PDF you send customers), text you paste here, a WhatsApp chat export. Or say **ask me** and I'll ask a few questions.
+
+> **הצעד הבא: ספרו לי הכול על העסק.** שלחו כל מה שיש לכם, כמה שיותר: כתובת האתר, מסמכים (מחירון, תפריט, ה-PDF שאתם שולחים ללקוחות), טקסט שתדביקו כאן, ייצוא של צ׳אט מוואטסאפ. או כתבו **תשאל אותי** ואשאל כמה שאלות.
+
+**Sources stack. Use every one they give**, per `teaching-the-business`, in
+this order:
+
+| Source | Route | Recorded as |
+|---|---|---|
+| What Claude already knew, once they confirm it | write it in yourself | `interview`, *"What Claude already knew, <date>"* |
+| Their website | `/al-website` (`read_website`) | `url` |
+| Documents and pasted text | `/al-document` | `file`, named after the document, or *"Notes you pasted, <date>"* |
+| A WhatsApp chat export, or history already imported | `/al-conversations` | its own source, written by `save_learned_answers` |
+| Whatever is still missing | `/al-interview`, only on the gaps | `interview` |
+
+Read the website first if there is one. It gives you the real name before
+`create_agent`. Then lay each further source over it. The interview comes last
+and asks only about what nothing else covered.
+
+**Close with one receipt for all of it**, not one per source: counts per module,
+the corrections they made, the empty modules named. Then `set_agent_persona`,
+`start_business_memory`, and write what you learned about the business itself
+(who they are, who buys, how they price) into the memory pages
+(`business-memory`). Say the moment the agent exists, on its own line. Then
+the card again, step 2 ✅, with a titled link to try the agent: *"Message it
+like a customer would."*
+
+## 2 · Pick the channels
+
+> **Next: where do your customers write to you?** WhatsApp, Instagram, Messenger, your website, email. Pick all that apply.
+
+> **הצעד הבא: איפה הלקוחות כותבים לכם?** וואטסאפ, אינסטגרם, מסנג׳ר, האתר, מייל. בחרו כמה שרלוונטי.
+
+The choices are `get_workspace_setup`'s `choices.channels`. Recommend from what
+you learned: the WhatsApp number on their site, the Instagram in their footer.
+Save with `save_setup_picks` (`channels`). **Connect nothing yet.** One line:
+*"We'll connect them together in a minute."*
+
+## 3 · Pick the tools
+
+> **Next: which tools do you already use?** Here's what I'd connect, from what I learned about the business: …
+
+> **הצעד הבא: באילו כלים אתם כבר משתמשים?** זה מה שהייתי מחבר, לפי מה שלמדתי על העסק: …
+
+The choices are `get_workspace_setup`'s `choices.tools`, per module they ticked.
+**Recommend two to four, chosen**, from what step 1 found (the store on their
+site, the calendar their booking link points at). Use the table in
+`teaching-the-business`, and say in one line what you skipped and why. Save with
+`save_setup_picks` (`tools`). **Connect nothing yet.**
+
+## 4 · Connect them, one at a time
+
+Call `get_workspace_setup`. Its open tasks are the list, and its `connectUrl`
+is **the connect window**: one page that walks every one of them in order
+(channels first, WhatsApp first, then tools, the store first). Each connects
+right there or in a tab it opens, gets a ✓ the moment it is live, and the
+window moves on by itself. Hand over that one link, word for word:
+
+> **Let's connect them: 4 to go.** WhatsApp → Instagram → Shopify → Google Calendar.
+> **[Connect everything →](<connectUrl>)** One window, one at a time, and each one ticks itself off when it's on. You keep the WhatsApp Business app on your phone, same number. Stuck on one? Tell me here, or press **I'm stuck** and I'll see it. Say **done** when you're through.
+
+> **בואו נחבר: נשארו 4.** וואטסאפ ← אינסטגרם ← Shopify ← Google Calendar.
+> **[לחיבור הכול ←](<connectUrl>)** חלון אחד, אחד אחרי השני, וכל אחד מסומן לבד כשהוא מחובר. אפליקציית WhatsApp Business נשארת בטלפון, אותו מספר. נתקעתם? כתבו לי כאן, או לחצו **נתקעתי** ואני אראה. כתבו **סיימתי** כשסיימתם.
+
+**While they're in it, stay with them.** The window and this chat read the same
+workspace, so any message ("which page do I pick?", "it's asking for a business
+account") is answered for the step they are on: call `get_workspace_setup`, see
+what is still open, and answer from `opening-the-app`. Never ask which one
+they're on.
+
+### Back from the connect window
+
+Whatever they say when they come back ("done", "ok", "stuck on Instagram", a
+screenshot), **call `get_workspace_setup` first and read `picked`**: every
+channel and tool they chose, each with its `state`. Never ask what happened; it
+is all there. Then one message, in this order, and short:
+
+1. **What got connected, in one or two plain sentences.** The `connected` and
+   `handled` picks, by name: *"WhatsApp, Instagram and Shopify are connected."*
+   A `handled` one connected in its own app, so say it as connected; it is not
+   checked from here. A pick with `reconnect` was working and lost its
+   sign-in: say so, it is the one to redo first.
+2. **Each `stuck` pick: their note, quoted, then the fix for that exact
+   screen.** Concrete: what to click, what to have ready, what the error
+   means. Never "try again". Read the note for the real blocker, then use the
+   pick's page in `opening-the-app`. The usual ones:
+
+   | They wrote something like | The fix |
+   |---|---|
+   | Instagram wants a business account | In the Instagram app: Settings → Account type → switch to a professional account, and link it to the business's Facebook Page. Then connect again |
+   | Messenger shows no Page | They must be an admin of that Facebook Page; whoever is admin connects it, or adds them |
+   | WhatsApp says the number is in use | They keep the WhatsApp Business app; the same number connects alongside it. Sign in with the Facebook account that runs the business |
+   | Shopify won't let them install | The store owner, or staff with app permissions, installs it |
+   | WooCommerce asks for keys | WooCommerce → Settings → Advanced → REST API in their WordPress, Read/Write, and paste both keys |
+   | Google Calendar shows the wrong calendar | Sign in with the Google account that owns the calendar customers book into |
+
+   No note → ask the one question that decides the fix (*"what did the screen
+   say?"*). Something only they can get (a Page admin, the store owner) →
+   say exactly who, and that the rest of setup goes on without it. Can't fix
+   it from here → `/al-help` with their note, so nobody asks them twice.
+   Then the link: `connectUrl` opens on the first one still open; with only
+   one left, that pick's own `url` does the same.
+3. **`skipped` and `open`: one line, no nagging.** Name them once, say the
+   link is good whenever they are ready, and move on. Never re-ask in the
+   same session.
+4. **`soon` and `toolRequests`: what they asked for, acknowledged.** *"Noted:
+   you asked for Priority and HubSpot."* It is recorded with us; promise no
+   date. If it has an API, `/al-integration` can connect it sooner on a paid
+   plan, said once.
+5. **`unavailable`:** its app is not switched on for them. One line, only if
+   they ask.
+
+Nothing open, skipped or stuck → straight on to step 5. Open ones never hold
+up step 5: set up what is connected, and the card keeps the rest.
+
+**No `connectUrl`** (no agent yet, or an older workspace) → the open tasks' own
+links, one per message in the same order, checking each with `list_channels` or
+`get_workspace_setup` before the next.
+
+Then, before step 5:
+
+- **WhatsApp brought history in?** (`get_imported_conversations`). Run
+  `/al-conversations` now. That is step 1's best source arriving late.
+- **Marketing ticked and the agent now has a Facebook Page or Instagram?**
+  `import_channels` adds them as publishing destinations, no second sign-in.
+- Template reviews from Meta are minutes to hours. Say so once and keep going.
+
+## 5 · Set up the workspace
+
+The tools are connected now, so **build from them, not from questions.** Ask
+the owner only what no connected tool and no source from step 1 can tell you.
+One module per message, agent first.
+
+**First, finish the knowledge.** `get_agent_config`, and close what step 1's
+receipt left empty:
+
+- `business`, `faq`, `links`, `guidelines`: the gaps it named. Ask about one
+  only when nothing connected answers it.
+- `catalog`: with a store connected, the agent reads products, prices and
+  stock from the store. Don't copy the store in; keep `catalog` for what the
+  store doesn't carry (services, packages, delivery, returns).
+- Every write carries its source (`teaching-the-business`).
+
+**Then every module they ticked.** Each is set up as far as the calls allow,
+from the tool that feeds it, and wired to the others. A module that works
+alone but isn't connected to the agent and the CRM is not set up.
+
+| Module | Built from what is connected | Set up here | Wire it to the rest |
+|---|---|---|---|
+| Agents | the channels live from step 4 | persona, language, the knowledge above, switched on | the connected channels; the store integration |
+| CRM | the agent's contacts; the client list they have | `set_crm_currency`, record types and layouts that fit the business, the list import | the agent's contacts land here; leads from pages and booking file on the same contact |
+| Booking | the connected calendar: its busy times block slots | services (`add_service`, from the catalogue and the site), hours (`update_booking_setup`), reminders (`setup_booking_messages`), the booking link | `connect_agent`, so the agent books mid-chat and every booking files on the contact |
+| Sales | the connected store: its products, carts and buyers | journeys (`create_journey`) for what the store shows, the audience checked with `get_journey_audience`, the test run, switching on | the agent and its store connection |
+| Helpdesk | the connected inbox, and the store for order questions | intake, hours, tags, team, workflows; the order-status policy once a store is in (`set_helpdesk_order_status_policy`) | `set_helpdesk_intake`, so the agent's chats become tickets |
+| Landing pages | the offer from step 1 | the first page, from the offer | `connect_landing_pages_agent`, so leads become CRM contacts and WhatsApp buttons open the agent |
+| Marketing | the Page and Instagram the agent brought in | product profile, brand kit, strategy | the agent's business (`get_business_connection`), its imported channels |
+| Finance | the invoicing tool from step 4 | the reminder tone | that invoicing tool |
+| Call center | — | — | the meeting |
+
+A WordPress site connected in step 4 → `set_site_agent` to the same agent.
+**One agent is the hub.** With several, bind every module to the one this
+business runs on, never a second one by accident.
+
+**Read back before you claim it.** Each module's line on the receipt comes
+from a call that returned. *"Booking ✅, connected to your agent, 3 services,
+reminders on."* Something that needs a screen the calls can't reach gets one
+titled link, and stays open.
+
+## 6 · Test it before it goes live
+
+- **The agent.** `generate_test_customer_message` writes three questions a
+  real customer of theirs would send (a price, a booking, an order: whatever
+  their modules cover). Hand them over with the test chat
+  (`/app/assistants/:id?test=1`, in `opening-the-app`): *"Send these three."*
+  Read the replies (`list_threads` → `list_thread_messages`), fix what it got
+  wrong (`patch_agent_module`), and say what you fixed.
+- **Booking:** `get_free_slots` for tomorrow matches their calendar.
+- **Sales:** the journey's test run on their own number before it switches on.
+- **CRM automations:** `test_crm_automation` on a real record.
+
+Anything that messages customers on its own (a journey, an automation, a
+campaign) switches on only on their yes (`autonomy-and-approvals`).
+
+## Done
+
+> ✅ **You're all set: <workspace>.** Your personal assistant is ready. Message it like a customer to test it: **[Try your agent →](<link>)**
+
+> ✅ **הכול מחובר: <workspace>.** העוזר האישי שלכם מוכן. שלחו לו הודעה כמו לקוח כדי לבדוק אותו: **[לניסיון הסוכן ←](<link>)**
+
+Under it, the map: one line per module, saying what it is wired to, from step
+5's receipt. *"WhatsApp + Instagram → your agent → CRM · Booking books in the
+chat · Page leads → CRM"*.
+
+If `check_owner_notifications` is not `ready`, offer once the number to reach
+them on, so approvals land on their phone (`reaching-the-owner`). Anything
+still open: one titled link each.
+
+### The closing
+
+Last, in the same message, compact. Five short parts, nothing else:
+
+1. **Prompts to try:** two to four, one per thing they now have running, and
+   only what is connected and set up (`get_workspace_setup` and step 5's
+   receipt). In their language. Pick from:
+
+   | Running | Suggest |
+   |---|---|
+   | Agent on a channel | *"Who's waiting for a reply?"* · *"What did customers ask most this week?"* |
+   | Sales | *"Show me today's leads"* |
+   | Booking | *"What's on tomorrow, and is everyone confirmed?"* |
+   | Helpdesk | *"What needs me in Helpdesk?"* |
+   | Marketing | *"Draft this week's posts for my approval"* |
+   | CRM | *"Who haven't we heard from in a month?"* |
+   | Finance | *"Who owes me money?"* |
+   | Landing pages | *"Make a page for my next offer"* |
+
+2. **Commands for the trial, each with its moment.** Three or four, only what
+   their modules feed: `/al-brief morning` in the morning · `/al-needs-me`
+   when they have a minute for decisions · `/al-brief evening` at the end of
+   the day · `/al-weekly` once a week. With Sales or a CRM, `/al-leads` in the
+   morning; with Finance, `/al-money` once a week.
+3. **The whole workspace:** the app's home, `https://assistantlabs.io/app`
+   (`opening-the-app`).
+4. **The meeting, once.** `get_integration_meeting_offer`; only on `offer:
+   true`, with its `bookingUrl` (or *"book the meeting"* →
+   `ask_assistantlabs_support`, as in the welcome). They decline, or say
+   *"don't remind me"* → `dismiss_integration_meeting_offer`, and it is never
+   raised again, here or in the app.
+5. **The trial, and we're here.** Only from `get_workspace_setup`'s `plan`.
+   On a trial: the days left, and that a plan in Billing
+   (`https://assistantlabs.io/app/billing`) keeps it running after. Never a
+   price, never twice. Not on a trial: leave it out. Then: any question, ask
+   here or `/al-help`.
+
+Word for word around those parts:
+
+> **Try asking me:**
+> › *"<prompt>"*
+> › *"<prompt>"*
+>
+> **Over the trial:** `/al-brief morning` with your coffee · `/al-needs-me` when you have a minute · `/al-weekly` on <their week's end>
+>
+> **Your whole workspace, at a glance:** **[Open AssistantLabs →](https://assistantlabs.io/app)**
+>
+> 💜 **Want to take it further?** A free integration meeting with our AI expert: 60 minutes, one on one, to plan your next automations together. **[Book it →](<bookingUrl>)**
+>
+> You're on the free trial, **<N> days left**. To keep everything running after it, pick a plan in **[Billing →](https://assistantlabs.io/app/billing)**. Any question, any time: ask me here, or `/al-help` for our team.
+
+> **נסו לבקש ממני:**
+> › *"<prompt>"*
+> › *"<prompt>"*
+>
+> **במהלך תקופת הניסיון:** `/al-brief morning` עם הקפה של הבוקר · `/al-needs-me` כשיש לכם דקה · `/al-weekly` ב<סוף השבוע שלהם>
+>
+> **כל סביבת העבודה במבט אחד:** **[לפתיחת AssistantLabs ←](https://assistantlabs.io/app)**
+>
+> 💜 **רוצים להמשיך מכאן?** פגישת הטמעה בחינם עם מומחה ה-AI שלנו: 60 דקות, אחד על אחד, לתכנן יחד את האוטומציות הבאות. **[לקביעת פגישה ←](<bookingUrl>)**
+>
+> אתם בתקופת הניסיון החינמית, **נשארו <N> ימים**. כדי שהכול ימשיך לעבוד אחריה, בחרו חבילה ב**[חיוב ←](https://assistantlabs.io/app/billing)**. כל שאלה, בכל זמן: שאלו אותי כאן, או `/al-help` לצוות שלנו.
+
+Drop the meeting line when it is not offered, and the trial sentence when they
+are not on one. The commands line follows their modules. Then stop: the next
+move is theirs.
 
 ---
 
 ## Coming back — set up and running
 
-**Never repeat the welcome.** Lead with their business, not the product.
+**Never repeat the welcome.** Lead with their business:
 
 - **Something is waiting:** *"3 people are waiting for a reply — the oldest
-  since Sunday. Want me to draft all three?"* Then do the work
+  since Sunday. Want me to draft all three?"* Then do it
   (`customer-conversations`).
-- **A quiet day:** say what is true and offer the next most useful thing — never
-  "everything looks good" alone.
-- **A plan still open:** one line on where they are, then the next step
-  (`onboarding-plan`).
-- **The plan is finished but its "setup done" meeting moment was never shown**
-  (`meeting.offered` lacks `done`): show it once, after their business —
-  `onboarding-plan` §9.
+- **Something is still open** (a channel picked but not connected, a module
+  ticked but not set up): one line, and offer to finish it. A pick `stuck`
+  or `skipped` in `get_workspace_setup`'s `picked`, never read back → **Back
+  from the connect window** first, then step 5 for anything not set up.
+- **A quiet day:** say what is true and offer the next most useful thing —
+  never "everything looks good" alone.
 
 ---
 
-## The rules that make this feel like a person
+## Rules
 
 **Never a question the data answers.** Probe first; ask only what only they know.
 
-**Always a recommendation.** Two or three options, most useful first — never a
-menu, never "what would you like to do?". Where the surface has a real question
-control (`AskUserQuestion`), use it; never imitate one with bold text.
+**Always a recommendation.** Two or three options, most useful first — never
+"what would you like to do?".
 
 **Say it the moment you create or change something of theirs** — its own line,
-before anything else. An agent, a seat, anything written into a live agent.
+before anything else.
 
-**Sell where the product is going.** The welcome and every pitch describe the
-whole of AssistantLabs — the business run from one chat — and never shrink to
-today's feature list. One line holds: a step you hand them *now* has to open
-and work *now*, and you never say something was done in their account when it
-was not (`onboarding-plan` lists what is not a step yet).
+**Sell where the product is going; never claim what didn't happen.** A step you
+hand them must open and work now.
 
-**If they need a person at AssistantLabs** — stuck, a bug, their bill — `/al-help`.
-It works before sign-in.
+**If they need a person at AssistantLabs** — stuck, a bug, their bill —
+`/al-help`. It works before sign-in.
 
-**Stop when they stop.** Record where they are (`.assistantlabs/setup.json`) and
-say one line about how to pick up. Setup resumes; it never restarts.
+**Stop when they stop.** Setup lives in the workspace, so the next `/al` picks
+up exactly here.
 
 **End on their business, never on the product.**

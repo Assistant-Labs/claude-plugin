@@ -47,8 +47,15 @@ const OUTBOUND = [
  * Public, in the business's name, and not recallable from here. A website
  * change is the same kind of thing as a post: every visitor sees it the moment
  * it goes live, and every WordPress tool before this one only saved a draft.
+ * A landing page likewise: every Pages tool before publishing writes a draft
+ * that only its preview link opens.
  */
-const PUBLIC = ['publish_post', 'retry_failed_channels', 'publish_site_change'];
+const PUBLIC = [
+	'publish_post',
+	'retry_failed_channels',
+	'publish_site_change',
+	'publish_landing_page',
+];
 
 /**
  * The business's ad account. Switching an ad on spends its budget every day
@@ -72,6 +79,36 @@ const SWITCH_ON = [
 const DESTRUCTIVE = /(^|_)(delete|remove|disconnect|revoke|cancel|purge)_/;
 
 /**
+ * Our own irreversible tools, by name. The pattern above is only safe on a
+ * server that carries our name; on any other it would stop the owner's Gmail
+ * and calendar too, so there a tool has to be one of these.
+ */
+const OUR_DESTRUCTIVE = [
+	'cancel_appointment',
+	'cancel_helpdesk_workflow',
+	'delete_ad',
+	'delete_campaign_experiment',
+	'delete_email_campaign',
+	'delete_email_template',
+	'delete_helpdesk_workflow',
+	'delete_instagram_automation',
+	'delete_media',
+	'delete_research_finding',
+	'delete_strategy',
+	'delete_strategy_campaign',
+	'delete_training_proposal',
+	'disconnect_channel',
+	'disconnect_helpdesk_wix',
+	'remove_agent_catalog_item',
+	'remove_agent_faq',
+	'remove_agent_guideline',
+	'remove_agent_link',
+	'remove_board_view',
+	'remove_conversation_label',
+	'remove_helpdesk_team_member',
+];
+
+/**
  * The escape hatches reach any `/api/v1` path, so a red action can arrive
  * wearing a generic name. Judge them by the path they are about to call. The
  * server splits them one per verb (`api_request` is the old single one).
@@ -86,8 +123,32 @@ const ESCAPE_HATCHES = new Set([
 const OUTBOUND_PATH =
 	/(channel-messages|whatsapp\/send-template|\/emails|\/messages(\/stream)?$|payments|charges|refunds|subscriptions)/i;
 
+/**
+ * Every tool this gate stops, by its exact name — how one of ours is known on a
+ * server that does not carry our name. `send_email` and `send_message` are not
+ * ours: they are here for the generic sends, and only on our server.
+ */
+const OUR_TOOLS = new Set([
+	...OUTBOUND.filter((t) => t !== 'send_email' && t !== 'send_message'),
+	...PUBLIC,
+	...SPEND,
+	...SWITCH_ON,
+	...ESCAPE_HATCHES,
+	...OUR_DESTRUCTIVE,
+]);
+
+/**
+ * Whether the tool comes from a server named for us. The claude.ai connector —
+ * the one way the business connects — is named by its connector id
+ * (`mcp__1a59c906-…__send_whatsapp_template`) or by whatever the owner typed
+ * when adding it, so its tools are recognised by their own names instead.
+ */
+const isOurServer = (toolName) =>
+	/assistant_?labs/i.test(String(toolName).split('__')[1] || '');
+
 function reason(toolName, input) {
 	const short = String(toolName).split('__').pop() || toolName;
+	if (!isOurServer(toolName) && !OUR_TOOLS.has(short)) return null;
 
 	if (OUTBOUND.some((t) => short === t || short.endsWith(t))) {
 		const to = input?.to || input?.phone || input?.contactId || input?.threadId;
@@ -104,6 +165,13 @@ function reason(toolName, input) {
 		return [
 			`This makes change ${input?.changeId ?? ''} live on the business's public website${when}.`,
 			'Only on the owner\'s yes to this change, after they saw its preview — once, for this one publish.',
+		].join(' ');
+	}
+
+	if (short === 'publish_landing_page') {
+		return [
+			`This makes landing page ${input?.pageId ?? ''} public on its own address, under the business's name — anyone with the link, and every ad or post that points at it, sees it now.`,
+			'Only on the owner\'s yes to this page, after they opened its preview — once, for this one publish.',
 		].join(' ');
 	}
 
@@ -188,7 +256,7 @@ function main() {
 			hookSpecificOutput: {
 				hookEventName: 'PreToolUse',
 				permissionDecision: 'ask',
-				permissionDecisionReason: `Assistant Labs approval gate — ${why}`,
+				permissionDecisionReason: `AssistantLabs approval gate — ${why}`,
 			},
 		}),
 	);
