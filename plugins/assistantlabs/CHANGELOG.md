@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.20.0 — 2026-11-10
+
+- **Back in the Claude app.** The Anthropic Directory now turns away plugins
+  that run programs on your computer, so this one no longer does. Gone: the
+  note at the start of a session, the extra "allow this?" prompt before a send,
+  and the local list of what was sent. Claude still asks you before anything
+  reaches a customer, spends money or can't be undone.
+- **Two settings removed.** "How much may it do without asking?" and the MCP
+  host only worked through those programs. Approvals now follow the
+  `autonomy-and-approvals` rules for everyone.
+
 ## 0.19.0 — 2026-11-09
 
 - **`/al` is the one way in.** Connect once through Claude's own sign-in

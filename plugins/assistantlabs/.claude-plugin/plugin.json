@@ -1,7 +1,7 @@
 {
 	"name": "assistantlabs",
 	"displayName": "AssistantLabs — Personal Assistant for Business",
-	"version": "0.19.0",
+	"version": "0.20.0",
 	"description": "Your personal assistant for business. WhatsApp Business automation, Instagram and email replies, helpdesk and customer support, CRM and lead follow-up, appointment booking, social media, email marketing and Meta ads, for small businesses and Shopify stores. You approve everything that reaches a customer.",
 	"author": {
 		"name": "AssistantLabs",
@@ -35,21 +35,5 @@
 		"automation",
 		"agency"
 	],
-	"userConfig": {
-		"autonomy": {
-			"type": "string",
-			"title": "How much may it do without asking?",
-			"description": "supervised = ask before anything leaves the building. standard = act on reversible things, ask before customers/money. Recommended: standard.",
-			"default": "standard",
-			"required": false
-		},
-		"mcp_base_url": {
-			"type": "string",
-			"title": "Assistant Labs MCP host (advanced)",
-			"description": "Leave blank unless you are on a staging or self-hosted deployment.",
-			"default": "https://mcp.assistantlabs.io",
-			"required": false
-		}
-	},
 	"repository": "https://github.com/Assistant-Labs/claude-plugin"
 }

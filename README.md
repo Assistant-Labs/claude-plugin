@@ -159,19 +159,6 @@ operator.
 
 ---
 
-## Settings
-
-| Setting | Default | |
-|---|---|---|
-| Autonomy | `standard` | `supervised` asks before anything at all leaves the building |
-| MCP host | AssistantLabs production | Only change for staging or self-hosted |
-
-What it knows about your business lives in your AssistantLabs workspace, not on
-this computer — so it still knows you from a different machine, and when it runs
-overnight with nobody there.
-
----
-
 ## What you need
 
 - An [AssistantLabs](https://assistantlabs.io) account. Free to start. **Don't

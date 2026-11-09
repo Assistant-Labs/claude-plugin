@@ -29,7 +29,7 @@ Three questions, in this order. Skipping them is how you confidently do the
 wrong thing.
 
 **1. Do I know this business?** `list_business_memory` — it lives in their
-workspace, not on this machine, so the startup hook cannot have told you. Read
+workspace, not on this machine, so nothing on this machine can have told you. Read
 the pages this piece of work actually needs (see `business-memory`). If setup
 never ran, or stopped part way, the only correct action is `/al` — it resumes
 from the workspace rather than restarting. An operator with no memory of the business is a stranger

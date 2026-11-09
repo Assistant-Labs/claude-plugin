@@ -2,7 +2,7 @@
 	"mcpServers": {
 		"assistantlabs-start": {
 			"type": "http",
-			"url": "${user_config.mcp_base_url}/start/mcp"
+			"url": "https://mcp.assistantlabs.io/start/mcp"
 		}
 	}
 }

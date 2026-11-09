@@ -159,19 +159,6 @@ operator.
 
 ---
 
-## Settings
-
-| Setting | Default | |
-|---|---|---|
-| Autonomy | `standard` | `supervised` asks before anything at all leaves the building |
-| MCP host | AssistantLabs production | Only change for staging or self-hosted |
-
-What it knows about your business lives in your AssistantLabs workspace, not on
-this computer — so it still knows you from a different machine, and when it runs
-overnight with nobody there.
-
----
-
 ## What you need
 
 - An [AssistantLabs](https://assistantlabs.io) account. Free to start. **Don't
@@ -199,9 +186,13 @@ disagree, which is the point of it.
 1. Bump `version` in both manifests.
 2. Add the entry to `CHANGELOG.md`, dated, leading with what changed for the
    owner rather than what changed in the files.
-3. `node tests/links.test.cjs && node tests/hooks.test.cjs`
+3. `node --test tests/`
 4. `claude plugin validate .`
 5. Publish, then `claude plugin tag` to cut `assistantlabs--v<version>`.
+
+**No hooks, scripts or variable MCP addresses.** The Anthropic Directory refuses
+all three from an organisation it has not verified, and keeps the old version
+live. `tests/directory.test.cjs` checks for them.
 
 **Renaming or removing a command is breaking** — it is the owner's muscle
 memory, not an internal symbol. Say so in the changelog and bump the minor at
