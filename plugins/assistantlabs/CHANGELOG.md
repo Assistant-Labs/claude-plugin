@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.21.0 — 2026-11-15
+
+- **A welcome for new owners.** The first time you run `/al` on a new
+  workspace, Claude says what AssistantLabs does for you and offers the free
+  integration meeting.
+- **Build your agent from whatever you have.** No agent yet? `/al` offers every
+  way to teach it: what Claude already knows about your business, your website,
+  a document, past customer chats, or a few questions. It checks the website is
+  yours and asks only about what's still missing.
+- **New agents join your connection.** An agent you build after connecting is
+  reachable straight away, with no need to reconnect.
+- **In your language.** `/al` answers in the language you write in.
+
 ## 0.20.0 — 2026-11-10
 
 - **Back in the Claude app.** The Anthropic Directory now turns away plugins
