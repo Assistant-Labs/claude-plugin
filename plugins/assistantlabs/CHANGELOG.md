@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.22.0 — 2026-11-15
+
+- **Setup starts with your workspace.** Once you connect, `/al` sets up your
+  workspace by getting to know your business: your website, a document, past
+  customer chats or a few questions. Then you connect your channels and tools,
+  and it shows what each part of the workspace can do for you.
+- **No more dead ends before setup.** Ask for a brief or your conversations
+  before setup is done, and Claude starts setting up your workspace instead of
+  reporting an error.
+- **CRM: keep records in step with your other systems.** Update a record by the
+  id another system uses, or let that system send updates to a webhook of its
+  own. Automations can post to Slack, send each person WhatsApp and email in
+  their own language, and run at most once a day per record.
+- **Uploads cleanly.** The plugin can also be added to Claude as a file
+  (Customize → Plugins → Upload plugin).
+
 ## 0.21.0 — 2026-11-15
 
 - **A welcome for new owners.** The first time you run `/al` on a new
