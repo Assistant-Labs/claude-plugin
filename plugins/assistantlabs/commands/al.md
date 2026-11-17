@@ -59,7 +59,7 @@ Word for word:
 >
 > 💜 **Let us be your AI team.** In a free integration meeting we set up your whole workspace with you: your channels, your tools, your agent and your first automations. **[Book it →](https://booking.assistantlabs.io/book/assistantlabs)**
 >
-> **Connect, 2 minutes:** say **connect** and I'll open the AssistantLabs sign-in. Sign up free (14 days, no card), tick what you want, and say **done**.
+> **Connect, 2 minutes:** say **connect** and I'll take you to the AssistantLabs sign-in. Sign up free (14 days, no card), tick what you want, and say **done**.
 
 In Hebrew:
 
@@ -77,7 +77,7 @@ In Hebrew:
 >
 > 💜 **תנו לנו להיות צוות ה-AI שלכם.** בפגישת הטמעה בחינם אנחנו מקימים איתכם את הכול: הערוצים, הכלים, הסוכן והאוטומציות הראשונות. **[לקביעת פגישה ←](https://booking.assistantlabs.io/book/assistantlabs)**
 >
-> **מתחברים בשתי דקות:** כתבו **התחבר** ואפתח לכם את ההתחברות ל-AssistantLabs. הירשמו בחינם (14 יום, בלי כרטיס אשראי), סמנו מה אתם רוצים, וכתבו **סיימתי**.
+> **מתחברים בשתי דקות:** כתבו **התחבר** ואראה לכם איך מתחברים ל-AssistantLabs. הירשמו בחינם (14 יום, בלי כרטיס אשראי), סמנו מה אתם רוצים, וכתבו **סיימתי**.
 
 **The same message on every surface** — claude.ai, the desktop app, Cowork and
 Claude Code. The plugin brings its own AssistantLabs connection; signing in to
@@ -99,10 +99,16 @@ Open the sign-in. Never paste an address at them.
    `assistantlabs__authenticate`): call it, and give them the link it returns
    in one line: **[Sign in to AssistantLabs →](link)**, then *"tick what you
    want, and say **done**"*.
-2. **No such tool, but Claude shows AssistantLabs as waiting to connect** (a
-   Connect button on claude.ai, the desktop app and Cowork): one line, *"Click
-   **Connect** on AssistantLabs, sign up free, and say **done**."*
-3. **Neither**: the connector, word for word —
+2. **No such tool** — claude.ai, the desktop app and Cowork. The plugin's
+   own connection waits on the plugin's page. Word for word:
+   > Open **[Plugins](https://claude.ai/plugins)** → **AssistantLabs** → **Finish setup** → **Connect** next to *assistantlabs*. Sign up free, tick what you want, and say **done**.
+
+   In Hebrew:
+   > פתחו את **[Plugins](https://claude.ai/plugins)** ← **AssistantLabs** ← **Finish setup** ← **Connect** ליד *assistantlabs*. הירשמו בחינם, סמנו מה אתם רוצים, וכתבו **סיימתי**.
+
+   Never the connector address here: it is the long way to the same sign-in.
+3. **Only when they say the plugin's page has no Connect** (or they use Claude
+   without the plugin): the connector, word for word —
    > **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)** → **+** → **Add custom connector** → paste:
    > ```
    > https://mcp.assistantlabs.io/mcp

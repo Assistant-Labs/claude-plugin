@@ -47,7 +47,9 @@ before anything works is the tax this replaced.
 
 **One way, on every surface** — claude.ai, the desktop app, Cowork and Claude
 Code. The plugin brings its own AssistantLabs connection; `/al` opens its
-sign-in (see **On "connect"** there):
+sign-in (see **On "connect"** there). On claude.ai, the desktop app and Cowork
+it waits on the plugin's page: **Plugins → AssistantLabs → Finish setup →
+Connect** next to *assistantlabs*. Claude Code offers a sign-in link instead.
 
 1. The AssistantLabs sign-in opens. The owner signs in, or signs up free, as
    themselves.

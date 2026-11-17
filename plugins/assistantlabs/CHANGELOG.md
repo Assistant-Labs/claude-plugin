@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.23.1 — 2026-11-17
+
+- **Connect points at the right button.** On claude.ai, the desktop app and
+  Cowork, `connect` now sends you to the plugin's own **Finish setup**, instead
+  of asking you to paste an address.
+
 ## 0.23.0 — 2026-11-17
 
 - **Connect without leaving the chat.** The plugin brings its AssistantLabs
