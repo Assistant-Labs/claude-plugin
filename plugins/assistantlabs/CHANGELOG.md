@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.23.0 — 2026-11-17
+
+- **Connect without leaving the chat.** The plugin brings its AssistantLabs
+  connection again: say **connect** after `/al` and Claude opens the sign-in.
+  No settings screen, nothing to paste.
+- **Approve once.** Already connected AssistantLabs in Claude? You are not asked
+  to approve again: the same choices carry over and you go straight back.
+
 ## 0.22.0 — 2026-11-15
 
 - **Setup starts with your workspace.** Once you connect, `/al` sets up your

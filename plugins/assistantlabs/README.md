@@ -47,14 +47,15 @@ That is the only command you have to remember. It works out where you are —
 brand new, half set up, or running for months — and takes you one step forward.
 
 On a first run it shows what your assistant can do, and you connect your
-AssistantLabs workspace once: add the connector on claude.ai, sign in, and tick
-the products you want. Claude Code picks the same connector up from your
-claude.ai account. **No key or password is ever pasted anywhere.** Then it walks
+AssistantLabs workspace once: say **connect**, sign in, and tick the products
+you want. The plugin brings its own connection, so there is nothing to add in
+settings, and if you already connected AssistantLabs you are not asked again.
+**No key or password is ever pasted anywhere.** Then it walks
 you through setup — your business, your channels, your tools — one step at a
 time.
 
-The plugin carries one small login-free connection, so you can reach our support
-before you sign in. It never sees your workspace.
+Next to it, the plugin carries one small login-free connection, so you can
+reach our support before you sign in. That one never sees your workspace.
 
 **No AssistantLabs account yet?** Say so and it will point you at the sign-up
 and wait. It will never create an account for you or ask for a password.

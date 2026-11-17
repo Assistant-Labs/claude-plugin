@@ -59,11 +59,7 @@ Word for word:
 >
 > 💜 **Let us be your AI team.** In a free integration meeting we set up your whole workspace with you: your channels, your tools, your agent and your first automations. **[Book it →](https://booking.assistantlabs.io/book/assistantlabs)**
 >
-> **Connect, 2 minutes:** **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)** → **+** → **Add custom connector** → paste:
-> ```
-> https://mcp.assistantlabs.io/mcp
-> ```
-> Sign up free (14 days, no card), tick what you want, and say **done**.
+> **Connect, 2 minutes:** say **connect** and I'll open the AssistantLabs sign-in. Sign up free (14 days, no card), tick what you want, and say **done**.
 
 In Hebrew:
 
@@ -81,16 +77,12 @@ In Hebrew:
 >
 > 💜 **תנו לנו להיות צוות ה-AI שלכם.** בפגישת הטמעה בחינם אנחנו מקימים איתכם את הכול: הערוצים, הכלים, הסוכן והאוטומציות הראשונות. **[לקביעת פגישה ←](https://booking.assistantlabs.io/book/assistantlabs)**
 >
-> **מתחברים בשתי דקות:** **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)** ← **+** ← **Add custom connector** ← הדביקו:
-> ```
-> https://mcp.assistantlabs.io/mcp
-> ```
-> הירשמו בחינם (14 יום, בלי כרטיס אשראי), סמנו מה אתם רוצים, וכתבו **סיימתי**.
+> **מתחברים בשתי דקות:** כתבו **התחבר** ואפתח לכם את ההתחברות ל-AssistantLabs. הירשמו בחינם (14 יום, בלי כרטיס אשראי), סמנו מה אתם רוצים, וכתבו **סיימתי**.
 
 **The same message on every surface** — claude.ai, the desktop app, Cowork and
-Claude Code. Claude Code loads the connector from their claude.ai account; the
-plugin has no connection of its own to sign in. The one exception (Claude Code
-on an API key) is in `connect-your-business`, and only when they say so.
+Claude Code. The plugin brings its own AssistantLabs connection; signing in to
+it is the whole connect step. Someone who added the AssistantLabs connector
+before is already connected, and `get_workspace_setup` answers.
 
 **"Book the meeting"**, now or at any step: `ask_assistantlabs_support` with
 *"I'd like to book the free integration meeting"* — our support agent books it
@@ -99,14 +91,37 @@ were.
 
 ---
 
+## On "connect"
+
+Open the sign-in. Never paste an address at them.
+
+1. **A sign-in tool for AssistantLabs is in your tools** (its name ends in
+   `assistantlabs__authenticate`): call it, and give them the link it returns
+   in one line: **[Sign in to AssistantLabs →](link)**, then *"tick what you
+   want, and say **done**"*.
+2. **No such tool, but Claude shows AssistantLabs as waiting to connect** (a
+   Connect button on claude.ai, the desktop app and Cowork): one line, *"Click
+   **Connect** on AssistantLabs, sign up free, and say **done**."*
+3. **Neither**: the connector, word for word —
+   > **[claude.ai/customize/connectors](https://claude.ai/customize/connectors)** → **+** → **Add custom connector** → paste:
+   > ```
+   > https://mcp.assistantlabs.io/mcp
+   > ```
+   In Hebrew the arrows point left (←) and *paste* is **הדביקו**.
+
+The sign-in is the same everywhere: our sign-up, one approval screen, then
+back here. Someone who already approved Claude is not asked again.
+
+---
+
 ## On "done"
 
 Call `get_workspace_setup` again.
 
-- **Not connected:** one line — the **Add** didn't go through, or the sign-in
-  was left half-way. Offer the same step once. Do not theorise. In Claude Code a
-  connector added mid-session may need a fresh session to appear — say so in
-  one line if they added it and the call still isn't here.
+- **Not connected:** one line — the sign-in was left half-way. Offer **On
+  "connect"** once more. Do not theorise. In Claude Code a connector added
+  mid-session may need a fresh session to appear — say so in one line if they
+  added one and the call still isn't here.
 - **Connected, first time:** **Set up the workspace** when there is none yet, else
   **The connect link**.
 - **Connected, and the connect window was the last thing handed over:** **Back

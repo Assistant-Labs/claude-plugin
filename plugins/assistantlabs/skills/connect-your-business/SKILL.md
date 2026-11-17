@@ -46,20 +46,26 @@ before anything works is the tax this replaced.
 ## Connecting
 
 **One way, on every surface** — claude.ai, the desktop app, Cowork and Claude
-Code. `/al` hands it over word for word:
+Code. The plugin brings its own AssistantLabs connection; `/al` opens its
+sign-in (see **On "connect"** there):
 
-1. Open **claude.ai/customize/connectors** → **+** → **Add custom connector**,
-   paste `https://mcp.assistantlabs.io/mcp`, and click **Add**.
-2. The AssistantLabs sign-in opens. The owner signs in, or signs up free, as
+1. The AssistantLabs sign-in opens. The owner signs in, or signs up free, as
    themselves.
-3. The consent screen lists **which agent** and **which products**. They tick
+2. The consent screen lists **which agent** and **which products**. They tick
    and approve, then say **done**.
-4. The grant belongs to their organisation, and they can revoke it any time
+3. The grant belongs to their organisation, and they can revoke it any time
    from **Account → Developers → Connected apps**.
 
-**Claude Code picks the connector up from their claude.ai account** — there is
-nothing to add there separately, and the plugin ships no connection of its own,
-so nobody ends up with every tool twice.
+**Approved once, never asked again.** Someone who already connected the
+AssistantLabs connector (claude.ai → Connectors) and then signs in through the
+plugin, or the other way round, is approved on their own with the same choices
+and sent straight back. Claude Code hides a plugin connection that has the same
+address as a claude.ai connector, so nobody there sees the tools twice.
+
+**When the sign-in cannot open** (no sign-in tool, no Connect button), the
+connector still works: **claude.ai/customize/connectors** → **+** → **Add
+custom connector**, paste `https://mcp.assistantlabs.io/mcp`, and click
+**Add**.
 
 **The one exception:** Claude Code signed in with an API key instead of a
 claude.ai account does not load claude.ai connectors. Only then, and only if
