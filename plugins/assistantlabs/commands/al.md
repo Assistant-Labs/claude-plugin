@@ -124,10 +124,17 @@ back here. Someone who already approved Claude is not asked again.
 
 Call `get_workspace_setup` again.
 
-- **Not connected:** one line — the sign-in was left half-way. Offer **On
-  "connect"** once more. Do not theorise. In Claude Code a connector added
-  mid-session may need a fresh session to appear — say so in one line if they
-  added one and the call still isn't here.
+- **Not connected, the first time after "done":** Claude picks up a
+  connection made a moment ago only on the next message, so the tools are
+  usually just not here yet. Never say the sign-in failed. Word for word:
+  > Connected on your side ✅ Send **go** and I'll pick it up.
+
+  In Hebrew:
+  > ההתחברות הצליחה ✅ כתבו **יאללה** ואמשיך מכאן.
+- **Still not connected after that:** one line — the sign-in was left
+  half-way. Offer **On "connect"** once more. Do not theorise. In Claude Code
+  a connector added mid-session may need a fresh session to appear — say so in
+  one line if they added one and the call still isn't here.
 - **Connected, first time:** **Set up the workspace** when there is none yet, else
   **The connect link**.
 - **Connected, and the connect window was the last thing handed over:** **Back

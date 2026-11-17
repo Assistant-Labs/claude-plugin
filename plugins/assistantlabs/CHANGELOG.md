@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.23.2 — 2026-11-17
+
+- **No false "sign-in failed" right after you connect.** Claude picks up a new
+  connection on the next message, so `/al` now says you're connected and asks
+  you to send **go**, instead of saying the sign-in was left half-way.
+
 ## 0.23.1 — 2026-11-17
 
 - **Connect points at the right button.** On claude.ai, the desktop app and
