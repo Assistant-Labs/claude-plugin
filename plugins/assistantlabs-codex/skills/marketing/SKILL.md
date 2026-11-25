@@ -49,7 +49,7 @@ when publishing until somebody reconnects it in the app.
 
 | Moment | Tool | Why it stops |
 |---|---|---|
-| A post goes public | `publish_post`, `retry_failed_channels` | the public sees it, under the business's name, and it cannot be recalled from here |
+| A post goes public | `publish_post`, `schedule_post`, `retry_failed_channels` | the public sees it, under the business's name, and it cannot be recalled from here — a scheduled post goes out by itself at its time |
 | A message reaches an inbox or a phone | `launch_email_campaign`, `resume_email_campaign`, and both test sends | real people, no recall — and every WhatsApp marketing message is charged to the business |
 | A rule starts answering people | `create_instagram_automation` or `update_instagram_automation` with `enabled: true` | it replies and DMs on its own from the next comment |
 | Money starts leaving | `activate_ad` — and `launch_ad`, which puts the ad on their Meta account | it spends the daily budget until someone pauses it |
@@ -70,13 +70,32 @@ write.
 ## Posts
 
 ```
-draft_post        one post, saved as a draft — nothing goes out
-edit_post         change it while it is still a draft
-list_posts        every post, with where it went and where it failed
-get_post          one post in full, a row per account
-publish_post      🔴 real and public
-get_performance   how posts and accounts are doing
+draft_post              one post or story, saved as a draft — nothing goes out
+edit_post               change its words, media or format while it is not out
+list_posts              every post, with where it went and where it failed; by status, post or story, and days
+get_post                one post in full, a row per account
+publish_post            🔴 real and public, now
+schedule_post           🔴 real and public, at a time — it goes out by itself
+cancel_scheduled_post   back to a draft before its time
+get_performance         how posts and accounts are doing
 ```
+
+- **"Post it Friday at 9" is `schedule_post`**, with the time on the owner's
+  clock (`localTime: "2026-11-27T09:00"`). Leave out `timeZone` and their own
+  setting is used; the answer names the zone. Say the day, time, zone and
+  accounts back before the yes: *"Friday 27 Nov, 09:00 Israel time, on
+  Instagram and Facebook?"*
+- **A scheduled post can be moved or cancelled until it goes out**
+  (`schedule_post` again, or `cancel_scheduled_post`). Once it is live anywhere,
+  or being sent, it cannot.
+- **`missed`** means its time passed over an hour ago and it was not sent — the
+  scheduler does not post late. Ask whether to pick a new time or publish now.
+- **A story** (`format: "story"`, Instagram and Facebook) is exactly one picture
+  or one video, with no caption. Story videos run 3 to 60 seconds, Instagram
+  story pictures are JPEG, and vertical 9:16 (1080×1920) fits. An account that
+  cannot take it is refused with the reason up front.
+- **"What is going out this week?"** is `list_posts` with `status: scheduled`
+  and `from` / `to`.
 
 - **Write one post, once.** The caption is fitted to each network when it
   publishes; do not write four versions.
@@ -266,19 +285,45 @@ get_instagram_automation_activity    what it answered, and what failed
 
 ## Ads
 
-Small Meta ads, most often one that opens a WhatsApp chat with the business.
+Meta ads of any kind. Without `setup` an ad opens a WhatsApp chat with the
+business; `setup` makes it any other kind Meta offers.
 
 ```
 get_ads_connection          which ad account, Page and WhatsApp number — or nothing connected
+get_ad_options              what the account has: pixels, apps, Instagram, instant forms, catalogs, minimum budget
 list_ads / get_ad           what exists, and its state
 search_ad_interests         Meta's own targeting interests
 list_ad_whatsapp_numbers    where a click-to-WhatsApp ad lands
 create_ad / update_ad       a draft — nothing on Meta, nothing spent
+check_ad                    what is still missing before it can go to Meta
 launch_ad                   🔴 creates it on Meta, PAUSED
 activate_ad                 🔴 switches it on — this is the spend
 pause_ad                    the brake
 ```
 
+**Pick the kind from what the owner wants, not from the menu.**
+
+| They want | `setup` |
+|---|---|
+| Chats on WhatsApp | none (the default) |
+| People to know them | `objective: awareness` |
+| Visits to the site | `objective: traffic`, `websiteUrl` |
+| Sign-ups without leaving Facebook | `objective: leads` (instant form: an existing `leadFormId`, or a new `leadForm`) |
+| Calls | `objective: leads`, `destination: phone_call`, `phoneNumber` |
+| Website sales | `objective: sales`, `websiteUrl`, `pixelId`, `conversionEvent: PURCHASE` |
+| Their products, from a catalog | `objective: sales`, `destination: catalog`, `catalog` |
+| App installs | `objective: app_promotion`, `app` |
+
+- **Read `get_ad_options` before choosing.** A sales ad without a pixel, or a lead
+  ad on a Page that has not accepted Meta's lead ads terms, cannot run. Say so
+  and offer the kind that can, instead of saving one that will be refused.
+- **`check_ad` before `launch_ad`**, and read its problems to the owner as they
+  are. `launch_ad` refuses an ad that is not ready, so nothing is half-built.
+- **Meta fixes the kind once it is on Meta.** Changing the objective, where a tap
+  goes, or the goal of a launched ad needs a new ad.
+- **Financial, job and housing ads** must say so in `specialAdCategories`, and
+  then reach every age and gender with no interests. Ask when the business is a
+  lender, an employer hiring, or in real estate.
 - **No ad account connected is a browser step.** Connecting Meta Ads needs the
   owner to sign in: `https://marketing.assistantlabs.io/settings/ads`.
 - **The strategy carries the budget rules.** Read them before proposing a

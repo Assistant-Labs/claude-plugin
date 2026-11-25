@@ -51,7 +51,7 @@ That is the whole test. Everything below is it applied to cases that come up.
 | **Publish a change to their website** — a page, SEO text, product, price, stock level or coupon | 🔴 — see *Website changes* below |
 | Draft or change a landing page in Pages | 🟢 — a draft only its preview link opens |
 | **Publish a landing page, or take one down** | 🔴 — see `build-a-landing-page` |
-| **Launch or resume an email campaign, or send a test email** | 🔴 |
+| **Launch or resume an email campaign, or send a test email** | 🔴 — a launch to people with no consent on record (typed in by hand, CRM records) or that keeps enrolling comes back as an approval link instead: see *Approval links* below |
 | **Switch on anything that answers or chases people by itself** — a follow-up sequence, an Instagram automation | 🔴 |
 | **Change the brand kit** — the logo and colours every email is drawn with | 🔴 unless they asked for that exact change |
 | **Charge, refund, discount, or change a price** | 🔴 |
@@ -126,6 +126,26 @@ The rules that make this work:
   things silently unresolved.
 - **P0 only for genuinely now.** Priority inflation is how a "needs you" list
   becomes something nobody opens.
+
+## Approval links: when only the owner can say yes
+
+Some things the tools will not do on your say-so, even after the owner agreed
+in this chat — today, launching a messaging campaign to people with no consent
+on record (addresses typed in by hand, CRM records) or one that keeps taking
+people in later. `launch_email_campaign` then returns `needsApproval: true`
+and an `approval.url` instead of launching.
+
+1. **Give the owner the link exactly as it is.** It opens a page with our
+   logo, their workspace, and exactly what will be sent, to whom and when.
+   They approve or decline there, signed in. Nothing happens until they do.
+2. **Do not call it launched.** It is waiting. Say so.
+3. **Check back** with `check_approval` (the `assistantId` and `approvalId`
+   from the launch). `approved` with `executed: true` is done, and `outcome`
+   says what happened; `executed: false` means it was approved but did not run,
+   and `executionError` says why. `expired` means nothing was done; if the
+   campaign was changed after the link was made, the link closes itself, and a
+   new launch gives a new link.
+4. **The link works for 24 hours**, for a signed-in member of the workspace.
 
 ## Website changes: draft, then ask
 

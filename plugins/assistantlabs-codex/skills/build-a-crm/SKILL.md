@@ -162,14 +162,23 @@ Structure: `describe_crm_field_types`, `list_record_types`,
 `set_page_design`, `describe_page_blocks`, `set_crm_currency`.
 
 Records: `find_records`, `search_all_records`, `get_record`,
-`get_record_history`, `create_record`, `update_record`,
-`link_contacts_to_record`, `list_crm_team_members`.
+`get_record_history`, `create_record`, `update_record`, `sync_record`,
+`link_contacts_to_record`, `list_crm_team_members`. `sync_record` updates the
+record another system names by ITS id or a shared field (email, phone, order
+id): `values` replace, `defaults` only fill empty fields.
 
 Tasks: `list_crm_tasks`, `create_crm_task`, `update_crm_task`.
 
 Automations: `list_crm_automations`, `create_crm_automation`,
 `update_crm_automation`, `test_crm_automation`, `set_crm_automation_enabled`,
-`list_crm_automation_runs`.
+`list_crm_automation_runs`. A `notify` step with `slack: true` also posts
+to the team's Slack — the owner connects the channel in CRM Settings →
+Connections. A WhatsApp step with `languageCode: "{{language}}"` sends each
+person the template version in the language on their record; an email step's
+`emailTemplateByLanguage: {"he": …, "en": …}` does the same with Studio
+templates. `oncePer: "day"` (or `hour`, `week`) runs an automation at most
+once per record in that period. An empty field can fall back:
+`{{first_name|there}}`.
 
 Numbers: `list_crm_report_sources`, `run_crm_report`, `list_crm_dashboards`,
 `save_crm_dashboard`. A manager's dashboard is usually: new leads this month,
@@ -193,6 +202,11 @@ units before contracts), so link columns resolve by title.
 Other systems: `list_crm_webhooks`, `create_crm_webhook`, `test_crm_webhook`,
 `update_crm_webhook` — for "send it to our accounting / Make / Zapier".
 Webhooks are created off and switch on after a successful test.
+The other way in — "our billing system should update the plan field":
+`list_crm_inbound_webhooks`, `create_crm_inbound_webhook`,
+`update_crm_inbound_webhook`. It returns a URL (with its token, shown once)
+that the other system POSTs plain JSON to; the body key named by `matchField`
+finds the record and the rest is written, running automations.
 
 Changing structure, roles, dashboards and automations needs the connection of a
 workspace ADMIN; a member's connection is refused with a sentence saying so.

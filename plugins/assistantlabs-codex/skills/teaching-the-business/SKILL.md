@@ -118,9 +118,12 @@ that is where `contactInformation` comes from. Two different numbers means the
 site disagrees with itself: ask which one, never pick.
 
 **These stay empty after any source, and that is correct:** 🎬 `scenario`,
-🎯 `lead-qualification`, 🙋 `human-escalation`, 🩹 `unsatisfied-customer`,
-🏷️ `labels`. They come from watching real conversations. Propose them later,
-from what customers actually wrote.
+🙋 `human-escalation`, 🩹 `unsatisfied-customer`, 🏷️ `labels`. They come from
+watching real conversations. Propose them later, from what customers actually
+wrote. Lead questions go in a `scenario`, one step per question: the agent
+ignores `lead-qualification`, so it cannot be written. A `labels` module puts
+all of its labels on at once, so for one label per conversation write one
+module per label.
 
 ## Show your working before you write
 

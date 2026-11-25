@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.24.0 — 2026-11-25
+
+- **Approve a campaign yourself, on a page.** A messaging campaign that reaches
+  people with no marketing consent on record (addresses typed in by hand, CRM
+  records), or that keeps taking people in later, is no longer just refused.
+  Claude hands you a link to a page on AssistantLabs that shows exactly what
+  will be sent, to whom and when. You approve or decline it there, signed in;
+  nothing is sent until you do, and Claude can check where it stands.
+- **Schedule posts and stories.** "Post it Friday at 9" goes out by itself at
+  that time on your own clock, and can be moved or cancelled until then.
+  Stories go to Instagram and Facebook.
+- **Every kind of Meta ad.** Besides ads that open a WhatsApp chat: awareness,
+  site visits, sign-ups, calls, website sales, catalog and app ads. Claude
+  checks what your ad account has first, and says what an ad still needs.
+
+## 0.23.3 — 2026-11-19
+
+- **Tag conversations from Claude.** The sign-in screen now offers the tagging
+  permission, and ticking Agents includes it. If Claude says it cannot tag,
+  disconnect AssistantLabs and connect again.
+- **One label per conversation.** Claude now knows that one labels rule puts on
+  all of its labels at once, so it writes one rule per label when you want the
+  agent to pick a single fitting one.
+- **Lead questions that actually run.** Claude writes the questions your agent
+  asks a new lead as a scenario, which the agent follows. It no longer saves
+  them somewhere the agent never reads.
+
 ## 0.23.2 — 2026-11-17
 
 - **No false "sign-in failed" right after you connect.** Claude picks up a new

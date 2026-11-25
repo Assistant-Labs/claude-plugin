@@ -5,7 +5,7 @@ description: >
   build at all, choosing between a Custom Integration (a new tool the business's
   AI agent can call), a local automation, or a small internal app, and shipping
   it without creating something only the operator can operate. Use for "can it also
-  do X", "connect it to <some system>", "build me a tool/dashboard/automation",
+  do X", "connect it to some system", "build me a tool/dashboard/automation",
   or any request that does not map onto an existing feature.
 ---
 
