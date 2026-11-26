@@ -11,7 +11,8 @@ description: >
   post", "send a newsletter", "email my customers", "WhatsApp my customers a
   promotion", "who read / replied to the campaign", "make an email template",
   "reply to everyone who comments", "run an ad", "how did the post do", "change
-  our logo or colours", or anything about the marketing plan.
+  our logo or colours", "make us a brand kit", "make a reel template", "edit this
+  reel", "research our competitors", or anything about the marketing plan.
 ---
 
 # Marketing
@@ -335,9 +336,82 @@ pause_ad                    the brake
   women 25–45 within 15 km of Haifa, until you pause it?"* — never "shall I
   start the ad?".
 - **`delete_ad` does not delete it on Meta.** An ad that is running keeps
-  running in Ads Manager. Pause it first, then remove it.
+  running in Ads Manager. Pause it first, then remove it. Prefer it for drafts
+  and failed pushes.
 - **An edit to an ad already on Meta is not live** until it is pushed again with
   `launch_ad`.
+
+## The brand kit
+
+The brand kit (`get_brand_kit`, `update_brand_kit`) is what every post, reel, ad
+and email is drawn with. Make it once, properly, and everything after looks like
+the same business. One step per message, and wait.
+
+1. **Read first.** `get_brand_kit`, `get_product_profile`, `list_media` for logos
+   and photos already saved, and their website if they have one. Say in two
+   lines what is there and what is missing.
+2. **Ask for pictures before questions.** Their logo (a PNG with a clear
+   background), three to six reference photos that look like the business at its
+   best, and brands whose look they love (inspiration only: never save someone
+   else's pictures into their kit). Offer two ways in one line: attach them here,
+   or a link for their phone. For the phone: `create_upload_link`, give them the
+   link, wait for "done", read what arrived with `check_upload_link`, and look at
+   each picture with `view_media` to note what it shows (hero, lifestyle,
+   product, flat lay) and tag it with `update_media_tags`. A link from a chat
+   goes in with `add_media_from_url`; a logo with `upload_brand_asset_from_url`.
+3. **Take the palette from the logo.** Look at it with `view_media` and read its
+   main colours as hex codes, leaving out the background and near-white or
+   near-black. Say if they are close rather than exact. Name the primary,
+   secondary and accent, and a calm background colour that goes with them.
+4. **Ask only what you still can't see:** who the customers are, three words for
+   how it should feel, and anything they never want.
+5. **Propose the whole kit in one message:** colours with a line on why; two
+   Google Fonts at most (Hebrew: Heebo, Rubik, Assistant, Frank Ruhl Libre;
+   Arabic: Cairo, Tajawal, Noto Kufi Arabic); voice as three traits, a "we say /
+   we don't say" pair and a sample caption; two or three tagline options; the
+   picture style read from their reference photos; which logo goes on generated
+   pictures and where; the reel look; and the links that end their posts.
+   Revise until they are happy. **Don't save before they say yes.**
+6. **Save once** with `update_brand_kit`: colours, logos, typefaces, voice,
+   tagline, picture style, every reference photo as an example image with its
+   role, logo placement, video branding and links. Links and example images
+   replace the old lists, so send every one.
+7. **Show it.** Read it back and hand over `/studio/branding` so they see the
+   kit laid out. Offer one next step: a first post, or a reel in the new look.
+
+If a save says Marketing is not set up yet, nothing was saved: the owner opens
+AssistantLabs Marketing once and picks their AI agent, then try again.
+
+## Reels and reel templates
+
+A **template** is a recipe: one of the bases (`pulse`, `clean`, `bold` cut
+footage; `question`, `chat`, `guide` are drawn from words, with no footage) set
+up the brand's way. A **reel** brings its own clips, song, hook and caption
+lines and picks a template. Nothing here is AI-generated footage: our renderer
+cuts the owner's own clips.
+
+```
+list_reel_templates     the starters and the business's own templates
+save_reel_template      make one from a sentence, or change one (id)
+start_reel              save a reel without cutting it
+update_reel             change its words, clips, song, look; clips and lines replace the list
+preview_reel_plan       every shot and caption with its timing, before cutting
+make_reel               cut it: "test" (quick, small) or "final" (full size, into the media library)
+get_reel                read it until the cut is ready
+delete_reel / delete_reel_template
+```
+
+Turn the owner's sentence into the template's knobs: "like pulse but calm, a
+light closing frame, our gradient on the captions" is base `pulse`,
+`look.pace: calm`, `params.endCardGround: light`, `params.captionLook:
+gradient`; "black and white until the drop" is `params.wash: mono`; "no zooms"
+is `params.punch: none`; "problem, proof, offer" is a three-section `flow`.
+Read the brand kit first so the template carries its colours.
+
+The working loop: `start_reel` → `preview_reel_plan` (do the words fit, are the
+clips long enough?) → `make_reel` at "test" → fix with `update_reel` → `make_reel`
+at "final" → `draft_post` with the finished video. Generated template music
+(`music.generate`) is a paid generation: only when the owner asks for it.
 
 ## The plan behind it
 
@@ -359,6 +433,19 @@ When you learn something about their market — a competitor's price, what
 customers keep asking for — `save_research_finding` puts it where the next
 session and the app will both see it. A fact that stays in this chat is gone
 tomorrow.
+
+**Market research, when they ask for it.** Read `get_research` first so nothing
+is saved twice. Ask where they sell and in which language, then look up three
+to five real competitors (prices, promises, where and how often they post), this
+year's trends in their field, two or three buying audiences and what stops each,
+and the channels those people use. Real sources with links only; never invent a
+number, a review or a business. Show the findings first, save each one they keep
+with its facts, why it matters and its source, and label the ones that matter
+(key, opportunity, threat). Then fill the product profile's gaps — what sets
+them apart, and their numbers (average sale, margin, how often a customer buys,
+how many chats become customers) — with `update_product_profile`, and tell them
+the most they can pay for a customer and for a chat. End with what the market
+says, the one opening they have, and one next step.
 
 ## Permissions — why a tool might be missing
 

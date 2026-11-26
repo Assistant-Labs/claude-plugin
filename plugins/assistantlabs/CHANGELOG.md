@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.25.0 — 2026-11-26
+
+- **Tickets know their tasks and bookings.** Reading a helpdesk ticket now also
+  shows the tasks on your Tasks board about it, the bookings for it, and where
+  the customer stands in your CRM.
+- **Link things to a ticket.** Ask Claude to make a task or a booking "for this
+  ticket" and it shows on the ticket. Tasks and bookings you already have can be
+  linked or unlinked too; unlinking never changes or deletes the task or booking.
+- **A brand kit made properly.** Ask Claude to make your brand kit and it reads
+  what you have, asks for your logo and a few photos (attached, or from your
+  phone through an upload link), takes your colours from the logo, proposes the
+  whole kit (colours, fonts, voice, tagline, picture style, reel look, links),
+  saves it only when you say yes, and gives you the branding page to see it.
+- **Reel templates and editing.** Make your own reel template from a sentence,
+  save a reel before cutting it, preview every shot and caption, change the
+  words or clips, cut a quick test, then the full-size video.
+- **Market research.** Claude looks up real competitors, trends and audiences
+  with sources, saves the ones you keep, and fills in what you sell and your
+  numbers.
+- **No more silent saves.** If your Marketing isn't set up yet, a brand kit or
+  product profile save now says nothing was saved and how to set it up.
+
 ## 0.24.0 — 2026-11-25
 
 - **Approve a campaign yourself, on a page.** A messaging campaign that reaches
