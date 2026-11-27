@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.25.2 — 2026-11-27
+
+- **Says which AI models answer.** The listing and this README now say that
+  some answers come from AI models AssistantLabs runs (OpenAI, Anthropic and
+  Google): the AI agent, support, and features such as reading a website.
+- **Songs are made in the app.** Reel templates no longer make a song for each
+  reel. When there is no song, Claude gives you a link to Studio's song maker
+  with a description filled in, and you make it there.
+- **Privacy policy linked** in the plugin's details.
+
 ## 0.25.1 — 2026-11-27
 
 - **The welcome no longer pitches a meeting.** A call with our team is offered

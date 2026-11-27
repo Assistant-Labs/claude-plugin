@@ -410,8 +410,12 @@ Read the brand kit first so the template carries its colours.
 
 The working loop: `start_reel` → `preview_reel_plan` (do the words fit, are the
 clips long enough?) → `make_reel` at "test" → fix with `update_reel` → `make_reel`
-at "final" → `draft_post` with the finished video. Generated template music
-(`music.generate`) is a paid generation: only when the owner asks for it.
+at "final" → `draft_post` with the finished video.
+
+**No song saved?** `get_song_maker_link` with a short English description of
+the sound (style, mood, instruments, tempo) gives the owner a link to Studio's
+song maker, filled in. Nothing is made from here: they read it, change it if
+they like, and make the song in the app. Then it is in `list_music`.
 
 ## The plan behind it
 

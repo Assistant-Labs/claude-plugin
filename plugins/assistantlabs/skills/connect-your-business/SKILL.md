@@ -71,8 +71,9 @@ custom connector**, paste `https://mcp.assistantlabs.io/mcp`, and click
 
 **The one exception:** Claude Code signed in with an API key instead of a
 claude.ai account does not load claude.ai connectors. Only then, and only if
-they say so: `claude mcp add --transport http assistantlabs
-https://mcp.assistantlabs.io/mcp`, then **/mcp** → **assistantlabs** → sign in.
+they say so: point them to Claude Code's own instructions for adding a remote
+MCP server, with the address `https://mcp.assistantlabs.io/mcp`, then
+**/mcp** → **assistantlabs** → sign in.
 
 An API key still works and is fully supported (some connector UIs need one) —
 but signing in is the default and the better path, because a key in a URL leaks

@@ -1,13 +1,14 @@
 {
 	"name": "assistantlabs",
 	"displayName": "AssistantLabs — Personal Assistant for Business",
-	"version": "0.25.1",
-	"description": "Your personal assistant for business. WhatsApp Business automation, Instagram and email replies, helpdesk and customer support, CRM and lead follow-up, appointment booking, social media, email marketing and Meta ads, for small businesses and Shopify stores. You approve everything that reaches a customer.",
+	"version": "0.25.2",
+	"description": "Your personal assistant for business. WhatsApp Business automation, Instagram and email replies, helpdesk and customer support, CRM and lead follow-up, appointment booking, social media, email marketing and Meta ads, for small businesses and Shopify stores. You approve everything that reaches a customer. Some answers come from other AI models that AssistantLabs runs (from OpenAI, Anthropic and Google): the AI agent that replies to your customers, AssistantLabs support, and features such as reading a website.",
 	"author": {
 		"name": "AssistantLabs",
 		"url": "https://assistantlabs.io"
 	},
 	"homepage": "https://assistantlabs.io/claude",
+	"privacyPolicyUrl": "https://assistantlabs.io/al-privacy-policy.html",
 	"icon": "./icon.png",
 	"license": "SEE LICENSE IN LICENSE",
 	"keywords": [

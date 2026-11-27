@@ -160,6 +160,18 @@ operator.
 
 ---
 
+## Other AI models in the answers
+
+Some answers come from AI models that AssistantLabs runs, not from Claude:
+
+- **The AI agent** that replies to your customers on your channels.
+- **AssistantLabs support**, when you ask it a question or for a person.
+- **Features that read or write for you**, such as reading a website to teach
+  the agent, or a test customer message.
+
+They use models from OpenAI, Anthropic and Google, run by AssistantLabs under
+its [privacy policy](https://assistantlabs.io/al-privacy-policy.html).
+
 ## What you need
 
 - An [AssistantLabs](https://assistantlabs.io) account. Free to start. **Don't
