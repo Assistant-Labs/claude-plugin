@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.25.3 — 2026-11-27
+
+- **The description fits.** 0.25.2's description ran over the 500-character
+  limit with the AI-model notice, so the plugin could not be uploaded. Shorter
+  now, with the notice kept.
+
 ## 0.25.2 — 2026-11-27
 
 - **Says which AI models answer.** The listing and this README now say that
