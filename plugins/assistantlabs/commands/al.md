@@ -57,8 +57,6 @@ Word for word:
 >
 > Agents · Sales · Marketing · CRM · Helpdesk · Finance · Booking · Landing pages · Call center. One assistant, one CRM.
 >
-> 💜 **Let us be your AI team.** In a free integration meeting we set up your whole workspace with you: your channels, your tools, your agent and your first automations. **[Book it →](https://booking.assistantlabs.io/book/assistantlabs)**
->
 > **Connect, 2 minutes:** say **connect** and I'll take you to the AssistantLabs sign-in. Sign up free (14 days, no card), tick what you want, and say **done**.
 
 In Hebrew:
@@ -75,8 +73,6 @@ In Hebrew:
 >
 > סוכנים · מכירות · שיווק · CRM · מוקד שירות · כספים · תורים · דפי נחיתה · מוקד טלפוני. עוזר אחד, CRM אחד.
 >
-> 💜 **תנו לנו להיות צוות ה-AI שלכם.** בפגישת הטמעה בחינם אנחנו מקימים איתכם את הכול: הערוצים, הכלים, הסוכן והאוטומציות הראשונות. **[לקביעת פגישה ←](https://booking.assistantlabs.io/book/assistantlabs)**
->
 > **מתחברים בשתי דקות:** כתבו **התחבר** ואראה לכם איך מתחברים ל-AssistantLabs. הירשמו בחינם (14 יום, בלי כרטיס אשראי), סמנו מה אתם רוצים, וכתבו **סיימתי**.
 
 **The same message on every surface** — claude.ai, the desktop app, Cowork and
@@ -84,10 +80,11 @@ Claude Code. The plugin brings its own AssistantLabs connection; signing in to
 it is the whole connect step. Someone who added the AssistantLabs connector
 before is already connected, and `get_workspace_setup` answers.
 
-**"Book the meeting"**, now or at any step: `ask_assistantlabs_support` with
-*"I'd like to book the free integration meeting"* — our support agent books it
-in this chat. Without that tool, the **Book it** link. Then carry on where they
-were.
+**A call with our team is offered, never pitched** — the same as on ChatGPT.
+Only when they ask for help setting it up, ask for a person, or a step is stuck:
+`get_integration_meeting_offer`, and on `offer: true` its `bookingUrl`, or
+`ask_assistantlabs_support` with *"I'd like to book the free integration
+meeting"*, which books it in this chat. Then carry on where they were.
 
 ---
 
@@ -168,7 +165,7 @@ never needs to hear it.
 Right after they connect, when `get_workspace_setup` has no `agent`. Most
 owners connect from a connectors screen and never see **Welcome**, so when
 this conversation has not shown it yet, open with its first part word for
-word (the greeting, the examples, the products line and the meeting line),
+word (the greeting, the examples and the products line),
 leaving out the connect lines, then the card below. **Start
 with what you already know.** Look at what is already in this conversation
 about them: Claude's memory of the user, the project's instructions and files,
@@ -313,9 +310,8 @@ Straight after **Back from the connect window**, in the same message, compact. F
    morning; with Finance, `/al-money` once a week.
 3. **The whole workspace:** the app's home, `https://assistantlabs.io/app`
    (`opening-the-app`).
-4. **The meeting, once.** `get_integration_meeting_offer`; only on `offer:
-   true`, with its `bookingUrl` (or *"book the meeting"* →
-   `ask_assistantlabs_support`, as in the welcome). They decline, or say
+4. **No meeting line here.** A call with our team comes up only when they ask
+   for help or a step is stuck, as in the welcome. They decline, or say
    *"don't remind me"* → `dismiss_integration_meeting_offer`, and it is never
    raised again, here or in the app.
 5. **The trial, and we're here.** Only from `get_workspace_setup`'s `plan`.
@@ -334,8 +330,6 @@ Word for word around those parts:
 >
 > **Your whole workspace, at a glance:** **[Open AssistantLabs →](https://assistantlabs.io/app)**
 >
-> 💜 **Want to take it further?** A free integration meeting with our AI expert: 60 minutes, one on one, to plan your next automations together. **[Book it →](<bookingUrl>)**
->
 > You're on the free trial, **<N> days left**. To keep everything running after it, pick a plan in **[Billing →](https://assistantlabs.io/app/billing)**. Any question, any time: ask me here, or `/al-help` for our team.
 
 > **נסו לבקש ממני:**
@@ -346,12 +340,9 @@ Word for word around those parts:
 >
 > **כל סביבת העבודה במבט אחד:** **[לפתיחת AssistantLabs ←](https://assistantlabs.io/app)**
 >
-> 💜 **רוצים להמשיך מכאן?** פגישת הטמעה בחינם עם מומחה ה-AI שלנו: 60 דקות, אחד על אחד, לתכנן יחד את האוטומציות הבאות. **[לקביעת פגישה ←](<bookingUrl>)**
->
 > אתם בתקופת הניסיון החינמית, **נשארו <N> ימים**. כדי שהכול ימשיך לעבוד אחריה, בחרו חבילה ב**[חיוב ←](https://assistantlabs.io/app/billing)**. כל שאלה, בכל זמן: שאלו אותי כאן, או `/al-help` לצוות שלנו.
 
-Drop the meeting line when it is not offered, and the trial sentence when they
-are not on one. The commands line follows their modules. Then stop: the next
+Drop the trial sentence when they are not on one. The commands line follows their modules. Then stop: the next
 move is theirs.
 
 ## Coming back — set up and running

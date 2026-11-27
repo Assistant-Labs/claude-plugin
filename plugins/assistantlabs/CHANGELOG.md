@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.25.1 — 2026-11-27
+
+- **The welcome no longer pitches a meeting.** A call with our team is offered
+  when you ask for help setting up, ask for a person, or a step is stuck, the
+  same as on ChatGPT. Asking "book the meeting" still books it in the chat.
+
 ## 0.25.0 — 2026-11-26
 
 - **Tickets know their tasks and bookings.** Reading a helpdesk ticket now also
